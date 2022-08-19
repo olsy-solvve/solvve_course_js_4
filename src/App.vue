@@ -17,6 +17,8 @@ export default {
     <ComponentHeader></ComponentHeader>
     <ComponentMain></ComponentMain>
     <ComponentFooter></ComponentFooter>
+
+    <router-view></router-view>
   </div>
 </template>
 
