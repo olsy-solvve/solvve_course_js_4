@@ -1,40 +1,59 @@
 <script>
 export default {
-  data() {
-    return {
-      menuItems: [
-        { title: "Home", link: "/", icon: "" },
-        { title: "My Dashboard", link: "/dashbord", icon: "" },
-        { title: "Shop", link: "/shop", icon: "" },
-      ],
-      count: 0,
-    };
-  },
-
-  mounted() {
-    setTimeout(() => {
-      this.menuItems.push({ title: "Shop2", link: "/shop2", icon: "" });
-    }, 5000);
-  },
-};
+    data() {
+        return {
+            items: [
+                {
+					label:'Home',
+					icon:'pi pi-fw pi-home',
+          routerLink:'/'
+                },
+                {
+					label:'I Found a Pet',
+					icon:'pi pi-fw pi-plus',
+          routerLink:'/:catchAll(.*)'
+                },
+                {
+					label:'I Lost a Pet',
+					icon:'pi pi-fw pi-minus',
+          routerLink:'/lost'
+                },
+                {
+					label:'Search',
+					icon:'pi pi-fw pi-search',
+                },
+                {
+					label:'Log In',
+					icon:'pi pi-fw pi-sign-in',
+                }
+            ]
+        }
+    }
+}
 </script>
 
 <template>
   <header>
     <nav>
-      <ul>
-        <li v-for="(item, index) in menuItems" :key="index" @click="count++">
-          {{ item.title }}
-        </li>
-      </ul>
+      <MyMenubar :model="items" />
     </nav>
-
-    <b>{{ count }}</b>
   </header>
 </template>
 
 <style scoped>
-ul {
-  background-color: red;
-}
+  header {
+    background-color: #eee;
+    padding: 0.5rem;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  nav > * {
+    margin: 0.5rem;
+  }
 </style>
