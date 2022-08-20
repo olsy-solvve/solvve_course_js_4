@@ -12,8 +12,8 @@ import Password from 'primevue/password';
 import Divider from 'primevue/divider';
 import Checkbox from 'primevue/checkbox';
 import Dropdown from 'primevue/dropdown';
-
 import Button from 'primevue/button';
+import Carousel from 'primevue/carousel';
 
 
 
@@ -26,4 +26,5 @@ export default (app) => {
     app.component("Dropdown", Dropdown);
     app.component("Checkbox", Checkbox);
     app.component("Button", Button);
+    app.component("Carousel", Carousel);
 }
