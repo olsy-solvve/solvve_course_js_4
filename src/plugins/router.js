@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 // Change ComponentMain to Home page when create it
-import ComponentMain from "../components/ComponentMain.vue";
-import NotFound from "../components/NotFound.vue";
+import ComponentMain from "../views/Home.vue";
+import NotFound from "../views/NotFound.vue";
 
 const routes = [
   {
