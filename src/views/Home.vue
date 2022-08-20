@@ -3,14 +3,14 @@
     <div class="page-wrapper">
       <div class="section-content">
         <div class="section-head-text">
-          <h1>We help reunite lost pets with their families</h1>
+          <h1>We help reunite lost pets with their families.</h1>
           <h2>
             Enter a photo of your missing pet and search our national lost and
             found pet database to find them.
           </h2>
           <div class="section-controls">
-            <Button>Find</Button>
-            <Button>Lost</Button>
+            <Button>I Found a Pet</Button>
+            <Button>I Lost a Pet</Button>
           </div>
         </div>
         <div class="section-head-img">
@@ -37,7 +37,6 @@
           </div>
         </template>
       </Carousel>
-      <Button @click="test">test</Button>
     </div>
   </section>
 </template>
@@ -52,36 +51,36 @@ export default {
         {
           id: 1,
           img: images.car01,
-          status: "Lost Dog",
-          periodInfo: "2 years",
+          status: "Found Pet",
+          periodInfo: "Found 5 days ago",
           breed: "Poodle",
         },
         {
           id: 2,
           img: images.car02,
           status: "Found pet",
-          periodInfo: "Found pet",
+          periodInfo: "Found 12 hours ago",
           link: "/found",
         },
         {
           id: 3,
           img: images.car03,
-          status: "Lost pet",
-          periodInfo: "Lost pet",
+          status: "Found pet",
+          periodInfo: "Found 7 days ago",
           link: "/lost",
         },
         {
           id: 4,
           img: images.car04,
           status: "Found pet",
-          periodInfo: "Found pet",
+          periodInfo: "Found 3 days ago",
           link: "/found",
         },
         {
           id: 5,
           img: images.car05,
           status: "Lost pet",
-          periodInfo: "Lost pet",
+          periodInfo: "Found 2 days ago",
           link: "/lost",
         },
       ],
@@ -105,14 +104,6 @@ export default {
         },
       ],
     };
-  },
-  mounted() {
-    console.log(this.pets);
-  },
-  methods: {
-    test() {
-      console.log(this.pets);
-    },
   },
 };
 </script>
