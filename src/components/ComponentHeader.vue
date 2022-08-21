@@ -2,19 +2,14 @@
 export default {
   data() {
     return {
-      menuItems: [
-        { title: "Home", link: "/", icon: "" },
-        { title: "My Dashboard", link: "/dashbord", icon: "" },
-        { title: "Shop", link: "/shop", icon: "" },
+      items: [
+        { label: "Home", icon: "pi pi-fw pi-home", to: "/" },
+        { label: "I Found a Pet", icon: "pi pi-fw pi-plus", to: "/found" },
+        { label: "I Lost a Pet", icon: "pi pi-fw pi-minus", to: "/lostPet" },
+        { label: "Search", icon: "pi pi-fw pi-search" },
+        { label: "Log In", icon: "pi pi-fw pi-sign-in", to: "/Register" },
       ],
-      count: 0,
     };
-  },
-
-  mounted() {
-    setTimeout(() => {
-      this.menuItems.push({ title: "Shop2", link: "/shop2", icon: "" });
-    }, 5000);
   },
 };
 </script>
@@ -22,19 +17,19 @@ export default {
 <template>
   <header>
     <nav>
-      <ul>
-        <li v-for="(item, index) in menuItems" :key="index" @click="count++">
-          {{ item.title }}
-        </li>
-      </ul>
+      <MyMenu :model="items" />
     </nav>
-
-    <b>{{ count }}</b>
   </header>
 </template>
 
 <style scoped>
-ul {
-  background-color: red;
+header {
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
 }
 </style>
