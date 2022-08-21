@@ -9,8 +9,8 @@
             found pet database to find them.
           </h2>
           <div class="section-controls">
-            <Button>Found Pet</Button>
-            <Button><router-link to="/lost">Lost Pet</router-link></Button>
+            <Button><router-link to="/">Found Pet</router-link></Button>
+            <Button>Lost Pet</Button>
           </div>
         </div>
         <div class="section-head-img">
@@ -45,42 +45,43 @@
 import images from "../assets/images.js";
 
 export default {
+  methods: {},
   data() {
     return {
       pets: [
         {
           id: 1,
           img: images.car01,
-          status: "Found Pet",
-          periodInfo: "Found 5 days ago",
+          status: "Lost Pet",
+          periodInfo: "Lost 5 days ago",
           breed: "Poodle",
         },
         {
           id: 2,
           img: images.car02,
-          status: "Found pet",
-          periodInfo: "Found 12 hours ago",
+          status: "Lost pet",
+          periodInfo: "Lost 12 hours ago",
           link: "/found",
         },
         {
           id: 3,
           img: images.car03,
-          status: "Found pet",
-          periodInfo: "Found 7 days ago",
+          status: "Lost pet",
+          periodInfo: "Lost 7 days ago",
           link: "/lost",
         },
         {
           id: 4,
           img: images.car04,
-          status: "Found pet",
-          periodInfo: "Found 3 days ago",
+          status: "Lost pet",
+          periodInfo: "Lost 3 days ago",
           link: "/found",
         },
         {
           id: 5,
           img: images.car05,
           status: "Lost pet",
-          periodInfo: "Found 2 days ago",
+          periodInfo: "Lost 2 days ago",
           link: "/lost",
         },
       ],
