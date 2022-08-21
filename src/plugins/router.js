@@ -1,9 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-
-import Home from "../views/Home.vue";
+import HomePage from "../views/HomePage.vue";
 import NotFound from "../views/NotFound.vue";
-import Register from "../views/Register.vue";
+import RegisterForm from "../views/RegisterForm.vue";
 import LostPet from "../views/LostPet.vue";
 import FormIFoundPet from "../views/FormIFoundPet.vue";
 import FormILostPet from "../views/FormILostPet.vue";
@@ -12,7 +11,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: HomePage,
   },
 
   {
@@ -23,13 +22,13 @@ const routes = [
 
   {
     path: "/found",
-    name: "iFoundAPet", 
+    name: "iFoundAPet",
     component: FormIFoundPet,
   },
 
   {
     path: "/lostPet",
-    name: "iLostAPet", 
+    name: "iLostAPet",
     component: FormILostPet,
   },
   // catch 404
@@ -42,8 +41,8 @@ const routes = [
   {
     path: "/register",
     name: "Register",
-    component: Register,
-  }
+    component: RegisterForm,
+  },
 ];
 
 const router = createRouter({

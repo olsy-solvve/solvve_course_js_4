@@ -11,7 +11,10 @@ export default {
 <template>
   <footer>
     <div>
-      <p>Use of this service, website, or application constitutes acceptance of all terms listed above</p>
+      <p>
+        Use of this service, website, or application constitutes acceptance of
+        all terms listed above
+      </p>
       <p>Copyright &copy; {{ year }}</p>
     </div>
   </footer>
@@ -26,6 +29,4 @@ footer {
 p {
   text-align: center;
 }
-
-
 </style>

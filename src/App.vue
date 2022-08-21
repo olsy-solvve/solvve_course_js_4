@@ -15,8 +15,6 @@ export default {
     <ComponentHeader></ComponentHeader>
     <router-view></router-view>
     <ComponentFooter></ComponentFooter>
-
-    
   </div>
 </template>
 

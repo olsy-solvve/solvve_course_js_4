@@ -9,8 +9,8 @@
             found pet database to find them.
           </h2>
           <div class="section-controls">
-            <Button><router-link to="/">Found Pet</router-link></Button>
-            <Button>Lost Pet</Button>
+            <MyButton><router-link to="/">Found Pet</router-link></MyButton>
+            <MyButton>Lost Pet</MyButton>
           </div>
         </div>
         <div class="section-head-img">
