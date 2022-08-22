@@ -37,7 +37,6 @@ const routes = [
     path: "/listPage",
     name: "ListPage",
     component: ListPage,
-
   },
   // catch 404
   {
