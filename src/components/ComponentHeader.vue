@@ -6,7 +6,11 @@ export default {
         { label: "Home", icon: "pi pi-fw pi-home", to: "/" },
         { label: "I Found a Pet", icon: "pi pi-fw pi-plus", to: "/found" },
         { label: "I Lost a Pet", icon: "pi pi-fw pi-minus", to: "/lostPet" },
-        { label: "Search", icon: "pi pi-fw pi-search" },
+        {
+          label: "List With All Pets",
+          icon: "pi pi-fw pi-list",
+          to: "listPage",
+        },
         { label: "Log In", icon: "pi pi-fw pi-sign-in", to: "/Register" },
       ],
     };
