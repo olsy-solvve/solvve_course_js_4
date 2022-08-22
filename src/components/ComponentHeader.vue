@@ -11,7 +11,8 @@ export default {
           icon: "pi pi-fw pi-list",
           to: "listPage",
         },
-        { label: "Log In", icon: "pi pi-fw pi-sign-in", to: "/Register" },
+        { label: "MyDashboard", icon: "pi pi-fw pi-star", to: "/myDashboard" },
+        { label: "Sing in", icon: "pi pi-fw pi-sign-in", to: "/Register" },
       ],
     };
   },

@@ -7,6 +7,8 @@ import LostPet from "../views/LostPet.vue";
 import FormIFoundPet from "../views/FormIFoundPet.vue";
 import FormILostPet from "../views/FormILostPet.vue";
 import ListPage from "../views/ListPage.vue";
+import MyDashboard from "../views/MyDashboard.vue";
+import MySettings from "../views/MySettings.vue";
 
 const routes = [
   {
@@ -37,6 +39,18 @@ const routes = [
     path: "/listPage",
     name: "ListPage",
     component: ListPage,
+  },
+
+  {
+    path: "/myDashboard",
+    name: "MyDashboard",
+    component: MyDashboard,
+  },
+
+  {
+    path: "/mySettings",
+    name: "MySettings",
+    component: MySettings,
   },
   // catch 404
   {
