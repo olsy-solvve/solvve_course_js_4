@@ -6,6 +6,7 @@ import RegisterForm from "../views/RegisterForm.vue";
 import LostPet from "../views/LostPet.vue";
 import FormIFoundPet from "../views/FormIFoundPet.vue";
 import FormILostPet from "../views/FormILostPet.vue";
+import ListPage from "../views/ListPage.vue";
 
 const routes = [
   {
@@ -30,6 +31,13 @@ const routes = [
     path: "/lostPet",
     name: "iLostAPet",
     component: FormILostPet,
+  },
+
+  {
+    path: "/listPage",
+    name: "ListPage",
+    component: ListPage,
+
   },
   // catch 404
   {

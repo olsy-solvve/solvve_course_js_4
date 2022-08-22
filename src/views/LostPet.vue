@@ -21,7 +21,7 @@
   </section>
   <section class="section-carousel">
     <div class="page-wrapper">
-      <Carousel
+      <HomeCarousel
         :value="pets"
         :numVisible="3"
         :numScroll="1"
@@ -36,7 +36,7 @@
             <div class="period-info">{{ slotProps.data.periodInfo }}</div>
           </div>
         </template>
-      </Carousel>
+      </HomeCarousel>
     </div>
   </section>
 </template>
