@@ -50,7 +50,7 @@
               >{{ v$.name.required.$message.replace("Value", "Name") }}</small
             >
           </div>
-                    <div class="field">
+          <div class="field">
             <div class="p-float-label">
               <InputText
                 id="phone"
@@ -238,8 +238,8 @@ export default {
 
 <style scoped>
 .form-demo {
- max-width: 500px;
- margin: 0 auto;
+  max-width: 500px;
+  margin: 0 auto;
 }
 .form-demo .card {
   min-width: 450px;
@@ -248,13 +248,14 @@ export default {
   margin-top: 2rem;
 }
 
-.form-demo .card .field,.form-demo .card .field-checkbox {
+.form-demo .card .field,
+.form-demo .card .field-checkbox {
   margin-bottom: 1.5rem;
 }
 
-.field-checkbox>label {
-    margin-left: 0.5rem;
-    line-height: 1;
+.field-checkbox > label {
+  margin-left: 0.5rem;
+  line-height: 1;
 }
 
 @media screen and (max-width: 960px) {
