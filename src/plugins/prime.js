@@ -12,6 +12,8 @@ import Checkbox from "primevue/checkbox";
 import Dropdown from "primevue/dropdown";
 import Button from "primevue/button";
 import Carousel from "primevue/carousel";
+import Textarea from 'primevue/textarea';
+import Calendar from 'primevue/calendar';
 
 export default (app) => {
   app.use(PrimeVue, { ripple: true });
@@ -19,8 +21,10 @@ export default (app) => {
   app.component("InputText", InputText);
   app.component("PrimePassword", Password);
   app.component("PrimeDivider", Divider);
-  app.component("PrimeDropdown", Dropdown);
+  app.component("FormDropdown", Dropdown);
   app.component("PrimeCheckbox", Checkbox);
   app.component("MyButton", Button);
   app.component("HomeCarousel", Carousel);
+  app.component("FormTextarea", Textarea);
+  app.component("FormCalendar", Calendar);
 };
