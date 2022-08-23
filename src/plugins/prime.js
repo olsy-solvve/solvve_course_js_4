@@ -12,6 +12,8 @@ import Checkbox from "primevue/checkbox";
 import Dropdown from "primevue/dropdown";
 import Button from "primevue/button";
 import Carousel from "primevue/carousel";
+import InputNumber from "primevue/inputnumber";
+import InputMask from "primevue/inputmask";
 
 export default (app) => {
   app.use(PrimeVue, { ripple: true });
@@ -23,4 +25,6 @@ export default (app) => {
   app.component("PrimeCheckbox", Checkbox);
   app.component("MyButton", Button);
   app.component("HomeCarousel", Carousel);
+  app.component("InputNumber", InputNumber);
+  app.component("InputMask", InputMask);
 };

@@ -4,6 +4,10 @@
       <div class="menu-dash">
         <h5><router-link to="/myDashboard">Pets</router-link></h5>
         <h5><router-link to="/mySettings">Settings</router-link></h5>
+        <h5><router-link to="/myPassword">Change Password</router-link></h5>
+      </div>
+      <div>
+        <h2 class="pets-text">My Pets</h2>
       </div>
       <div class="button-dash">
         <MyButton label="+Add a Pet" class="p-button-rounded"></MyButton>
@@ -32,12 +36,19 @@
 .p-button-rounded {
   display: flex;
   align-items: flex-start;
-  margin-left: -100px;
+  margin-left: -242px;
+  margin-top: 80px;
 }
 
 .menu-dash {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.pets-text {
+  align-items: flex-start;
+  margin-left: 80px;
+  margin-top: 10px;
 }
 </style>

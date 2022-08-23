@@ -9,6 +9,7 @@ import FormILostPet from "../views/FormILostPet.vue";
 import ListPage from "../views/ListPage.vue";
 import MyDashboard from "../views/MyDashboard.vue";
 import MySettings from "../views/MySettings.vue";
+import MyPassword from "../views/MyPassword.vue";
 
 const routes = [
   {
@@ -51,6 +52,12 @@ const routes = [
     path: "/mySettings",
     name: "MySettings",
     component: MySettings,
+  },
+
+  {
+    path: "/myPassword",
+    name: "MyPassword",
+    component: MyPassword,
   },
   // catch 404
   {
