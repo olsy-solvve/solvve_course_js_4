@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!isAuth" class="signin_container">
+  <div class="signin_container">
     <VeeForm @submit="Login" :validation-schema="formSchema">
       <h1>Sign in</h1>
 
@@ -64,11 +64,6 @@ export default {
       },
     };
   },
-  computed: {
-    isAuth() {
-      return localStorage.getItem("token");
-    },
-  },
   methods: {
     randomUserToken() {
       return Math.random().toString(36).substr(2);
@@ -83,6 +78,7 @@ export default {
     Login(values, { resetForm }) {
       this.setUserToken();
       resetForm();
+      this.$router.push({ name: "Home" });
     },
   },
 };

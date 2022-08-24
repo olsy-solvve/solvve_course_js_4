@@ -8,6 +8,12 @@ import FormIFoundPet from "../views/FormIFoundPet.vue";
 import FormILostPet from "../views/FormILostPet.vue";
 import ListPage from "../views/ListPage.vue";
 
+const isAuth = () => {
+  const isAuth = localStorage.getItem("token");
+  if (isAuth) return "/";
+  return true;
+};
+
 const routes = [
   {
     path: "/",
@@ -38,17 +44,18 @@ const routes = [
     name: "ListPage",
     component: ListPage,
   },
-  // catch 404
-  {
-    path: "/:catchAll(.*)",
-    name: "NotFound",
-    component: NotFound,
-  },
 
   {
     path: "/register",
     name: "Register",
     component: RegisterForm,
+    beforeEnter: [isAuth],
+  },
+  // catch 404
+  {
+    path: "/:catchAll(.*)",
+    name: "NotFound",
+    component: NotFound,
   },
 ];
 
