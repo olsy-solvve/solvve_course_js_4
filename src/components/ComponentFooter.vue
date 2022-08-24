@@ -10,8 +10,23 @@ export default {
 
 <template>
   <footer>
-    {{ year }}
+    <div>
+      <p>
+        Use of this service, website, or application constitutes acceptance of
+        all terms listed above
+      </p>
+      <p>Copyright &copy; {{ year }}</p>
+    </div>
   </footer>
 </template>
 
-<style></style>
+<style scoped>
+footer {
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+p {
+  text-align: center;
+}
+</style>
