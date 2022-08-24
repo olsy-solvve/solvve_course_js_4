@@ -1,3 +1,11 @@
+<script>
+import SignInForm from "../components/SignInForm/SignInForm.vue";
+
+export default {
+  components: { SignInForm },
+};
+</script>
+
 <template>
-  <h1>Registration form</h1>
+  <SignInForm></SignInForm>
 </template>
