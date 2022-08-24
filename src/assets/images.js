@@ -5,7 +5,7 @@ import car04 from "@/assets/img/img_car_04.jpg";
 import car05 from "@/assets/img/img_car_05.jpg";
 import car06 from "@/assets/img/img_car_06.jpg";
 import dog01 from "@/assets/img/img_home_01.jpg";
-import main_logo from "@/assets/img/main_logo.png";
+import pet1 from "@/assets/img/pet1.png";
 
 export default {
   car01,
@@ -15,5 +15,5 @@ export default {
   car05,
   car06,
   dog01,
-  main_logo,
+  pet1,
 };

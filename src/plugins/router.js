@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import HomePage from "../views/HomePage.vue";
+import Home from "../views/Home.vue";
 import NotFound from "../views/NotFound.vue";
 import RegisterForm from "../views/RegisterForm.vue";
 import LostPet from "../views/LostPet.vue";
@@ -73,14 +73,7 @@ const routes = [
   {
     path: "/register",
     name: "Register",
-    component: RegisterForm,
-    beforeEnter: [isAuth],
-  },
-  // catch 404
-  {
-    path: "/:catchAll(.*)",
-    name: "NotFound",
-    component: NotFound,
+    component: Register,
   },
 ];
 
