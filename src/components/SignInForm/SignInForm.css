@@ -1,0 +1,15 @@
+.signin_container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+
+.form-group label {
+  font-size: 18px;
+}
