@@ -1,18 +1,3 @@
 <template>
-  <Chips v-model="value" />
+  <div><h1>Form I Lost a Pet</h1></div>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      value: [],
-    };
-  },
-  methods: {
-    onChange(e) {
-      this.value = e.value;
-    },
-  },
-};
-</script>

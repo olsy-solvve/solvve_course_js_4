@@ -9,8 +9,8 @@
             found pet database to find them.
           </h2>
           <div class="section-controls">
-            <Button>Found Pet</Button>
-            <Button><router-link to="/lost">Lost Pet</router-link></Button>
+            <MyButton>Found Pet</MyButton>
+            <MyButton><router-link to="/lost">Lost Pet</router-link></MyButton>
           </div>
         </div>
         <div class="section-head-img">
@@ -21,7 +21,7 @@
   </section>
   <section class="section-carousel">
     <div class="page-wrapper">
-      <Carousel
+      <HomeCarousel
         :value="pets"
         :numVisible="3"
         :numScroll="1"
@@ -36,7 +36,7 @@
             <div class="period-info">{{ slotProps.data.periodInfo }}</div>
           </div>
         </template>
-      </Carousel>
+      </HomeCarousel>
     </div>
   </section>
 </template>
