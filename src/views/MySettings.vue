@@ -7,39 +7,38 @@
         <h5><router-link to="/myPassword">Change Password</router-link></h5>
       </div>
       <div class="settings-form">
-        <div class="card">
-          <div class="p-fluid grid">
-            <div>
-              <h2 class="sett-text">Contact Info Settings</h2>
-            </div>
-            <div class="field col-12 md:col-4 first-name">
-              <span class="p-float-label">
-                <InputText id="inputtext" type="text" v-model="value1" />
-                <label for="inputtext">First Name</label>
-              </span>
-            </div>
-            <div class="field col-12 md:col-4 last-name">
-              <span class="p-float-label">
-                <InputText id="inputtext" type="text" v-model="value1" />
-                <label for="inputtext">Last Name</label>
-              </span>
-            </div>
-            <div class="field col-12 md:col-4 email-line">
-              <span class="p-float-label">
-                <InputText id="inputtext" type="text" v-model="value1" />
-                <label for="inputtext">Email</label>
-              </span>
-            </div>
-            <div class="field col-12 md:col-4 phone-number">
-              <span class="p-float-label">
-                <InputText id="inputtext" type="text" v-model="value1" />
-                <label for="inputtext">Phone Number</label>
-              </span>
-            </div>
+        <div class="container-settings-form">
+          <div>
+            <h2 class="sett-text">Contact Info Settings</h2>
           </div>
-        </div>
-        <div class="sett-button">
-          <MyButton label="Save Settings" class="p-button-rounded"> </MyButton>
+          <div class="field col-12 md:col-4 first-name">
+            <h5>First Name</h5>
+            <span class="p-float-label">
+              <InputText id="inputtext" type="text" v-model="value1" />
+            </span>
+          </div>
+          <div class="field col-12 md:col-4 last-name">
+            <h5>Last Name</h5>
+            <span class="p-float-label">
+              <InputText id="inputtext" type="text" v-model="value1" />
+            </span>
+          </div>
+          <div class="field col-12 md:col-4 email-line">
+            <h5>Email</h5>
+            <span class="p-float-label">
+              <InputText id="inputtext" type="text" v-model="value1" />
+            </span>
+          </div>
+          <div class="field col-12 md:col-4 phone-number">
+            <h5>Phone Number</h5>
+            <span class="p-float-label">
+              <InputText id="inputtext" type="text" v-model="value1" />
+            </span>
+          </div>
+          <div class="sett-button">
+            <MyButton label="Save Settings" class="p-button-rounded">
+            </MyButton>
+          </div>
         </div>
       </div>
     </div>
@@ -57,42 +56,38 @@
   display: flex;
   gap: 20px;
   margin-bottom: 20px;
-
-  > * {
-    flex: 1 1 50%;
-  }
 }
 
+.container-settings-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
 .p-button-rounded {
   display: flex;
   align-items: flex-start;
-  margin-left: -100px;
+  margin-top: 20px;
 }
-
-.p-button {
-  margin-top: 60px;
-}
-
 .menu-dash {
+  padding-left: 5px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  flex: 0 0 160px;
+  background-color: #fff;
 }
 
-.first-name,
-.last-name,
-.phone-number,
-.email-line {
-  display: flex;
-  margin-bottom: 25px;
-  margin-left: -132px;
+.settings-form {
+  flex: 1 1 auto;
 }
 
-.first-name {
-  margin-top: 30px;
+a {
+  color: black;
+  text-decoration: none;
 }
 
-.sett-text {
-  margin-left: -135px;
+a:hover {
+  color: green;
 }
 </style>

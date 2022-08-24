@@ -6,11 +6,17 @@
         <h5><router-link to="/mySettings">Settings</router-link></h5>
         <h5><router-link to="/myPassword">Change Password</router-link></h5>
       </div>
-      <div>
+      <div class="container-pets">
         <h2 class="pets-text">My Pets</h2>
-      </div>
-      <div class="button-dash">
-        <MyButton label="+Add a Pet" class="p-button-rounded"></MyButton>
+        <div class="button-dash">
+          <MyButton label="+Add a lost pet" class="p-button-rounded"></MyButton>
+        </div>
+        <div class="button-dash">
+          <MyButton
+            label="+Add a found pet"
+            class="p-button-rounded"
+          ></MyButton>
+        </div>
       </div>
     </div>
   </div>
@@ -27,28 +33,36 @@
   display: flex;
   gap: 20px;
   margin-bottom: 20px;
-
-  > * {
-    flex: 1 1 50%;
-  }
 }
 
-.p-button-rounded {
-  display: flex;
-  align-items: flex-start;
-  margin-left: -242px;
-  margin-top: 80px;
+.button-dash {
+  text-align: center;
+  margin-top: 20px;
 }
 
 .menu-dash {
+  padding-left: 5px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  flex: 0 0 160px;
+  background-color: #fff;
 }
 
 .pets-text {
-  align-items: flex-start;
-  margin-left: 80px;
-  margin-top: 10px;
+  text-align: center;
+}
+
+.container-pets {
+  flex: 1 1 auto;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  color: green;
 }
 </style>

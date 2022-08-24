@@ -7,34 +7,32 @@
         <h5><router-link to="/myPassword">Change Password</router-link></h5>
       </div>
       <div class="settings-form">
-        <div class="card">
+        <div class="container-password-form">
           <div>
             <h2 class="sett-text">Change Password</h2>
           </div>
-          <div>
-            <h5 class="pass-text-top">Current Password</h5>
-            <PrimePassword
-              v-model="value1"
-              :feedback="false"
-              class="pass-center"
-            />
-            <h5 class="pass-text">New Password</h5>
-            <PrimePassword
-              v-model="value1"
-              :feedback="false"
-              class="pass-center"
-            />
-            <h5 class="pass-text">Reenter New Password</h5>
-            <PrimePassword
-              v-model="value1"
-              :feedback="false"
-              class="pass-center"
-            />
+          <div class="field col-12 md:col-4 first-name">
+            <h5>Current Password</h5>
+            <span class="p-float-label">
+              <InputText id="inputtext" type="password" v-model="value1" />
+            </span>
           </div>
-        </div>
-        <div class="sett-button">
-          <MyButton label="Change Password" class="p-button-rounded">
-          </MyButton>
+          <div class="field col-12 md:col-4 last-name">
+            <h5>New Password</h5>
+            <span class="p-float-label">
+              <InputText id="inputtext" type="password" v-model="value1" />
+            </span>
+          </div>
+          <div class="field col-12 md:col-4 email-line">
+            <h5>Reenter New Password</h5>
+            <span class="p-float-label">
+              <InputText id="inputtext" type="password" v-model="value1" />
+            </span>
+          </div>
+          <div class="sett-button">
+            <MyButton label="Change Password" class="p-button-rounded">
+            </MyButton>
+          </div>
         </div>
       </div>
     </div>
@@ -51,48 +49,40 @@
 .section-content {
   display: flex;
   gap: 20px;
-  margin-bottom: 20px;
+}
 
-  > * {
-    flex: 1 1 50%;
-  }
+.container-password-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.settings-form {
+  flex: 1 1 auto;
 }
 
 .p-button-rounded {
   display: flex;
   align-items: flex-start;
-  margin-left: -100px;
-}
-
-.p-button {
-  margin-top: 50px;
-  margin-left: -120px;
+  margin-top: 20px;
 }
 
 .menu-dash {
+  padding-left: 5px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  flex: 0 0 160px;
+  background-color: #fff;
 }
 
-.sett-text {
-  margin-left: -135px;
+a {
+  color: black;
+  text-decoration: none;
 }
 
-.pass-center {
-  display: flex;
-  margin-bottom: 10px;
-  margin-left: -140px;
-}
-
-.pass-text {
-  display: flex;
-  margin-left: -130px;
-  margin-top: 10px;
-}
-.pass-text-top {
-  display: flex;
-  margin-left: -130px;
-  margin-top: 30px;
+a:hover {
+  color: green;
 }
 </style>
