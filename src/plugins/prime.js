@@ -18,8 +18,8 @@ export default (app) => {
   app.use(PrimeVue, { ripple: true });
   app.component("MyMenu", TabMenu);
   app.component("InputText", InputText);
-  app.component("Password", Password);
-  app.component("Divider", Divider);
+  app.component("PasswordForm", Password);
+  app.component("FormDivider", Divider);
   app.component("Dropdown", Dropdown);
   app.component("Checkbox", Checkbox);
   app.component("MyButton", Button);

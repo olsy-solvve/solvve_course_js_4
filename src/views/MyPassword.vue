@@ -25,21 +25,30 @@
           </div>
           <div>
             <h5>Current Password</h5>
-            <span>
-              <InputText id="inputtext" type="password" v-model="value1" />
-            </span>
+            <PasswordForm v-model="value1" :feedback="false" toggleMask />
           </div>
           <div>
             <h5>New Password</h5>
-            <span>
-              <InputText id="inputtext" type="password" v-model="value1" />
-            </span>
+            <PasswordForm v-model="value4" toggleMask>
+              <template #header>
+                <h6>Pick a password</h6>
+              </template>
+              <template #footer="sp">
+                {{ sp.level }}
+                <FormDivider />
+                <p class="mt-2">Suggestions</p>
+                <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                  <li>At least one lowercase</li>
+                  <li>At least one uppercase</li>
+                  <li>At least one numeric</li>
+                  <li>Minimum 8 characters</li>
+                </ul>
+              </template>
+            </PasswordForm>
           </div>
           <div>
             <h5>Reenter New Password</h5>
-            <span>
-              <InputText id="inputtext" type="password" v-model="value1" />
-            </span>
+            <PasswordForm v-model="value2" :feedback="false" toggleMask />
           </div>
           <div>
             <MyButton
@@ -54,7 +63,17 @@
   </div>
 </template>
 
-<script></script>
+<script>
+export default {
+  data() {
+    return {
+      value1: null,
+      value2: null,
+      value4: null,
+    };
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .page-wrapper {
