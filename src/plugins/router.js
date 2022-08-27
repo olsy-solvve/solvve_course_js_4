@@ -10,6 +10,7 @@ import ListPage from "../views/ListPage.vue";
 import MyDashboard from "../views/MyDashboard.vue";
 import MySettings from "../views/MySettings.vue";
 import MyPassword from "../views/MyPassword.vue";
+import MyRegister from "../views/MyRegister.vue";
 
 const isAuth = () => {
   const isAuth = localStorage.getItem("token");
@@ -74,6 +75,12 @@ const routes = [
     path: "/register",
     name: "RegisterForm",
     component: RegisterForm,
+  },
+  {
+    path: "/chage",
+    name: "MyRegister",
+    component: MyRegister,
+
   },
 ];
 
