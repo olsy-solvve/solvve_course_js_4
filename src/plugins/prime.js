@@ -21,6 +21,6 @@ export default (app) => {
   app.component("Divider", Divider);
   app.component("Dropdown", Dropdown);
   app.component("Checkbox", Checkbox);
-  app.component("Button", Button);
-  app.component("Carousel", Carousel);
+  app.component("MyButton", Button);
+  app.component("HomeCarousel", Carousel);
 };

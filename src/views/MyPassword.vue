@@ -30,8 +30,7 @@
             </span>
           </div>
           <div class="sett-button">
-            <MyButton label="Change Password" class="p-button-rounded">
-            </MyButton>
+            <MyButton label="Change Password" class="p-button"> </MyButton>
           </div>
         </div>
       </div>
@@ -62,10 +61,11 @@
   flex: 1 1 auto;
 }
 
-.p-button-rounded {
+.p-button {
   display: flex;
   align-items: flex-start;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .menu-dash {

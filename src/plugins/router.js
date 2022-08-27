@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import Home from "../views/Home.vue";
+import HomePage from "../views/HomePage.vue";
 import NotFound from "../views/NotFound.vue";
 import RegisterForm from "../views/RegisterForm.vue";
 import LostPet from "../views/LostPet.vue";
@@ -72,8 +72,8 @@ const routes = [
   },
   {
     path: "/register",
-    name: "Register",
-    component: Register,
+    name: "RegisterForm",
+    component: RegisterForm,
   },
 ];
 

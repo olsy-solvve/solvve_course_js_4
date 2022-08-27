@@ -36,8 +36,7 @@
             </span>
           </div>
           <div class="sett-button">
-            <MyButton label="Save Settings" class="p-button-rounded">
-            </MyButton>
+            <MyButton label="Save Settings" class="p-button"> </MyButton>
           </div>
         </div>
       </div>
@@ -64,7 +63,7 @@
   align-items: center;
   gap: 10px;
 }
-.p-button-rounded {
+.p-button {
   display: flex;
   align-items: flex-start;
   margin-top: 20px;

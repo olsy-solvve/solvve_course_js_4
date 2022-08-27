@@ -9,13 +9,10 @@
       <div class="container-pets">
         <h2 class="pets-text">My Pets</h2>
         <div class="button-dash">
-          <MyButton label="+Add a lost pet" class="p-button-rounded"></MyButton>
+          <MyButton label="+Add a lost pet" class="p-button"></MyButton>
         </div>
         <div class="button-dash">
-          <MyButton
-            label="+Add a found pet"
-            class="p-button-rounded"
-          ></MyButton>
+          <MyButton label="+Add a found pet" class="p-button"></MyButton>
         </div>
       </div>
     </div>
