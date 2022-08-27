@@ -110,7 +110,6 @@ export default {
         currentPassword: "",
         password: "",
         confirmPassword: "",
-        submitted: true,
       },
     };
   },
@@ -123,9 +122,6 @@ export default {
         confirmPassword: { required, sameAs: sameAs(this.form.password) },
       },
     };
-  },
-  handleSubmit() {
-    submitted = false;
   },
 };
 </script>

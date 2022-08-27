@@ -3,7 +3,7 @@ import PrimeVue from "primevue/config";
 import "primevue/resources/themes/saga-blue/theme.css"; //theme
 import "primevue/resources/primevue.min.css"; //core css
 import "primeicons/primeicons.css"; //icons
-import 'primeflex/primeflex.scss';
+import "primeflex/primeflex.scss";
 
 import TabMenu from "primevue/tabmenu";
 import InputText from "primevue/inputtext";
@@ -13,7 +13,7 @@ import Checkbox from "primevue/checkbox";
 import Dropdown from "primevue/dropdown";
 import Button from "primevue/button";
 import Carousel from "primevue/carousel";
-import InputMask from "primevue/inputmask"
+import InputMask from "primevue/inputmask";
 
 export default (app) => {
   app.use(PrimeVue, { ripple: true });
@@ -21,9 +21,9 @@ export default (app) => {
   app.component("InputText", InputText);
   app.component("PasswordForm", Password);
   app.component("FormDivider", Divider);
-  app.component("Dropdown", Dropdown);
-  app.component("Checkbox", Checkbox);
+  app.component("MyDropdown", Dropdown);
+  app.component("MyCheckbox", Checkbox);
   app.component("MyButton", Button);
   app.component("HomeCarousel", Carousel);
-  app.component("InputMask", InputMask)
+  app.component("InputMask", InputMask);
 };
