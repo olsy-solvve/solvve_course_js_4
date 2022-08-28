@@ -7,6 +7,15 @@ import LostPet from "../views/LostPet.vue";
 import FormIFoundPet from "../views/FormIFoundPet.vue";
 import FormILostPet from "../views/FormILostPet.vue";
 import ListPage from "../views/ListPage.vue";
+import MyDashboard from "../views/MyDashboard.vue";
+import MySettings from "../views/MySettings.vue";
+import MyPassword from "../views/MyPassword.vue";
+
+const isAuth = () => {
+  const isAuth = localStorage.getItem("token");
+  if (isAuth) return "/";
+  return true;
+};
 
 const routes = [
   {
@@ -38,16 +47,32 @@ const routes = [
     name: "ListPage",
     component: ListPage,
   },
+  {
+    path: "/myDashboard",
+    name: "MyDashboard",
+    component: MyDashboard,
+  },
+
+  {
+    path: "/mySettings",
+    name: "MySettings",
+    component: MySettings,
+  },
+
+  {
+    path: "/myPassword",
+    name: "MyPassword",
+    component: MyPassword,
+  },
   // catch 404
   {
     path: "/:catchAll(.*)",
     name: "NotFound",
     component: NotFound,
   },
-
   {
     path: "/register",
-    name: "Register",
+    name: "RegisterForm",
     component: RegisterForm,
   },
 ];
