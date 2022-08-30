@@ -61,7 +61,7 @@
                 </small>
               </div>
               <div>
-                <h5>Confirm New Password</h5>
+                <h5>Reenter New Password</h5>
                 <PasswordForm
                   @input="checkPassword()"
                   v-model="v$.form.confirmPassword.$model"
