@@ -14,6 +14,7 @@ import Dropdown from "primevue/dropdown";
 import Button from "primevue/button";
 import Carousel from "primevue/carousel";
 import InputMask from "primevue/inputmask";
+import OrderList from 'primevue/orderlist';
 
 export default (app) => {
   app.use(PrimeVue, { ripple: true });
@@ -26,4 +27,5 @@ export default (app) => {
   app.component("MyButton", Button);
   app.component("HomeCarousel", Carousel);
   app.component("InputMask", InputMask);
+  app.component("OrderList", OrderList);
 };
