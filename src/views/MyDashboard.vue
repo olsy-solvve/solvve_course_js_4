@@ -1,5 +1,5 @@
 <template>
-  <div class="page-wrapper">
+  <div class="page-wrapper mx-auto my-0">
     <div class="flex gap-2 mb-4">
       <div class="flex flex-column gap-3 flex-initial p-2 bg-white">
         <h5>
@@ -20,26 +20,40 @@
       </div>
       <div class="flex-auto">
         <h2 class="text-center">My Pets</h2>
-        <div class="text-center mt-4">
-          <MyButton label="+Add a lost pet"></MyButton>
-        </div>
-        <div class="text-center mt-4 mb-2">
-          <MyButton label="+Add a found pet"></MyButton>
+        <div class="flex justify-content-center gap-5">
+          <div class="text-center mt-4">
+            <MyButton label="+Add a lost pet"></MyButton>
+          </div>
+          <div class="text-center mt-4 mb-2">
+            <MyButton label="+Add a found pet"></MyButton>
+          </div>
         </div>
       </div>
     </div>
     <OrderList class="mb-5" v-model="pets" listStyle="height:auto">
       <template #header> My Pets List </template>
       <template #item="slotProps">
-        <div class="pets-item">
-          <div class="pets-img">
-            <img :src="slotProps.item.img" />
+        <div class="flex flex-row">
+          <div class="pets-img max-w-9rem">
+            <img class="w-full" :src="slotProps.item.img" />
           </div>
-          <div class="pets-info">
-            <span>Pet: {{ slotProps.item.pet }}</span>
-            <span>Gender: {{ slotProps.item.gender }}</span>
-            <span>Status: {{ slotProps.item.status }}</span>
-            <span>Period: {{ slotProps.item.periodInfo }}</span>
+          <div class="flex flex-column gap-1 mt-4 ml-2">
+            <small
+              ><span class="font-bold">Pet:</span>
+              {{ slotProps.item.pet }}</small
+            >
+            <small
+              ><span class="font-bold">Gender:</span>
+              {{ slotProps.item.gender }}</small
+            >
+            <small
+              ><span class="font-bold">Status:</span>
+              {{ slotProps.item.status }}</small
+            >
+            <small
+              ><span class="font-bold">Period:</span>
+              {{ slotProps.item.periodInfo }}</small
+            >
           </div>
         </div>
       </template>
@@ -103,24 +117,5 @@ export default {
 <style lang="scss" scoped>
 .page-wrapper {
   max-width: 900px;
-  margin: 0 auto;
-}
-
-.pets-item {
-  display: flex;
-  flex-direction: row;
-}
-
-.pets-img {
-  max-width: 150px;
-  img {
-    width: 100%;
-  }
-}
-.pets-info {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-left: 10px;
 }
 </style>
