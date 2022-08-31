@@ -1,6 +1,18 @@
 <template>
   <div>
     <form @submit.prevent="onSubmit" class="form">
+      <div class="form-type">
+        <div v-for="item of types" :key="item.key" class="field-radiobutton" style="margin-right: 5px">
+            <FormRadioButton 
+              :inputId="item.key" 
+              @change="onChange()" 
+              name="item" 
+              :value="item.name" 
+              v-model="selectedType"
+            />
+            <label :for="item.key">{{ '  ' + item.name }}</label>
+        </div>
+      </div>
       <div class="form-gender">
         <FormDropdown
           v-model="gender"
@@ -39,23 +51,35 @@
 </template>
 
 <script>
-import PhotoUploader from "../components/PhotoUploader.vue";
-import { useRouter } from "vue-router";
+import PhotoUploader from "./PhotoUploader.vue";
+import { useRouter, useRoute } from "vue-router";
 import { computed, ref } from "vue";
 
 export default {
   setup() {
     const router = useRouter();
+    const route = useRoute();
 
     const info = ref("");
     const date = ref();
     const gender = ref();
     const files = ref([]);
-    const data = ref({});
 
-    const isButtonDisabled = computed(() =>
-      files.value.length <= 3 ? false : true
-    );
+    const isButtonDisabled = computed(() => files.value.length <= 3 ? false : true );
+
+    const types = ref([
+      {name: 'Found', key: 'F'},
+      {name: 'Lost', key: 'L'}
+    ]);
+
+    // const selectedType = ref(types.value[0].name);
+    const selectedType = computed(() => {
+      if (route.path === '/found') {
+        return types.value[0].name
+      } else if (route.path === '/lostPet') {
+        return types.value[1].name
+      }
+    });
 
     const genders = ref([
       { name: "Male", code: "Male" },
@@ -63,23 +87,31 @@ export default {
     ]);
 
     const onSubmit = () => {
-      data.value = {
-        date: date.value,
-        gender: gender.value,
-        info: info.value,
-        files: files.value,
-      };
+      const formData = new FormData()
+      formData.append("files", files.value);
+      formData.append("date", date.value);
+      formData.append("gender", gender.value);
+      formData.append("info", info.value);
+      formData.append("type", selectedType.value);
 
-      console.log(files.value);
-      console.log(data.value);
-      console.log(data.value.date);
-      console.log(data.value.gender);
-      console.log(data.value.info);
-      console.log(data.value.files);
+      for (var value of formData.values()) {
+        console.log(value);
+      }
+
       router.push("/");
     };
 
+    const onChange = () => {
+      if (route.path === '/found') {
+        router.push('/lostPet');
+      } else if (route.path === '/lostPet') {
+        router.push('/found');
+      }
+    };
+
     return {
+      types,
+      selectedType,
       files,
       info,
       date,
@@ -87,6 +119,7 @@ export default {
       genders,
       isButtonDisabled,
       onSubmit,
+      onChange,
     };
   },
   components: {
@@ -103,6 +136,13 @@ export default {
   align-items: center;
   width: 770px;
   margin: 0 auto 20px;
+
+  &-type {
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    margin-bottom: 10px;
+  }
 
   &-date {
     display: flex;

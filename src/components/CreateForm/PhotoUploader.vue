@@ -9,6 +9,7 @@
         class="photo-uploader__input"
         type="file"
         multiple
+        accept="image/*, .png, .jpg, .gif, .web"
         title=""
         @change="uploadFile"
         @dragenter="isDragStarted = true"
@@ -69,7 +70,7 @@ export default {
       if (input.value) {
         input.value.value = "";
       }
-      console.log(modelValue.value);
+
       isDragStarted.value = false;
     };
 
