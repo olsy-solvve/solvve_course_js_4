@@ -9,12 +9,13 @@ import ListPage from "../views/ListPage.vue";
 import MyDashboard from "../views/MyDashboard.vue";
 import MySettings from "../views/MySettings.vue";
 import MyPassword from "../views/MyPassword.vue";
+import MyRegister from "../views/MyRegister.vue";
 
-const isAuth = () => {
-  const isAuth = localStorage.getItem("token");
-  if (isAuth) return "/";
-  return true;
-};
+// const isAuth = () => {
+//   const isAuth = localStorage.getItem("token");
+//   if (isAuth) return "/";
+//   return true;
+// };
 
 const routes = [
   {
@@ -74,6 +75,11 @@ const routes = [
     name: "RegisterForm",
     component: RegisterForm,
     beforeEnter: [isAuth],
+  },
+  {
+    path: "/chage",
+    name: "MyRegister",
+    component: MyRegister,
   },
 ];
 

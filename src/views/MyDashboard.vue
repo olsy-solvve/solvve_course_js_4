@@ -1,18 +1,30 @@
 <template>
   <div class="page-wrapper">
-    <div class="section-content">
-      <div class="menu-dash">
-        <h5><router-link to="/myDashboard">Pets</router-link></h5>
-        <h5><router-link to="/mySettings">Settings</router-link></h5>
-        <h5><router-link to="/myPassword">Change Password</router-link></h5>
+    <div class="flex gap-2 mb-4">
+      <div class="flex flex-column gap-3 flex-initial p-2 bg-white">
+        <h5>
+          <router-link class="text-black-alpha-90" to="/myDashboard"
+            >Pets</router-link
+          >
+        </h5>
+        <h5>
+          <router-link class="text-black-alpha-90" to="/mySettings"
+            >Settings</router-link
+          >
+        </h5>
+        <h5>
+          <router-link class="text-black-alpha-90" to="/myPassword"
+            >Change Password</router-link
+          >
+        </h5>
       </div>
-      <div class="container-pets">
-        <h2 class="pets-text">My Pets</h2>
-        <div class="button-dash">
-          <MyButton label="+Add a lost pet" class="p-button"></MyButton>
+      <div class="flex-auto">
+        <h2 class="text-center">My Pets</h2>
+        <div class="text-center mt-4">
+          <MyButton label="+Add a lost pet"></MyButton>
         </div>
-        <div class="button-dash">
-          <MyButton label="+Add a found pet" class="p-button"></MyButton>
+        <div class="text-center mt-4 mb-2">
+          <MyButton label="+Add a found pet"></MyButton>
         </div>
       </div>
     </div>
@@ -25,41 +37,5 @@
 .page-wrapper {
   max-width: 900px;
   margin: 0 auto;
-}
-.section-content {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-
-.button-dash {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.menu-dash {
-  padding-left: 5px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  flex: 0 0 160px;
-  background-color: #fff;
-}
-
-.pets-text {
-  text-align: center;
-}
-
-.container-pets {
-  flex: 1 1 auto;
-}
-
-a {
-  color: black;
-  text-decoration: none;
-}
-
-a:hover {
-  color: green;
 }
 </style>
