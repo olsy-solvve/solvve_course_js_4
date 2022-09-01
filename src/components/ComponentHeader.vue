@@ -5,7 +5,14 @@ export default {
   data() {
     return {
       main_logo: images.main_logo,
-      items: [
+    };
+  },
+  computed: {
+    isAuthUser() {
+      return this.$store.getters["user/isAuthUser"];
+    },
+    menuItems() {
+      return [
         { label: "Home", icon: "pi pi-fw pi-home", to: "/" },
         { label: "I Found a Pet", icon: "pi pi-fw pi-plus", to: "/found" },
         { label: "I Lost a Pet", icon: "pi pi-fw pi-minus", to: "/lostPet" },
@@ -14,10 +21,20 @@ export default {
           icon: "pi pi-fw pi-list",
           to: "listPage",
         },
-        { label: "MyDashboard", icon: "pi pi-fw pi-star", to: "/myDashboard" },
-        { label: "Sing in", icon: "pi pi-fw pi-sign-in", to: "/Register" },
-      ],
-    };
+        {
+          label: "MyDashboard",
+          icon: "pi pi-fw pi-star",
+          to: "/myDashboard",
+          visible: this.isAuthUser,
+        },
+        {
+          label: "Sing in",
+          icon: "pi pi-fw pi-sign-in",
+          to: "/Register",
+          visible: !this.isAuthUser,
+        },
+      ];
+    },
   },
 };
 </script>
@@ -30,7 +47,7 @@ export default {
       </div>
       <div class="main-menu">
         <nav>
-          <MyMenu :model="items"> </MyMenu>
+          <MyMenu :model="menuItems"> </MyMenu>
         </nav>
       </div>
     </div>
