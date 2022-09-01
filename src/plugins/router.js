@@ -4,8 +4,7 @@ import HomePage from "../views/HomePage.vue";
 import NotFound from "../views/NotFound.vue";
 import RegisterForm from "../views/RegisterForm.vue";
 import LostPet from "../views/LostPet.vue";
-import FormIFoundPet from "../views/FormIFoundPet.vue";
-import FormILostPet from "../views/FormILostPet.vue";
+import FormCreatePet from "../views/FormCreatePet.vue";
 import ListPage from "../views/ListPage.vue";
 import MyDashboard from "../views/MyDashboard.vue";
 import MySettings from "../views/MySettings.vue";
@@ -33,13 +32,13 @@ const routes = [
   {
     path: "/found",
     name: "iFoundAPet",
-    component: FormIFoundPet,
+    component: FormCreatePet,
   },
 
   {
     path: "/lostPet",
     name: "iLostAPet",
-    component: FormILostPet,
+    component: FormCreatePet,
   },
 
   {
