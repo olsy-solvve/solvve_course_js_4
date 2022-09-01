@@ -15,6 +15,9 @@ import Button from "primevue/button";
 import Carousel from "primevue/carousel";
 import InputMask from "primevue/inputmask";
 import OrderList from 'primevue/orderlist';
+import Textarea from "primevue/textarea";
+import Calendar from "primevue/calendar";
+import RadioButton from 'primevue/radiobutton';
 
 export default (app) => {
   app.use(PrimeVue, { ripple: true });
@@ -28,4 +31,13 @@ export default (app) => {
   app.component("HomeCarousel", Carousel);
   app.component("InputMask", InputMask);
   app.component("OrderList", OrderList);
+  app.component("PrimePassword", Password);
+  app.component("PrimeDivider", Divider);
+  app.component("FormDropdown", Dropdown);
+  app.component("PrimeCheckbox", Checkbox);
+
+
+  app.component("FormTextarea", Textarea);
+  app.component("FormCalendar", Calendar);
+  app.component("FormRadioButton", RadioButton);
 };
