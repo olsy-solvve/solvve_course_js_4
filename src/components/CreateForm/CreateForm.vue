@@ -2,15 +2,20 @@
   <div>
     <form @submit.prevent="onSubmit" class="form">
       <div class="form-type">
-        <div v-for="item of types" :key="item.key" class="field-radiobutton" style="margin-right: 5px">
-            <FormRadioButton 
-              :inputId="item.key" 
-              @change="onChange()" 
-              name="item" 
-              :value="item.name" 
-              v-model="selectedType"
-            />
-            <label :for="item.key">{{ '  ' + item.name }}</label>
+        <div
+          v-for="item of types"
+          :key="item.key"
+          class="field-radiobutton"
+          style="margin-right: 5px"
+        >
+          <FormRadioButton
+            :inputId="item.key"
+            @change="onChange()"
+            name="item"
+            :value="item.name"
+            v-model="selectedType"
+          />
+          <label :for="item.key">{{ "  " + item.name }}</label>
         </div>
       </div>
       <div class="form-gender">
@@ -40,7 +45,7 @@
         />
       </div>
       <PhotoUploader v-model="files" />
-      <MyButton
+      <PrimeButton
         class="form-btn"
         label="Submit"
         type="submit"
@@ -65,19 +70,21 @@ export default {
     const gender = ref();
     const files = ref([]);
 
-    const isButtonDisabled = computed(() => files.value.length <= 3 ? false : true );
+    const isButtonDisabled = computed(() =>
+      files.value.length <= 3 ? false : true
+    );
 
     const types = ref([
-      {name: 'Found', key: 'F'},
-      {name: 'Lost', key: 'L'}
+      { name: "Found", key: "F" },
+      { name: "Lost", key: "L" },
     ]);
 
     // const selectedType = ref(types.value[0].name);
     const selectedType = computed(() => {
-      if (route.path === '/found') {
-        return types.value[0].name
-      } else if (route.path === '/lostPet') {
-        return types.value[1].name
+      if (route.path === "/found") {
+        return types.value[0].name;
+      } else if (route.path === "/lostPet") {
+        return types.value[1].name;
       }
     });
 
@@ -87,7 +94,7 @@ export default {
     ]);
 
     const onSubmit = () => {
-      const formData = new FormData()
+      const formData = new FormData();
       formData.append("files", files.value);
       formData.append("date", date.value);
       formData.append("gender", gender.value);
@@ -102,10 +109,10 @@ export default {
     };
 
     const onChange = () => {
-      if (route.path === '/found') {
-        router.push('/lostPet');
-      } else if (route.path === '/lostPet') {
-        router.push('/found');
+      if (route.path === "/found") {
+        router.push("/lostPet");
+      } else if (route.path === "/lostPet") {
+        router.push("/found");
       }
     };
 

@@ -22,10 +22,10 @@
         <h2 class="text-center">My Pets</h2>
         <div class="flex justify-content-center gap-5">
           <div class="text-center mt-4">
-            <MyButton label="+Add a lost pet"></MyButton>
+            <PrimeButton label="+Add a lost pet" />
           </div>
           <div class="text-center mt-4 mb-2">
-            <MyButton label="+Add a found pet"></MyButton>
+            <PrimeButton label="+Add a found pet" />
           </div>
         </div>
       </div>

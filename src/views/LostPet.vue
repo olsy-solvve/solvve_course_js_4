@@ -1,42 +1,46 @@
 <template>
-  <section class="section-head">
+  <section>
     <div class="page-wrapper">
-      <div class="section-content">
-        <div class="section-head-text">
-          <h1>We help reunite lost pets with their families.</h1>
+      <div class="section-content flex gap-3 mb-4">
+        <div class="flex flex-column gap-3">
+          <h1 class="text-4xl none">
+            We help reunite lost pets with their families.
+          </h1>
           <h2>
             Enter a photo of your missing pet and search our national lost and
             found pet database to find them.
           </h2>
-          <div class="section-controls">
-            <MyButton><router-link to="/">Found Pet</router-link></MyButton>
-            <MyButton>Lost Pet</MyButton>
+          <div class="section-controls flex flex-grow-1 align-items-end gap-4">
+            <PrimeButton
+              ><router-link to="/">Found Pet</router-link></PrimeButton
+            >
+            <PrimeButton>Lost Pet</PrimeButton>
           </div>
         </div>
-        <div class="section-head-img">
-          <img :src="dog01" />
+        <div class="section-head-img flex align-items-start">
+          <img class="w-full" :src="dog01" />
         </div>
       </div>
     </div>
   </section>
   <section class="section-carousel">
     <div class="page-wrapper">
-      <HomeCarousel
+      <PrimeCarousel
         :value="pets"
         :numVisible="3"
         :numScroll="1"
         :responsiveOptions="responsiveOptions"
       >
         <template #item="slotProps">
-          <div class="img-block">
-            <img :src="slotProps.data.img" />
+          <div class="flex">
+            <img class="w-full" :src="slotProps.data.img" />
           </div>
           <div class="info-block">
             <div class="status-info">{{ slotProps.data.status }}</div>
             <div class="period-info">{{ slotProps.data.periodInfo }}</div>
           </div>
         </template>
-      </HomeCarousel>
+      </PrimeCarousel>
     </div>
   </section>
 </template>
@@ -115,32 +119,8 @@ export default {
   margin: 0 auto;
 }
 .section-content {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
-
   > * {
     flex: 1 1 50%;
-  }
-
-  .section-head-text {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  .section-head-img {
-    display: flex;
-    align-items: flex-start;
-
-    img {
-      width: 100%;
-    }
-  }
-  .section-controls {
-    display: flex;
-    flex-grow: 1;
-    align-items: end;
-    gap: 25px;
   }
 }
 
@@ -150,20 +130,14 @@ a {
 }
 
 h1 {
-  text-transform: none;
-  font-size: 34px;
   color: rgb(0, 32, 91);
 }
 
 h2 {
-  text-transform: none;
   color: rgb(0, 32, 91);
 }
 
 .p-carousel {
-  .img-block {
-    display: flex;
-  }
   .info-block {
     border-left: 1px solid rgb(237, 237, 237);
     border-right: 1px solid rgb(237, 237, 237);

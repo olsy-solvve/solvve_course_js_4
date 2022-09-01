@@ -27,7 +27,7 @@
               </div>
               <div>
                 <h5>Current Password</h5>
-                <PasswordForm
+                <PrimePassword
                   v-model="v$.form.currentPassword.$model"
                   :feedback="false"
                   :class="{
@@ -45,7 +45,7 @@
               <div>
                 <!-- Password and Confirm Password Row -->
                 <h5>New Password</h5>
-                <PasswordForm
+                <PrimePassword
                   v-model="v$.form.password.$model"
                   :feedback="false"
                   :class="{
@@ -62,7 +62,7 @@
               </div>
               <div>
                 <h5>Reenter New Password</h5>
-                <PasswordForm
+                <PrimePassword
                   @input="checkPassword()"
                   v-model="v$.form.confirmPassword.$model"
                   :feedback="false"
@@ -80,12 +80,12 @@
               </div>
               <!-- Submit Button -->
               <div>
-                <MyButton
+                <PrimeButton
                   :disabled="v$.form.$invalid"
                   label="Change Password"
                   class="flex justify-content-center w-full mt-4 mb-2"
                 >
-                </MyButton>
+                </PrimeButton>
               </div>
             </div>
           </form>
