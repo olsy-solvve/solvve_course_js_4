@@ -11,4 +11,7 @@ prime(app);
 import router from "./plugins/router.js";
 app.use(router);
 
+import store from "./store/index.js";
+app.use(store);
+
 app.mount("#app");
