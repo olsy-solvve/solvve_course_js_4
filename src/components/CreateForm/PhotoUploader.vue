@@ -35,7 +35,7 @@
         >
           &#10006;
         </button>
-        <img :src="getSrc(photo)" :alt="`Фотография ${index + 1}`" />
+        <img :src="getSrc(photo)" :alt="`Photo ${index + 1}`" />
       </div>
     </div>
   </div>

@@ -14,7 +14,7 @@ import Button from "primevue/button";
 import Carousel from "primevue/carousel";
 import Textarea from "primevue/textarea";
 import Calendar from "primevue/calendar";
-import RadioButton from 'primevue/radiobutton';
+import RadioButton from "primevue/radiobutton";
 
 export default (app) => {
   app.use(PrimeVue, { ripple: true });
