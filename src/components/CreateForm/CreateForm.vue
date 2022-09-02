@@ -1,7 +1,7 @@
 <template>
   <div>
-    <form 
-      @submit.prevent="onSubmit" 
+    <form
+      @submit.prevent="onSubmit"
       class="solvve-form flex flex-column justify-content-center align-items-center"
     >
       <div class="solvve-form-type flex w-full">
@@ -22,11 +22,7 @@
         </div>
       </div>
       <div class="solvve-form-name flex flex-column w-full mb-3">
-        <InputText 
-          type="text" 
-          v-model="name" 
-          placeholder="Name (Optional)"
-        />
+        <InputText type="text" v-model="name" placeholder="Name (Optional)" />
       </div>
       <div class="solvve-form-pet flex flex-column w-full mb-3">
         <FormDropdown
@@ -128,7 +124,7 @@ export default {
     };
 
     //this property disable submit button if pic more than 3
-    const isButtonDisabled = computed(() => 
+    const isButtonDisabled = computed(() =>
       files.value.length <= 3 ? false : true
     );
 
