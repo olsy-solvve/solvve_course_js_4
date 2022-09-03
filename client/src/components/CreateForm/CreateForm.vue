@@ -86,6 +86,7 @@ export default {
       } else if (route.path === "/lostPet") {
         return types.value[1].name;
       }
+      return "";
     });
 
     const genders = ref([
