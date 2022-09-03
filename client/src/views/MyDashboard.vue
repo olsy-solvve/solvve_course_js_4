@@ -30,18 +30,22 @@
         </div>
       </div>
     </div>
-    <div class="card">
+    <div class="card mb-4 border-round-md p-5 bg-white">
       <OrderList v-model="pets" listStyle="height:auto" dataKey="id">
-        <template #header> List of Pets </template>
+        <template #header> A list of my pets </template>
         <template #item="slotProps">
-          <div class="product-item flex align-items-center">
+          <div class="product-item flex align-items-center w-full p-2">
             <div class="image-container">
               <img
+                class="w-full mr-1"
                 src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
                 :alt="slotProps.item.status"
               />
             </div>
-            <div class="flex flex-column gap-1 ml-2">
+            <div class="flex flex-column gap-1 ml-2 mb-2">
+              <small>
+                <span class="font-bold">Name: </span>{{ slotProps.item.name }}
+              </small>
               <small>
                 <span class="font-bold">Status: </span
                 >{{ slotProps.item.status }}
@@ -59,7 +63,13 @@
                 {{ slotProps.item.periodInfo }}
               </small>
             </div>
-            <div><PrimeButton label="Delete Pet" /></div>
+            <div class="flex-auto">
+              <div class="flex justify-content-end">
+                <div class="text-center mt-4 mb-4">
+                  <PrimeButton label="Delete Pet" />
+                </div>
+              </div>
+            </div>
           </div>
         </template>
       </OrderList>
@@ -89,41 +99,13 @@ export default {
 .page-wrapper {
   max-width: 900px;
 }
-
 .card {
-  background: #ffffff;
-  padding: 2rem;
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
     0 1px 3px 0 rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-  margin-bottom: 2rem;
 }
 .product-item {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem;
-  width: 100%;
-
   img {
-    width: 100px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    margin-right: 1rem;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .product-item {
-    flex-wrap: wrap;
-
-    .image-container {
-      width: 100%;
-      text-align: center;
-    }
-
-    img {
-      margin: 0 0 1rem 0;
-      width: 100px;
-    }
   }
 }
 </style>
