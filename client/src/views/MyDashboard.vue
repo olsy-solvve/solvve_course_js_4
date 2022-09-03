@@ -31,33 +31,35 @@
       </div>
     </div>
     <div class="card">
-      <OrderList v-model="products" listStyle="height:auto" dataKey="id">
+      <OrderList v-model="pets" listStyle="height:auto" dataKey="id">
         <template #header> List of Pets </template>
         <template #item="slotProps">
-          <div class="product-item">
+          <div class="product-item flex align-items-center">
             <div class="image-container">
               <img
                 src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
-                :alt="slotProps.item.name"
+                :alt="slotProps.item.status"
               />
             </div>
-            <div class="product-list-detail">
-              <h6 class="mb-2">{{ slotProps.item.name }}</h6>
-              <i class="pi pi-tag product-category-icon"></i>
-              <span class="product-category">{{
-                slotProps.item.category
-              }}</span>
+            <div class="flex flex-column gap-1 ml-2">
+              <small>
+                <span class="font-bold">Status: </span
+                >{{ slotProps.item.status }}
+              </small>
+              <small>
+                <span class="font-bold">Animal:</span>
+                {{ slotProps.item.animal }}
+              </small>
+              <small>
+                <span class="font-bold">Gender:</span>
+                {{ slotProps.item.gender }}
+              </small>
+              <small>
+                <span class="font-bold">Period:</span>
+                {{ slotProps.item.periodInfo }}
+              </small>
             </div>
-            <div class="product-list-action">
-              <h6 class="mb-2">${{ slotProps.item.price }}</h6>
-              <span
-                :class="
-                  'product-badge status-' +
-                  slotProps.item.inventoryStatus.toLowerCase()
-                "
-                >{{ slotProps.item.inventoryStatus }}</span
-              >
-            </div>
+            <div><PrimeButton label="Delete Pet" /></div>
           </div>
         </template>
       </OrderList>
@@ -67,20 +69,18 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import ProductService from "@/service/ProductService";
+import MyPetsList from "@/my_pets_list/MyPetsList";
 
 export default {
   setup() {
     onMounted(() => {
-      productService.value
-        .getProductsSmall()
-        .then((data) => (products.value = data));
+      petsList.value.getPetsList().then((data) => (pets.value = data));
     });
 
-    const products = ref(null);
-    const productService = ref(new ProductService());
+    const pets = ref(null);
+    const petsList = ref(new MyPetsList());
 
-    return { products, productService };
+    return { pets, petsList };
   },
 };
 </script>
@@ -105,31 +105,9 @@ export default {
   width: 100%;
 
   img {
-    width: 75px;
+    width: 100px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     margin-right: 1rem;
-  }
-
-  .product-list-detail {
-    flex: 1 1 0;
-  }
-
-  .product-list-action {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-
-  .product-category-icon {
-    vertical-align: middle;
-    margin-right: 0.5rem;
-    font-size: 0.875rem;
-  }
-
-  .product-category {
-    vertical-align: middle;
-    line-height: 1;
-    font-size: 0.875rem;
   }
 }
 
