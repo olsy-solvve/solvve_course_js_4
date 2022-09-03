@@ -19,10 +19,10 @@
         <template #header> A list of my pets </template>
         <template #item="slotProps">
           <div class="product-item flex align-items-center w-full p-2">
-            <div class="image-container">
+            <div class="image-container w-3">
               <img
                 class="w-full mr-1"
-                src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
+                :src="slotProps.item.img"
                 :alt="slotProps.item.status"
               />
             </div>
