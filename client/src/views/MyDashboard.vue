@@ -30,86 +30,57 @@
         </div>
       </div>
     </div>
-    <OrderList class="mb-5" v-model="pets" listStyle="height:auto">
-      <template #header> My Pets List </template>
-      <template #item="slotProps">
-        <div class="flex flex-row">
-          <div class="pets-img max-w-9rem">
-            <img class="w-full" :src="slotProps.item.img" />
+    <div class="card">
+      <OrderList v-model="products" listStyle="height:auto" dataKey="id">
+        <template #header> List of Pets </template>
+        <template #item="slotProps">
+          <div class="product-item">
+            <div class="image-container">
+              <img
+                src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
+                :alt="slotProps.item.name"
+              />
+            </div>
+            <div class="product-list-detail">
+              <h6 class="mb-2">{{ slotProps.item.name }}</h6>
+              <i class="pi pi-tag product-category-icon"></i>
+              <span class="product-category">{{
+                slotProps.item.category
+              }}</span>
+            </div>
+            <div class="product-list-action">
+              <h6 class="mb-2">${{ slotProps.item.price }}</h6>
+              <span
+                :class="
+                  'product-badge status-' +
+                  slotProps.item.inventoryStatus.toLowerCase()
+                "
+                >{{ slotProps.item.inventoryStatus }}</span
+              >
+            </div>
           </div>
-          <div class="flex flex-column gap-1 mt-4 ml-2">
-            <small
-              ><span class="font-bold">Pet:</span>
-              {{ slotProps.item.pet }}</small
-            >
-            <small
-              ><span class="font-bold">Gender:</span>
-              {{ slotProps.item.gender }}</small
-            >
-            <small
-              ><span class="font-bold">Status:</span>
-              {{ slotProps.item.status }}</small
-            >
-            <small
-              ><span class="font-bold">Period:</span>
-              {{ slotProps.item.periodInfo }}</small
-            >
-          </div>
-        </div>
-      </template>
-    </OrderList>
+        </template>
+      </OrderList>
+    </div>
   </div>
 </template>
 
 <script>
-import images from "../assets/images.js";
+import { ref, onMounted } from "vue";
+import ProductService from "@/service/ProductService";
 
 export default {
-  data() {
-    return {
-      pets: [
-        {
-          id: 1,
-          img: images.car01,
-          status: "Found Pet",
-          periodInfo: "5 days ago",
-          pet: "Cat",
-          gender: "Famale",
-        },
-        {
-          id: 2,
-          img: images.car02,
-          status: "Found pet",
-          periodInfo: "12 hours ago",
-          pet: "Cat",
-          gender: "Famale",
-        },
-        {
-          id: 3,
-          img: images.car03,
-          status: "Found pet",
-          periodInfo: "7 days ago",
-          pet: "Cat",
-          gender: "Male",
-        },
-        {
-          id: 4,
-          img: images.car04,
-          status: "Lost pet",
-          periodInfo: "Found 3 days ago",
-          pet: "Cat",
-          gender: "Male",
-        },
-        {
-          id: 5,
-          img: images.car05,
-          status: "Lost pet",
-          periodInfo: "Found 2 days ago",
-          pet: "Cat",
-          gender: "Male",
-        },
-      ],
-    };
+  setup() {
+    onMounted(() => {
+      productService.value
+        .getProductsSmall()
+        .then((data) => (products.value = data));
+    });
+
+    const products = ref(null);
+    const productService = ref(new ProductService());
+
+    return { products, productService };
   },
 };
 </script>
@@ -117,5 +88,64 @@ export default {
 <style lang="scss" scoped>
 .page-wrapper {
   max-width: 900px;
+}
+
+.card {
+  background: #ffffff;
+  padding: 2rem;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  margin-bottom: 2rem;
+}
+.product-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  width: 100%;
+
+  img {
+    width: 75px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    margin-right: 1rem;
+  }
+
+  .product-list-detail {
+    flex: 1 1 0;
+  }
+
+  .product-list-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .product-category-icon {
+    vertical-align: middle;
+    margin-right: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .product-category {
+    vertical-align: middle;
+    line-height: 1;
+    font-size: 0.875rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .product-item {
+    flex-wrap: wrap;
+
+    .image-container {
+      width: 100%;
+      text-align: center;
+    }
+
+    img {
+      margin: 0 0 1rem 0;
+      width: 100px;
+    }
+  }
 }
 </style>
