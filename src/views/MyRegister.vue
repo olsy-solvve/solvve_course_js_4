@@ -50,7 +50,7 @@
               >{{ v$.name.required.$message.replace("Value", "Name") }}</small
             >
           </div>
-                    <div class="field">
+          <div class="field">
             <div class="p-float-label">
               <InputText
                 id="phone"
@@ -105,7 +105,7 @@
           </div>
           <div class="field">
             <div class="p-float-label">
-              <Password
+              <PasswordForm
                 id="password"
                 v-model="v$.password.$model"
                 :class="{ 'p-invalid': v$.password.$invalid && submitted }"
@@ -116,7 +116,7 @@
                 </template>
                 <template #footer="sp">
                   {{ sp.level }}
-                  <Divider />
+                  <FormDivider />
                   <p class="mt-2">Suggestions</p>
                   <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
                     <li>At least one lowercase</li>
@@ -125,7 +125,7 @@
                     <li>Minimum 8 characters</li>
                   </ul>
                 </template>
-              </Password>
+              </PasswordForm>
               <label
                 for="password"
                 :class="{ 'p-error': v$.password.$invalid && submitted }"
@@ -157,7 +157,7 @@
               >I agree to the terms and conditions*</label
             >
           </div>
-          <Button type="submit" label="Submit" class="mt-2" />
+          <MyButton type="submit" label="Submit" class="mt-2" />
         </form>
       </div>
     </div>
@@ -238,8 +238,8 @@ export default {
 
 <style scoped>
 .form-demo {
- max-width: 500px;
- margin: 0 auto;
+  max-width: 500px;
+  margin: 0 auto;
 }
 .form-demo .card {
   min-width: 450px;
@@ -248,13 +248,14 @@ export default {
   margin-top: 2rem;
 }
 
-.form-demo .card .field,.form-demo .card .field-checkbox {
+.form-demo .card .field,
+.form-demo .card .field-checkbox {
   margin-bottom: 1.5rem;
 }
 
-.field-checkbox>label {
-    margin-left: 0.5rem;
-    line-height: 1;
+.field-checkbox > label {
+  margin-left: 0.5rem;
+  line-height: 1;
 }
 
 @media screen and (max-width: 960px) {
