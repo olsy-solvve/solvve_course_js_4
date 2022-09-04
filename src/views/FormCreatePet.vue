@@ -1,17 +1,14 @@
 <template>
-  <CreateForm/>
+  <CreateForm />
 </template>
 
-
 <script>
-import CreateForm from '../components/CreateForm/CreateForm.vue';
+import CreateForm from "../components/CreateForm/CreateForm.vue";
 
 export default {
-  setup() {
-    
-  },
+  setup() {},
   components: {
     CreateForm,
   },
-}
+};
 </script>
