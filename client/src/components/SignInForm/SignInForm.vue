@@ -37,7 +37,11 @@
         </Field>
       </div>
 
-      <MyButton type="submit" class="btn mb-3 btn-block" :label="'Sign in'" />
+      <PrimeButton
+        type="submit"
+        class="btn mb-3 btn-block"
+        :label="'Sign in'"
+      />
     </VeeForm>
   </div>
 </template>

@@ -1,42 +1,46 @@
 <template>
-  <section class="section-head">
+  <section>
     <div class="page-wrapper">
-      <div class="section-content">
-        <div class="section-head-text">
-          <h1>We help reunite lost pets with their families.</h1>
-          <h2>
+      <div class="section-content flex gap-3 mb-4">
+        <div class="flex flex-column gap-3">
+          <h1 class="text-4xl none">
+            We help reunite lost pets with their families.
+          </h1>
+          <h2 class="none">
             Enter a photo of your missing pet and search our national lost and
             found pet database to find them.
           </h2>
-          <div class="section-controls">
-            <MyButton><router-link to="/">Found Pet</router-link></MyButton>
-            <MyButton>Lost Pet</MyButton>
+          <div class="section-controls flex flex-grow-1 align-items-end gap-4">
+            <PrimeButton>Found Pet</PrimeButton>
+            <PrimeButton
+              ><router-link to="/lost">Lost Pet</router-link></PrimeButton
+            >
           </div>
         </div>
-        <div class="section-head-img">
-          <img :src="dog01" />
+        <div class="section-head-img flex align-items-start">
+          <img class="w-full" :src="dog01" />
         </div>
       </div>
     </div>
   </section>
   <section class="section-carousel">
     <div class="page-wrapper">
-      <HomeCarousel
+      <PrimeCarousel
         :value="pets"
         :numVisible="3"
         :numScroll="1"
         :responsiveOptions="responsiveOptions"
       >
         <template #item="slotProps">
-          <div class="img-block">
-            <img :src="slotProps.data.img" />
+          <div class="flex">
+            <img class="w-full" :src="slotProps.data.img" />
           </div>
           <div class="info-block">
             <div class="status-info">{{ slotProps.data.status }}</div>
             <div class="period-info">{{ slotProps.data.periodInfo }}</div>
           </div>
         </template>
-      </HomeCarousel>
+      </PrimeCarousel>
     </div>
   </section>
 </template>
@@ -45,43 +49,42 @@
 import images from "../assets/images.js";
 
 export default {
-  methods: {},
   data() {
     return {
       pets: [
         {
           id: 1,
           img: images.car01,
-          status: "Lost Pet",
-          periodInfo: "Lost 5 days ago",
+          status: "Found Pet",
+          periodInfo: "Found 5 days ago",
           breed: "Poodle",
         },
         {
           id: 2,
           img: images.car02,
-          status: "Lost pet",
-          periodInfo: "Lost 12 hours ago",
+          status: "Found pet",
+          periodInfo: "Found 12 hours ago",
           link: "/found",
         },
         {
           id: 3,
           img: images.car03,
-          status: "Lost pet",
-          periodInfo: "Lost 7 days ago",
+          status: "Found pet",
+          periodInfo: "Found 7 days ago",
           link: "/lost",
         },
         {
           id: 4,
           img: images.car04,
-          status: "Lost pet",
-          periodInfo: "Lost 3 days ago",
+          status: "Found pet",
+          periodInfo: "Found 3 days ago",
           link: "/found",
         },
         {
           id: 5,
           img: images.car05,
           status: "Lost pet",
-          periodInfo: "Lost 2 days ago",
+          periodInfo: "Found 2 days ago",
           link: "/lost",
         },
       ],
@@ -115,32 +118,8 @@ export default {
   margin: 0 auto;
 }
 .section-content {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
-
   > * {
     flex: 1 1 50%;
-  }
-
-  .section-head-text {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  .section-head-img {
-    display: flex;
-    align-items: flex-start;
-
-    img {
-      width: 100%;
-    }
-  }
-  .section-controls {
-    display: flex;
-    flex-grow: 1;
-    align-items: end;
-    gap: 25px;
   }
 }
 
@@ -150,20 +129,14 @@ a {
 }
 
 h1 {
-  text-transform: none;
-  font-size: 34px;
   color: rgb(0, 32, 91);
 }
 
 h2 {
-  text-transform: none;
   color: rgb(0, 32, 91);
 }
 
 .p-carousel {
-  .img-block {
-    display: flex;
-  }
   .info-block {
     border-left: 1px solid rgb(237, 237, 237);
     border-right: 1px solid rgb(237, 237, 237);
@@ -173,7 +146,6 @@ h2 {
   }
   .p-carousel-item {
     img {
-      width: 100%;
       border-radius: 10px 10px 0 0;
     }
   }

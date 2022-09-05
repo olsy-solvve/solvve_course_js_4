@@ -59,7 +59,7 @@
         />
       </div>
       <PhotoUploader v-model="files" />
-      <MyButton
+      <PrimeButton
         class="solvve-form-btn w-full max-w-12rem"
         label="Submit"
         type="submit"
