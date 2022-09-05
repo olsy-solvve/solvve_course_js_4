@@ -47,7 +47,7 @@ export default {
       </div>
       <div class="main-menu">
         <nav>
-          <MyMenu :model="menuItems"> </MyMenu>
+          <PrimeMenu :model="menuItems"> </PrimeMenu>
         </nav>
       </div>
     </div>

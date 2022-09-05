@@ -105,12 +105,12 @@
                 </span>
               </div>
               <div>
-                <MyButton
+                <PrimeButton
                   :disabled="v$.form.$invalid"
                   label="Save Settings"
                   class="flex justify-content-center w-full mt-4 mb-2"
                 >
-                </MyButton>
+                </PrimeButton>
               </div>
             </div>
           </form>
