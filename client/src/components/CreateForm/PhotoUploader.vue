@@ -35,7 +35,7 @@
         >
           &#10006;
         </button>
-        <img :src="getSrc(photo)" :alt="`Фотография ${index + 1}`" />
+        <img :src="getSrc(photo)" :alt="`Photo ${index + 1}`" />
       </div>
     </div>
   </div>
@@ -59,6 +59,7 @@ export default {
     const input = ref(null);
     const isDragStarted = ref(false);
 
+    //this file upload function
     const uploadFile = ({ currentTarget }) => {
       if (currentTarget.files) {
         emit("update:modelValue", [
@@ -74,18 +75,21 @@ export default {
       isDragStarted.value = false;
     };
 
+    //this function removes the uploaded file by its index
     const removePhoto = (index) => {
-      console.log(index);
       emit(
         "update:modelValue",
         modelValue.value.filter((p, i) => i !== index)
       );
     };
 
+    //this function creates from the uploaded file the url of the image to be displayed on the front
     const getSrc = (photo) => URL.createObjectURL(photo);
 
+    //this property keeps track of the number of files uploaded
     const canToUpload = computed(() => 3 - modelValue.value.length);
 
+    //this function returns the text to be displayed in the uploader depending on the number of uploaded files
     const uploadText = computed(() => {
       if (canToUpload.value > 0) {
         return `You can upload ${canToUpload.value} more ${
@@ -115,18 +119,18 @@ export default {
 
 <style lang="scss" scoped>
 .photo-uploader {
-  margin-top: 5px;
+  margin-top: 0.25rem;
   width: 100%;
 
   &__wrapper {
     position: relative;
     text-align: center;
-    height: 150px;
+    height: 9rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px dotted rgb(172, 168, 168);
-    border-radius: 10px;
+    border: 0.125rem dotted rgb(172, 168, 168);
+    border-radius: 0.625rem;
     color: rgba(#000, 0.5);
 
     &--drag {
@@ -150,17 +154,17 @@ export default {
   &__photos {
     display: flex;
     flex-wrap: wrap;
-    margin: 20px 0;
+    margin: 1rem 0;
     justify-content: space-between;
   }
 
   &__photo {
     position: relative;
-    width: 198px;
+    width: 12rem;
 
     img {
       width: inherit;
-      border-radius: 10px;
+      border-radius: 0.625rem;
     }
   }
 
@@ -170,17 +174,17 @@ export default {
     outline: none;
     top: 0;
     z-index: 1;
-    left: calc(100% - 30px);
-    width: 30px;
-    height: 30px;
+    left: calc(100% - 2rem);
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
     background-color: rgba(#000, 0.05);
-    border: 1px solid #000;
+    border: 0.0625rem solid #000;
   }
 
   &__icon {
     opacity: 0.3;
-    width: 50px;
+    width: 3rem;
   }
 }
 </style>
