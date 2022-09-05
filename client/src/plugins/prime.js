@@ -16,6 +16,7 @@ import OrderList from "primevue/orderlist";
 import Textarea from "primevue/textarea";
 import Calendar from "primevue/calendar";
 import RadioButton from "primevue/radiobutton";
+import Dialog from "primevue/dialog";
 
 export default (app) => {
   app.use(PrimeVue, { ripple: true });
@@ -30,4 +31,5 @@ export default (app) => {
   app.component("FormTextarea", Textarea);
   app.component("FormCalendar", Calendar);
   app.component("FormRadioButton", RadioButton);
+  app.component("PrimeDialog", Dialog);
 };
