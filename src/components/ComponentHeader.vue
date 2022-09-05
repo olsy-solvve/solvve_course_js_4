@@ -17,7 +17,7 @@ export default {
         { label: "I Found a Pet", icon: "pi pi-fw pi-plus", to: "/found" },
         { label: "I Lost a Pet", icon: "pi pi-fw pi-minus", to: "/lostPet" },
         {
-          label: "List With All Pets",
+          label: "Animals",
           icon: "pi pi-fw pi-list",
           to: "listPage",
         },
