@@ -71,8 +71,8 @@ router.post("/api/list", (req, res) => {
 });
 
 router.delete("/api/list", (req, res) => {
-  list.push(req.body);
-  res.status(201).json(list);
+  list.splice(req.body);
+  res.status(205).json(list);
 });
 
 export default router;

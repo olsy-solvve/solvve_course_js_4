@@ -5,7 +5,7 @@
       <div class="flex-auto">
         <h2 class="text-center">My Pets</h2>
         <div class="flex justify-content-center gap-1">
-          <form>
+          <form id="form">
             <PrimeDialog v-model:visible="display1">
               <template #header>
                 <h3>Add a pet</h3>
@@ -165,19 +165,26 @@ export default {
   },
 
   methods: {
-    showList() {
-      petsList.value.getPetsList().then((data) => (pets.value = data));
-
-      return { pets, petsList };
-    },
-
     deleteFromList(data) {
       this.petsList.deleteFromList(data);
     },
 
     addToList(data) {
       this.petsList.addToList(data).then(this.showList());
+      this.status = "";
+      this.periodInfo = "";
+      this.animal = "";
+      this.gender = "";
+      this.name = "";
+      this.display1 = false;
     },
+
+    showList() {
+      petsList.value.getPetsList().then((data) => (pets.value = data));
+
+      return { pets, petsList };
+    },
+
     addPet() {
       this.display1 = true;
     },
