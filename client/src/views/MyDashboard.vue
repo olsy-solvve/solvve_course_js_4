@@ -141,9 +141,12 @@
 import { ref, onMounted } from "vue";
 import MyPetsList from "@/my_pets_list/MyPetsList";
 import MyDashboardMenu from "../components/MyDashboardMenu/MyDashboardMenu.vue";
+import uniqueid from "uniqueid";
 
 const pets = ref(null);
 const petsList = ref(new MyPetsList());
+
+let id = uniqueid(null, "suffix");
 
 export default {
   components: {
@@ -158,6 +161,7 @@ export default {
       status: null,
       gender: null,
       animal: null,
+
       changeStatus: [{ name: "Lost Pet" }, { name: "Found Pet" }],
       changeGender: [{ name: "Male" }, { name: "Famale" }],
       changeAnimal: [{ name: "Dog" }, { name: "Cat" }],
@@ -165,11 +169,12 @@ export default {
   },
 
   methods: {
-    deleteFromList(data) {
-      this.petsList.deleteFromList(data);
+    showList() {
+      petsList.value.getPetsList().then((data) => (pets.value = data));
     },
 
     addToList(data) {
+      data.id = id();
       this.petsList.addToList(data).then(this.showList());
       this.status = "";
       this.periodInfo = "";
@@ -177,12 +182,6 @@ export default {
       this.gender = "";
       this.name = "";
       this.display1 = false;
-    },
-
-    showList() {
-      petsList.value.getPetsList().then((data) => (pets.value = data));
-
-      return { pets, petsList };
     },
 
     addPet() {
