@@ -56,6 +56,10 @@ const list = [
 
 import cors from "cors";
 import { Router } from "express";
+// import uniqueid from "uniqueid";
+
+// let id = uniqueid(null, "suffix");
+// id = id();
 
 const router = Router();
 
@@ -73,6 +77,7 @@ router.post("/api/list", (req, res) => {
 router.delete("/api/list", (req, res) => {
   list.splice(req.body);
   res.status(205).json(list);
+  console.log(req.body);
 });
 
 export default router;

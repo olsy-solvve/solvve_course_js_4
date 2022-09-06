@@ -5,8 +5,9 @@ const api = axios.create({
 });
 
 export default class MyPetsList {
-  getPetsList() {
-    return api.get("/list").then((res) => res.data);
+  async getPetsList() {
+    const res = await api.get("/list");
+    return res.data;
   }
 
   addToList(data) {

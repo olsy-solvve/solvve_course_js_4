@@ -79,7 +79,7 @@
       </div>
     </div>
     <div class="card mb-4 border-round-md p-5 bg-white">
-      <OrderList v-model="pets" listStyle="height:auto" dataKey="id">
+      <OrderList v-model="pets" listStyle="height:auto">
         <template #header> A list of my pets </template>
         <template #item="slotProps">
           <div class="product-item flex align-items-center w-full p-2">
@@ -110,6 +110,10 @@
                 <span class="font-bold">Period:</span>
                 {{ slotProps.item.periodInfo }}
               </small>
+              <small>
+                <span class="font-bold">ID:</span>
+                {{ slotProps.item.id }}
+              </small>
             </div>
             <div class="flex-auto">
               <div class="flex justify-content-end">
@@ -118,11 +122,7 @@
                     @click="
                       () =>
                         deleteFromList({
-                          periodInfo,
-                          animal,
-                          gender,
-                          name,
-                          status,
+                          id,
                         })
                     "
                     label="Delete Pet"
@@ -143,9 +143,6 @@ import MyPetsList from "@/my_pets_list/MyPetsList";
 import MyDashboardMenu from "../components/MyDashboardMenu/MyDashboardMenu.vue";
 import uniqueid from "uniqueid";
 
-const pets = ref(null);
-const petsList = ref(new MyPetsList());
-
 let id = uniqueid(null, "suffix");
 
 export default {
@@ -163,19 +160,25 @@ export default {
       animal: null,
 
       changeStatus: [{ name: "Lost Pet" }, { name: "Found Pet" }],
-      changeGender: [{ name: "Male" }, { name: "Famale" }],
+      changeGender: [{ name: "Male" }, { name: "Female" }],
       changeAnimal: [{ name: "Dog" }, { name: "Cat" }],
     };
   },
 
   methods: {
-    showList() {
-      petsList.value.getPetsList().then((data) => (pets.value = data));
+    async deleteFromList(data) {
+      await this.petsList.deleteFromList(data);
+      this.showList();
     },
 
-    addToList(data) {
+    showList() {
+      this.petsList.getPetsList().then((data) => (this.pets = data));
+    },
+
+    async addToList(data) {
       data.id = id();
-      this.petsList.addToList(data).then(this.showList());
+      await this.petsList.addToList(data);
+      this.showList();
       this.status = "";
       this.periodInfo = "";
       this.animal = "";
@@ -196,6 +199,9 @@ export default {
     onMounted(() => {
       petsList.value.getPetsList().then((data) => (pets.value = data));
     });
+
+    const pets = ref(null);
+    const petsList = ref(new MyPetsList());
 
     return { pets, petsList };
   },
