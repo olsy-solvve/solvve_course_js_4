@@ -1,5 +1,7 @@
 module.exports = {
     "env": {
+        "amd": true,
+        "node": true,
         "browser": true,
         "es2021": true
     },
