@@ -79,7 +79,7 @@
       </div>
     </div>
     <div class="card mb-4 border-round-md p-5 bg-white">
-      <OrderList v-model="pets" listStyle="height:auto">
+      <OrderList item="id" v-model="pets" listStyle="height:auto">
         <template #header> A list of my pets </template>
         <template #item="slotProps">
           <div class="product-item flex align-items-center w-full p-2">
@@ -119,12 +119,7 @@
               <div class="flex justify-content-end">
                 <div class="text-center mt-4 mb-4">
                   <PrimeButton
-                    @click="
-                      () =>
-                        deleteFromList({
-                          id,
-                        })
-                    "
+                    @click="() => deleteFromList({ pets })"
                     label="Delete Pet"
                   />
                 </div>
@@ -167,7 +162,7 @@ export default {
 
   methods: {
     async deleteFromList(data) {
-      await this.petsList.deleteFromList(data);
+      await this.petsList.deleteFromList(data.length);
       this.showList();
     },
 
