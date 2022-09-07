@@ -1,0 +1,22 @@
+{
+  "name": "solvve_course_js_4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "setup": "cd ./client && npm install && cd ../server && npm install",
+    "dev": "cd ./client && npm run dev && cd ../server && npm run server",
+    "release": "cd ./client && npm run build && cd ../server && npm run start",
+    "lint": "cd ./client && npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olsy-solvve/solvve_course_js_4.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olsy-solvve/solvve_course_js_4/issues"
+  },
+  "homepage": "https://github.com/olsy-solvve/solvve_course_js_4#readme"
+}

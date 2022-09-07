@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node backend/server.js",
-    "server": "nodemon backend/server.js"
+    "server": "nodemon backend/server.js",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path ../.gitignore"
   },
   "author": "Ustimov D.",
   "license": "ISC",
@@ -18,6 +19,7 @@
     "mongoose": "^6.5.4"
   },
   "devDependencies": {
+    "eslint": "^8.23.0",
     "nodemon": "^2.0.19"
   }
 }
