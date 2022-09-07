@@ -135,7 +135,7 @@
 <script>
 import { ref, onMounted } from "vue";
 import MyPetsList from "@/my_pets_list/MyPetsList";
-import MyDashboardMenu from "../components/MyDashboardMenu/MyDashboardMenu.vue";
+import MyDashboardMenu from "@/components/MyDashboardMenu/MyDashboardMenu.vue";
 import uniqueid from "uniqueid";
 
 let id = uniqueid(null, "suffix");

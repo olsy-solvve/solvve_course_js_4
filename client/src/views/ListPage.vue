@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import images from "../assets/images.js";
+import images from "@/assets/images.js";
 
 export default {
   data() {

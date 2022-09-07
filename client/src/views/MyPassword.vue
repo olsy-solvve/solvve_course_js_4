@@ -82,7 +82,7 @@
 <script>
 import useVuelidate from "@vuelidate/core";
 import { required, minLength, sameAs } from "@vuelidate/validators";
-import MyDashboardMenu from "../components/MyDashboardMenu/MyDashboardMenu.vue";
+import MyDashboardMenu from "@/components/MyDashboardMenu/MyDashboardMenu.vue";
 
 export default {
   components: {

@@ -107,7 +107,7 @@
 <script>
 import useVuelidate from "@vuelidate/core";
 import { required, email, maxLength, minLength } from "@vuelidate/validators";
-import MyDashboardMenu from "../components/MyDashboardMenu/MyDashboardMenu.vue";
+import MyDashboardMenu from "@/components/MyDashboardMenu/MyDashboardMenu.vue";
 
 export function validName(name) {
   let validNamePattern = new RegExp("^[a-zA-Z]+(?:[-'\\s][a-zA-Z]+)*$");
