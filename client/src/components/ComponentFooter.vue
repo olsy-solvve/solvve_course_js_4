@@ -1,5 +1,5 @@
 <script>
-import image from "../assets/images.js";
+import image from "@/assets/images.js";
 
 export default {
   data() {

@@ -13,7 +13,7 @@
           <h1>List Of All Pets</h1>
           <div class="grid grid-nogutter">
             <div class="col-6" style="text-align: right">
-              <DataViewLayoutOptions v-model="layout"></DataViewLayoutOptions>
+              <!-- <FormDropdown v-model="layout"></FormDropdown> -->
             </div>
           </div>
         </template>
@@ -29,7 +29,7 @@
                 <div class="period-info">{{ slotProps.data.periodInfo }}</div>
               </div>
               <div class="pets-list-action">
-                <MyButton
+                <PrimeButton
                   label="Reply"
                   class="p-button-raised p-button-rounded"
                 />
@@ -52,7 +52,7 @@
                 <div class="period-info">{{ slotProps.data.periodInfo }}</div>
               </div>
               <div class="pets-grid-item-bottom">
-                <MyButton
+                <PrimeButton
                   label="Reply"
                   class="p-button-raised p-button-rounded but"
                 />
@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import images from "../assets/images.js";
+import images from "@/assets/images.js";
 
 export default {
   data() {
