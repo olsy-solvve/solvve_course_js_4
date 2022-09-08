@@ -10,7 +10,7 @@
         :sortField="sortField"
       >
         <template #header>
-          <h1>List of All My Pets</h1>
+          <h1>My Pets</h1>
           <div class="grid grid-nogutter">
             <div class="col-6" style="text-align: right"></div>
           </div>
