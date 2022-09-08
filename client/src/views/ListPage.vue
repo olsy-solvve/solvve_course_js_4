@@ -116,7 +116,7 @@
                     <PrimeButton
                       label="Submit"
                       icon="pi pi-check"
-                      @click="submit"
+                      @click="closeModuleWindow"
                       autofocus
                     />
                   </template>
@@ -204,14 +204,6 @@ export default {
     },
     closeModuleWindow() {
       this.displayModuleWindow = false;
-    },
-    submit() {
-      this.pets.name = "New Name";
-      this.pets.status = "New Name";
-      this.pets.animal = "New Name";
-      this.pets.gender = "New Name";
-      this.pets.periodInfo = "New Name";
-      this.closeModuleWindow();
     },
   },
 };
