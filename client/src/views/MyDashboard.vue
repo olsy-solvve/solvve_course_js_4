@@ -5,8 +5,9 @@
       <div class="flex-auto">
         <h2 class="text-center">My Pets</h2>
         <div class="flex justify-content-center gap-1">
+          <!-- start add pets form -->
           <form id="form">
-            <PrimeDialog v-model:visible="display1">
+            <PrimeDialog class="mb-7" v-model:visible="display1">
               <template #header>
                 <h3>Add a pet</h3>
               </template>
@@ -53,6 +54,13 @@
                   placeholder="When a pet is lost"
                 />
               </div>
+              <div>
+                <h5>Description</h5>
+                <span class="p-float-label">
+                  <FormTextarea id="textarea" v-model="description" rows="3" />
+                  <label for="textarea">Textarea</label>
+                </span>
+              </div>
               <template #footer>
                 <PrimeButton
                   label="Add"
@@ -66,12 +74,14 @@
                         gender,
                         name,
                         status,
+                        description,
                       })
                   "
                 />
               </template>
             </PrimeDialog>
           </form>
+          <!-- End add pets form -->
           <div class="text-center mt-4">
             <PrimeButton @click="addPet()" label="Add a pet" />
           </div>
@@ -79,12 +89,14 @@
       </div>
     </div>
     <div class="card mb-4 border-round-md p-5 bg-white">
-      <OrderList item="id" v-model="pets" listStyle="height:auto">
+      <!-- start pets list -->
+      <OrderList v-model="pets" listStyle="height:auto">
         <template #header> A list of my pets </template>
         <template #item="slotProps">
           <div class="product-item flex align-items-center w-full p-2">
             <div class="image-container w-3">
               <img
+                @click="() => showPetCard(slotProps.item.id)"
                 class="w-full mr-1"
                 :src="slotProps.item.img"
                 :alt="slotProps.item.status"
@@ -128,8 +140,59 @@
           </div>
         </template>
       </OrderList>
+      <!-- end pets list -->
     </div>
   </div>
+  <!-- start pets detailed card  -->
+  <div>
+    <PrimeDialog class="mb-7" v-model:visible="display2">
+      <PrimeCard style="width: 25em">
+        <template #header>
+          <img
+            class="w-full mr-1"
+            :src="pets[petIndex].img"
+            :alt="pets[petIndex].status"
+          />
+        </template>
+        <template #title> Detailed Pet Description </template>
+        <template #content>
+          <div class="flex flex-column gap-1 ml-2 mb-2">
+            <small>
+              <span class="font-bold">Name: </span>{{ pets[petIndex].name }}
+            </small>
+            <small>
+              <span class="font-bold">Status: </span
+              >{{ pets[petIndex].status.name }}
+            </small>
+            <small>
+              <span class="font-bold">Animal:</span>
+              {{ pets[petIndex].animal.name }}
+            </small>
+            <small>
+              <span class="font-bold">Gender:</span>
+              {{ pets[petIndex].gender.name }}
+            </small>
+            <small>
+              <span class="font-bold">Period:</span>
+              {{ pets[petIndex].periodInfo }}
+            </small>
+            <small>
+              <span class="font-bold">ID:</span>
+              {{ pets[petIndex].id }}
+            </small>
+            <small class="w-23rem white-space-normal">
+              <span class="font-bold">Description:</span>
+              {{ pets[petIndex].description }}
+            </small>
+          </div>
+        </template>
+        <template #footer>
+          <PrimeButton icon="pi pi-check" label="Card Editing" />
+        </template>
+      </PrimeCard>
+    </PrimeDialog>
+  </div>
+  <!-- end pets detailed car -->
 </template>
 
 <script>
@@ -148,11 +211,14 @@ export default {
   data() {
     return {
       display1: false,
+      display2: false,
       periodInfo: null,
       name: null,
       status: null,
       gender: null,
       animal: null,
+      description: null,
+      petIndex: null,
 
       changeStatus: [{ name: "Lost Pet" }, { name: "Found Pet" }],
       changeGender: [{ name: "Male" }, { name: "Female" }],
@@ -180,14 +246,17 @@ export default {
       this.animal = "";
       this.gender = "";
       this.name = "";
+      this.description = "";
       this.display1 = false;
     },
 
     addPet() {
       this.display1 = true;
     },
-    closeBasic() {
-      this.display1 = false;
+    showPetCard(id) {
+      this.display2 = true;
+      const index = this.pets.findIndex((index) => index.id === id);
+      this.petIndex = index;
     },
   },
 
