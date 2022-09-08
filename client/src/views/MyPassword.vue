@@ -1,23 +1,7 @@
 <template>
   <div class="page-wrapper mx-auto my-0">
     <div class="flex gap-2 mb-4">
-      <div class="flex flex-column gap-3 flex-initial p-2 bg-white">
-        <h5>
-          <router-link class="text-black-alpha-90" to="/myDashboard"
-            >Pets</router-link
-          >
-        </h5>
-        <h5>
-          <router-link class="text-black-alpha-90" to="/mySettings"
-            >Settings</router-link
-          >
-        </h5>
-        <h5>
-          <router-link class="text-black-alpha-90" to="/myPassword"
-            >Change Password</router-link
-          >
-        </h5>
-      </div>
+      <MyDashboardMenu />
       <div class="my-password-content flex-auto">
         <div class="form-wrapper w-full mx-auto my-0">
           <form @submit.prevent="onSubmit">
@@ -98,8 +82,13 @@
 <script>
 import useVuelidate from "@vuelidate/core";
 import { required, minLength, sameAs } from "@vuelidate/validators";
+import MyDashboardMenu from "@/components/MyDashboardMenu/MyDashboardMenu.vue";
 
 export default {
+  components: {
+    MyDashboardMenu,
+  },
+
   setup() {
     return { v$: useVuelidate() };
   },
