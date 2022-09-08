@@ -56,10 +56,6 @@ const list = [
 
 import cors from "cors";
 import { Router } from "express";
-// import uniqueid from "uniqueid";
-
-// let id = uniqueid(null, "suffix");
-// id = id();
 
 const router = Router();
 
@@ -74,10 +70,10 @@ router.post("/api/list", (req, res) => {
   res.status(201).json(list);
 });
 
-router.delete("/api/list", (req, res) => {
-  list.splice(req.body);
+router.delete("/api/:id", (req, res) => {
+  const index = list.findIndex((item) => item.id === req.params.id);
+  list.splice(index, 1);
   res.status(205).json(list);
-  console.log(req.body);
 });
 
 export default router;

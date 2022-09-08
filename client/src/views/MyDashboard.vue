@@ -119,7 +119,7 @@
               <div class="flex justify-content-end">
                 <div class="text-center mt-4 mb-4">
                   <PrimeButton
-                    @click="() => deleteFromList({ pets })"
+                    @click="() => deleteFromList(slotProps.item.id)"
                     label="Delete Pet"
                   />
                 </div>
@@ -161,8 +161,8 @@ export default {
   },
 
   methods: {
-    async deleteFromList(data) {
-      await this.petsList.deleteFromList(data.length);
+    async deleteFromList(id) {
+      await this.petsList.deleteFromList(id);
       this.showList();
     },
 
@@ -171,6 +171,7 @@ export default {
     },
 
     async addToList(data) {
+      data.img = "http://localhost:3000/img_car_01.jpg";
       data.id = id();
       await this.petsList.addToList(data);
       this.showList();

@@ -15,6 +15,6 @@ export default class MyPetsList {
   }
 
   deleteFromList(data) {
-    return api.delete("/list", data);
+    return api.delete(data);
   }
 }
