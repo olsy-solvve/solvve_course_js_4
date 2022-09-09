@@ -61,7 +61,7 @@ app.post('/api/createPet', upload.array('photos', 3), (req, res) => {
     const fields = {
         id: uuidv4(),
         name: req.body.name,
-        type: req.body.type,
+        status: req.body.status,
         date: req.body.date,
         gender: req.body.gender,
         info: req.body.info,
