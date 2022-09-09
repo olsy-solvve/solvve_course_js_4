@@ -1,5 +1,5 @@
 <script>
-import SignInForm from "../components/SignInForm/SignInForm.vue";
+import SignInForm from "@/components/SignInForm/SignInForm.vue";
 
 export default {
   components: { SignInForm },

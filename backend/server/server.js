@@ -1,33 +1,52 @@
-import express from 'express';
+import express from "express";
+import router from "../router/index.js";
+import path from "path";
+import cors from "cors";
+import fs from "fs";
 import multer from 'multer'
-import router from '../router/index.js';
-import { list } from '../router/index.js'
 import { v4 as uuidv4 } from 'uuid';
+import { list } from '../router/index.js'
 
+const __dirname = path.resolve();
 
-const PORT = process.env.PORT || 5000;
+const PORT = 3000;
+const app = express();
 
 const storage = multer.diskStorage({
   destination: (_, b, cb) => {
-    cb(null, 'uploads')
+    cb(null, 'images')
   }, 
   filename: (_, file, cb) => {
     cb(null, file.originalname)
   }
 }) 
 
- const upload = multer({storage})
+const upload = multer({storage})
 
-const app = express();
-app.use(express.json())
+app.use('/api/uploads', express.static('images'));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 app.use(router);
-app.use('/api/uploads', express.static('uploads'));
+router.use(cors());
 
+app.use(express.static(path.resolve(__dirname, "images")));
 
-app.get('/', (req, res) => {
-        res.send('<i>test</i>')
+app.get("/", (req, res) => {
+  const directoryPath = path.join(__dirname, "images");
 
-})
+  fs.readdir(directoryPath, function (err, files) {
+    if (err) {
+      console.log("Error getting directory information.");
+    } else {
+      files.forEach(function (file) {
+        const filePath = path.join(__dirname, "images", file);
+        res.sendFile(filePath);
+      });
+    }
+  });
+});
 
 app.post('/api/createPet', upload.array('photos', 3), (req, res) => {
   try {
@@ -63,4 +82,3 @@ app.post('/api/createPet', upload.array('photos', 3), (req, res) => {
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 export default app;
-

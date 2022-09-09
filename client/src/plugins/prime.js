@@ -16,7 +16,9 @@ import OrderList from "primevue/orderlist";
 import Textarea from "primevue/textarea";
 import Calendar from "primevue/calendar";
 import RadioButton from "primevue/radiobutton";
+import Dialog from "primevue/dialog";
 import DataView from "primevue/dataview";
+import Card from "primevue/card";
 
 export default (app) => {
   app.use(PrimeVue, { ripple: true });
@@ -31,5 +33,7 @@ export default (app) => {
   app.component("FormTextarea", Textarea);
   app.component("FormCalendar", Calendar);
   app.component("FormRadioButton", RadioButton);
+  app.component("PrimeDialog", Dialog);
   app.component("ListOfAllPets", DataView);
+  app.component("PrimeCard", Card);
 };

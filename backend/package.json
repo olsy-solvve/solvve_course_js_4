@@ -5,8 +5,9 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node backend/server.js",
-    "server": "nodemon backend/server.js"
+    "start": "node server/server.js",
+    "server": "nodemon server/server.js",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path ../.gitignore"
   },
   "author": "Ustimov D.",
   "license": "ISC",
@@ -20,6 +21,8 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "eslint": "^8.23.0",
+    "nodemon": "^2.0.19",
+    "uniqueid": "^1.0.0"
   }
 }
