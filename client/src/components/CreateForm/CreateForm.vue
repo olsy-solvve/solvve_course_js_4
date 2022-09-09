@@ -61,7 +61,7 @@
       <PhotoUploader v-model="files" />
       <PrimeButton
         class="solvve-form-btn w-full max-w-12rem"
-        label="Submit"
+        label="Create"
         type="submit"
         :disabled="isButtonDisabled"
       />
@@ -73,6 +73,7 @@
 import PhotoUploader from "./PhotoUploader.vue";
 import { useRouter, useRoute } from "vue-router";
 import { computed, ref } from "vue";
+import myAxios from "../../axios";
 
 export default {
   setup() {
@@ -129,19 +130,22 @@ export default {
     );
 
     //this function creates a new pet, creates an object from the input and sends it to the back
-    const onSubmit = () => {
+    const onSubmit = async () => {
       const formData = new FormData();
-      formData.append("files", files.value);
       formData.append("date", date.value);
       formData.append("gender", gender.value);
       formData.append("info", info.value);
       formData.append("name", name.value);
       formData.append("petType", petType.value);
       formData.append("type", selectedType.value);
+      files.value.forEach((item, index) => {
+        formData.append("photos", item)
+        formData.append("image", item.name)
+      })
 
-      for (var value of formData.values()) {
-        console.log(value);
-      }
+      await myAxios.post('createPet', formData, { headers:
+        { 'Content-Type': 'multipart/form-data' }
+      })
 
       router.push("/");
     };

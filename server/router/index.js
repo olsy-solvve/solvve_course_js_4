@@ -1,4 +1,4 @@
-const list = [
+export const list = [
         {"id": "1000","code": "f230fh0g3","status": "Lost pet","description": "Pets Description","image": "bamboo-watch.jpg","gender": "Female","animal": "Cat","name":"Kitty","periodInfo": "5 days ago","rating": 5},
         {"id": "1001","code": "nvklal433","status": "Lost pet","description": "Pets Description","image": "black-watch.jpg","gender": "Female","animal": "Cat","name": "Swetty","periodInfo": "5 days ago","rating": 4},
         {"id": "1002","code": "zz21cz3c1","status": "Found pet","description": "Pets Description","image": "blue-band.jpg","gender": "Male","animal": "Cat","quantity": 2,"periodInfo": "5 days ago","rating": 3},
@@ -10,7 +10,6 @@ import cors from 'cors';
 import { Router } from "express";
 
 const router =  Router();
-
 router.use(cors());
 
 router.get('/api/list', (req, res) => {
