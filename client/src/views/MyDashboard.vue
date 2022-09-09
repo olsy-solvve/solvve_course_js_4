@@ -5,83 +5,6 @@
       <div class="flex-auto">
         <h2 class="text-center">My Pets</h2>
         <div class="flex justify-content-center gap-1">
-          <!-- start add pets form -->
-          <form id="form">
-            <PrimeDialog class="mb-7" v-model:visible="display1">
-              <template #header>
-                <h3>Add a pet</h3>
-              </template>
-              <div>
-                <h5>Pet Name</h5>
-                <InputText
-                  type="text"
-                  v-model="name"
-                  placeholder="Enter pet name"
-                />
-              </div>
-              <div>
-                <h5>Pet Status</h5>
-                <FormDropdown
-                  v-model="status"
-                  :options="changeStatus"
-                  optionLabel="name"
-                  placeholder="Select a status"
-                />
-              </div>
-              <div>
-                <h5>Pet Gender</h5>
-                <FormDropdown
-                  v-model="gender"
-                  :options="changeGender"
-                  optionLabel="name"
-                  placeholder="Select a gender"
-                />
-              </div>
-              <div>
-                <h5>Animal</h5>
-                <FormDropdown
-                  v-model="animal"
-                  :options="changeAnimal"
-                  optionLabel="name"
-                  placeholder="Select animal"
-                />
-              </div>
-              <div>
-                <h5>Date</h5>
-                <FormCalendar
-                  v-model="periodInfo"
-                  autocomplete="off"
-                  placeholder="When a pet is lost"
-                />
-              </div>
-              <div>
-                <h5>Description</h5>
-                <span class="p-float-label">
-                  <FormTextarea id="textarea" v-model="description" rows="3" />
-                  <label for="textarea">Textarea</label>
-                </span>
-              </div>
-              <template #footer>
-                <PrimeButton
-                  label="Add"
-                  icon="pi pi-check"
-                  class="flex justify-content-center w-full"
-                  @click="
-                    () =>
-                      addToList({
-                        periodInfo,
-                        animal,
-                        gender,
-                        name,
-                        status,
-                        description,
-                      })
-                  "
-                />
-              </template>
-            </PrimeDialog>
-          </form>
-          <!-- End add pets form -->
           <div class="text-center mt-4">
             <PrimeButton @click="addPet()" label="Add a pet" />
           </div>
@@ -95,32 +18,32 @@
         <template #item="slotProps">
           <div class="product-item flex align-items-center w-full p-2">
             <div class="image-container w-3">
-              <img
+              <img 
                 @click="() => showPetCard(slotProps.item.id)"
                 class="w-full mr-1"
-                :src="slotProps.item.img"
+                :src="slotProps.item.image ? slotProps.item.image[0] : '../src/assets/img/cat.png'"
                 :alt="slotProps.item.status"
               />
             </div>
             <div class="flex flex-column gap-1 ml-2 mb-2">
-              <small>
+              <small v-if="slotProps.item.name !== 'undefined'">
                 <span class="font-bold">Name: </span>{{ slotProps.item.name }}
               </small>
               <small>
                 <span class="font-bold">Status: </span
-                >{{ slotProps.item.status.name }}
+                >{{ slotProps.item.status }}
               </small>
-              <small>
+              <small v-if="slotProps.item.petType !== 'undefined'">
                 <span class="font-bold">Animal:</span>
-                {{ slotProps.item.animal.name }}
+                {{ slotProps.item.petType }}
               </small>
-              <small>
+              <small v-if="slotProps.item.gender !== 'undefined'">
                 <span class="font-bold">Gender:</span>
-                {{ slotProps.item.gender.name }}
+                {{ slotProps.item.gender }}
               </small>
-              <small>
+              <small v-if="slotProps.item.date !== 'undefined'">
                 <span class="font-bold">Period:</span>
-                {{ slotProps.item.periodInfo }}
+                {{ slotProps.item.date }}
               </small>
               <small>
                 <span class="font-bold">ID:</span>
@@ -148,41 +71,48 @@
     <PrimeDialog class="mb-7" v-model:visible="display2">
       <PrimeCard style="width: 25em">
         <template #header>
+          <img v-for="img in pets[petIndex].image"
+            class="w-full mr-1"
+            :src="img"
+            :alt="pets[petIndex].status"
+            v-if="pets[petIndex].image"
+          />
           <img
             class="w-full mr-1"
-            :src="pets[petIndex].img"
+            src="../assets/img/cat.png"
             :alt="pets[petIndex].status"
+            v-else
           />
         </template>
         <template #title> Detailed Pet Description </template>
         <template #content>
           <div class="flex flex-column gap-1 ml-2 mb-2">
-            <small>
+            <small v-if="pets[petIndex].name !== 'undefined'">
               <span class="font-bold">Name: </span>{{ pets[petIndex].name }}
             </small>
             <small>
               <span class="font-bold">Status: </span
-              >{{ pets[petIndex].status.name }}
+              >{{ pets[petIndex].status }}
             </small>
-            <small>
+            <small v-if="pets[petIndex].petType !== 'undefined'">
               <span class="font-bold">Animal:</span>
-              {{ pets[petIndex].animal.name }}
+              {{ pets[petIndex].petType }}
             </small>
-            <small>
+            <small v-if="pets[petIndex].gender !== 'undefined'">
               <span class="font-bold">Gender:</span>
-              {{ pets[petIndex].gender.name }}
+              {{ pets[petIndex].gender }}
             </small>
-            <small>
+            <small v-if="pets[petIndex].date !== 'undefined'">
               <span class="font-bold">Period:</span>
-              {{ pets[petIndex].periodInfo }}
+              {{ pets[petIndex].date }}
             </small>
             <small>
               <span class="font-bold">ID:</span>
               {{ pets[petIndex].id }}
             </small>
-            <small class="w-23rem white-space-normal">
+            <small class="w-23rem white-space-normal" v-if="pets[petIndex].info">
               <span class="font-bold">Description:</span>
-              {{ pets[petIndex].description }}
+              {{ pets[petIndex].info }}
             </small>
           </div>
         </template>
@@ -192,25 +122,23 @@
       </PrimeCard>
     </PrimeDialog>
   </div>
-  <!-- end pets detailed car -->
+  <!-- end pets detailed card -->
 </template>
 
 <script>
 import { ref, onMounted } from "vue";
 import MyPetsList from "@/my_pets_list/MyPetsList";
 import MyDashboardMenu from "@/components/MyDashboardMenu/MyDashboardMenu.vue";
-import uniqueid from "uniqueid";
-
-let id = uniqueid(null, "suffix");
+import CreateForm from "@/components/CreateForm/CreateForm.vue";
 
 export default {
   components: {
     MyDashboardMenu,
+    CreateForm
   },
 
   data() {
     return {
-      display1: false,
       display2: false,
       periodInfo: null,
       name: null,
@@ -236,22 +164,8 @@ export default {
       this.petsList.getPetsList().then((data) => (this.pets = data));
     },
 
-    async addToList(data) {
-      data.img = "http://localhost:3000/img_car_01.jpg";
-      data.id = id();
-      await this.petsList.addToList(data);
-      this.showList();
-      this.status = "";
-      this.periodInfo = "";
-      this.animal = "";
-      this.gender = "";
-      this.name = "";
-      this.description = "";
-      this.display1 = false;
-    },
-
     addPet() {
-      this.display1 = true;
+      this.$router.push("/found");
     },
     showPetCard(id) {
       this.display2 = true;

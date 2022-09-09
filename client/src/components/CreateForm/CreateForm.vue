@@ -147,7 +147,7 @@ export default {
         { 'Content-Type': 'multipart/form-data' }
       })
 
-      router.push("/");
+      router.push("/myDashboard");
     };
 
     return {

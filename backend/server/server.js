@@ -21,7 +21,18 @@ const storage = multer.diskStorage({
   }
 }) 
 
-const upload = multer({storage})
+const upload = multer({
+  storage
+  , fileFilter: (req, file, cb) => {
+    if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+    }
+  }  
+},  
+)
 
 app.use('/api/uploads', express.static('images'));
 
@@ -66,12 +77,10 @@ app.post('/api/createPet', upload.array('photos', 3), (req, res) => {
         gender: req.body.gender,
         info: req.body.info,
         petType: req.body.petType,
-        image: req.body.image
+        image: typeof req.body.image === 'string' ? [req.body.image] : req.body.image
       }
       list.push(fields)
 
-    console.log(req.files);
-    console.log(req.body);
     res.status(201).json(respone);
   } catch(e) {
     res.status(400).json(e);
