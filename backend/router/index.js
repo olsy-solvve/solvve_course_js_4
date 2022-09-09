@@ -1,4 +1,4 @@
-const list = [
+export const list = [
   {
     id: "1000",
     code: "f230fh0g3",

@@ -3,11 +3,27 @@ import router from "../router/index.js";
 import path from "path";
 import cors from "cors";
 import fs from "fs";
+import multer from 'multer'
+import { v4 as uuidv4 } from 'uuid';
+import { list } from '../router/index.js'
 
 const __dirname = path.resolve();
 
 const PORT = 3000;
 const app = express();
+
+const storage = multer.diskStorage({
+  destination: (_, b, cb) => {
+    cb(null, 'images')
+  }, 
+  filename: (_, file, cb) => {
+    cb(null, file.originalname)
+  }
+}) 
+
+const upload = multer({storage})
+
+app.use('/api/uploads', express.static('images'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -31,6 +47,37 @@ app.get("/", (req, res) => {
     }
   });
 });
+
+app.post('/api/createPet', upload.array('photos', 3), (req, res) => {
+  try {
+    if(!req.files) {
+      return res.status(501).json({msg: "Wrong image!"});
+    }
+    const respone = {}
+    req.files.forEach((item, index) => {
+      respone[index] = `/uploads/${item.originalname}`;
+    })
+
+    const fields = {
+        id: uuidv4(),
+        name: req.body.name,
+        type: req.body.type,
+        date: req.body.date,
+        gender: req.body.gender,
+        info: req.body.info,
+        petType: req.body.petType,
+        image: req.body.image
+      }
+      list.push(fields)
+
+    console.log(req.files);
+    console.log(req.body);
+    res.status(201).json(respone);
+  } catch(e) {
+    res.status(400).json(e);
+    console.log(e);
+  }
+})
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
