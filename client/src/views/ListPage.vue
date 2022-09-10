@@ -9,11 +9,7 @@
       >
         <template #header>
           <h1>My Pets</h1>
-          <!-- <div class="grid grid-nogutter">
-            <div class="col-6" style="text-align: right">
-               <FormDropdown v-model="layout"></FormDropdown> 
-            </div>
-          </div> -->
+          <PrimeButton @click="addPet()" label="Add a pet" />
         </template>
 
         <template #list="slotProps">
@@ -40,6 +36,7 @@
       </ListOfAllPets>
 
       <PrimeDialog v-model:visible="displayDescriptWindow" >
+        <img class="img-descpipt" :src="currentData.img" :alt="currentData.name" />
         <div class = "type-info">Name : <span class="pets-name">{{ currentData.name }}</span></div>
         <div class = "type-info">Status : <span class="status">{{ currentData.status }}</span></div>
         <div class = "type-info">Animal : <span class="animal">{{ currentData.animal }}</span></div>
@@ -59,7 +56,7 @@
           <FormDropdown
             v-model="selectedStatus"
             :options="status"
-            optionLabel="status"
+            optionLabel="valueStatus"
             placeholder="Select a Status"
           ></FormDropdown>
         </div>
@@ -87,21 +84,21 @@
         <div class="field col-12 md:col-4">
           <label for="description" class="type-info">Date</label>
             <span class="p-float-label">
-              <InputText id="date" v-model="value2" type="text" />
-              <label for="date">Description </label>
+              <InputText id="date" v-model="description" type="text" />
+              <label for="date">Description</label>
             </span>
         </div>
         <template #footer>
           <PrimeButton
             label="Cancel"
             icon="pi pi-times"
-            @click="closeModuleWindow"
+            @click="closeChangeWindow"
             class="p-button-text"
           />
           <PrimeButton
             label="Submit"
             icon="pi pi-check"
-            @click="closeModuleWindow"
+            @click="closeChangeWindow"
             autofocus
           />
         </template>
@@ -167,7 +164,7 @@ export default {
           link: "/lost",
         },
       ],
-      status: [{ status: "Found" }, { status: "Lost" }],
+      status: [{ valueStatus: "Found" }, { valueStatus: "Lost" }],
       animal: [{ type: "Cat" }, { type: "Dog" }],
       genders: [{ gen: "Female" }, { gen: "Male" }],
       layout: "list",
@@ -178,7 +175,7 @@ export default {
       selectedAnimal: null,
       selectedGender: null,
       //data od period
-      //descript
+      Description: null,
     };
   },
   methods: {
@@ -187,12 +184,11 @@ export default {
       this.currentData = data;
       this.displayDescriptWindow = true;
     },
-    closeDescriptWindow() {
-      this.displayDescriptWindow = false;
-    },
 
     openChangeWindow(data) {  
-      this.currentData = data;  
+      this.currentData = data;
+      // if(data.status)  
+      this.selectedStatus.change() 
       this.displayChangeWindow = true;
     },
     closeChangeWindow() {
@@ -200,14 +196,18 @@ export default {
     },
     
   
-    // async deleteAnimal(id) {
-    //   await this.pets.deleteFromList(id);
-    //   this.showList();
-    // },
+    async deleteAnimal(id) {
+      await this.pets.deleteFromList(id);
+      this.showList();
+    },
 
-    // showList() {
-    //   this.pets.getPetsList().then((data) => (this.pets = data));
-    // },
+    showList() {
+      this.pets.getPetsList().then((data) => (this.pets = data));
+    },
+
+    addPet() {
+      this.$router.push("/found");
+    },
 
   },
 };
@@ -225,6 +225,12 @@ export default {
 .pets-name {
   font-weight: 700;
 }
+.img-descpipt{
+  width: 400px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  margin-right: 2rem;
+}
+
 ::v-deep(.pets-list-item) {
   display: flex;
   align-items: center;
