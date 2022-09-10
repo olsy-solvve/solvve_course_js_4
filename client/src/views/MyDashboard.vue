@@ -74,19 +74,20 @@
   <div>
     <PrimeDialog class="mb-7" v-model:visible="display2">
       <PrimeCard style="width: 25em">
-        <template #header>
+        <template #header v-if="pets[petIndex].image">
           <img
-            v-for="img in pets[petIndex].image"
+            v-for="(img, index) in pets[petIndex].image"
+            :key="index"
             class="w-full mr-1"
             :src="img"
             :alt="pets[petIndex].status"
-            v-if="pets[petIndex].image"
           />
+        </template>
+        <template #header v-else>
           <img
             class="w-full mr-1"
             src="../assets/img/cat.png"
             :alt="pets[petIndex].status"
-            v-else
           />
         </template>
         <template #title> Detailed Pet Description </template>
@@ -136,12 +137,10 @@
 import { ref, onMounted } from "vue";
 import MyPetsList from "@/my_pets_list/MyPetsList";
 import MyDashboardMenu from "@/components/MyDashboardMenu/MyDashboardMenu.vue";
-import CreateForm from "@/components/CreateForm/CreateForm.vue";
 
 export default {
   components: {
     MyDashboardMenu,
-    CreateForm,
   },
 
   data() {
