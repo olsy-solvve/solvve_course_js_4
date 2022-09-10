@@ -196,14 +196,14 @@ export default {
     },
     
   
-    async deleteAnimal(id) {
-      await this.pets.deleteFromList(id);
-      this.showList();
-    },
+    // async deleteAnimal(id) {
+    //   await this.pets.deleteFromList(id);
+    //   this.showList();
+    // },
 
-    showList() {
-      this.pets.getPetsList().then((data) => (this.pets = data));
-    },
+    // showList() {
+    //   this.pets.getPetsList().then((data) => (this.pets = data));
+    // },
 
     addPet() {
       this.$router.push("/found");
