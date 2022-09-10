@@ -140,17 +140,6 @@ export default {
   data() {
     return {
       display2: false,
-      periodInfo: null,
-      name: null,
-      status: null,
-      gender: null,
-      animal: null,
-      description: null,
-      petIndex: null,
-
-      changeStatus: [{ name: "Lost Pet" }, { name: "Found Pet" }],
-      changeGender: [{ name: "Male" }, { name: "Female" }],
-      changeAnimal: [{ name: "Dog" }, { name: "Cat" }],
     };
   },
 
