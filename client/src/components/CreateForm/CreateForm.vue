@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="my-7">
     <form
       @submit.prevent="onSubmit"
       class="solvve-form flex flex-column justify-content-center align-items-center"
@@ -132,10 +132,10 @@ export default {
       files.value.length <= 3 ? false : true
     );
 
-    const showMessage = (type, text) => {
+    const showMessage = (type, title, text) => {
       toast.add({
         severity: type,
-        summary: "Error Message",
+        summary: title,
         detail: text,
         life: 3000,
       });
@@ -160,14 +160,15 @@ export default {
           headers: { "Content-Type": "multipart/form-data" },
         });
 
-        showMessage("success", "Created");
-        setTimeout(() => {
-          router.push("/myDashboard");
-        }, 1000);
+        showMessage("success", "Success", "Created");
+
+        router.push("/myDashboard");
       } catch (e) {
-        if ((e.response.status = 500)) {
-          showMessage("error", "It's not an image");
+        if (e.response.status === 500) {
+          showMessage("error", "Error", "It's not an image");
           files.value = [];
+        } else {
+          showMessage("error", "Error", e.response.statusText);
         }
       }
     };

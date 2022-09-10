@@ -1,15 +1,15 @@
 <template>
-  <section>
-    <div class="page-wrapper">
+  <section class="py-5 my-5">
+    <div class="container">
       <div class="section-content flex gap-3 mb-4">
         <div class="flex flex-column gap-3">
-          <h1 class="text-4xl none">
+          <h1 class="text-5xl">
             We help reunite lost pets with their families.
           </h1>
-          <h2 class="none">
+          <p class="text-2xl mr-6">
             Enter a photo of your missing pet and search our national lost and
             found pet database to find them.
-          </h2>
+          </p>
           <div class="section-controls flex flex-grow-1 align-items-end gap-4">
             <PrimeButton>Found Pet</PrimeButton>
             <PrimeButton
@@ -23,8 +23,8 @@
       </div>
     </div>
   </section>
-  <section class="section-carousel">
-    <div class="page-wrapper">
+  <section class="section-carousel my-8">
+    <div class="container">
       <PrimeCarousel
         :value="pets"
         :numVisible="3"
@@ -113,9 +113,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page-wrapper {
-  max-width: 900px;
-  margin: 0 auto;
+.container {
+  box-sizing: border-box;
+  margin: auto;
+  padding: 0;
+  max-width: 1170px !important;
+  min-width: 320px !important;
 }
 .section-content {
   > * {
@@ -129,11 +132,11 @@ a {
 }
 
 h1 {
-  color: rgb(0, 32, 91);
+  color: rgb(36, 38, 43);
 }
 
-h2 {
-  color: rgb(0, 32, 91);
+p {
+  color: rgb(82, 91, 107);
 }
 
 .p-carousel {

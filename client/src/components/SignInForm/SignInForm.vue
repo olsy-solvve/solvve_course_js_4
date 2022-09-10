@@ -1,5 +1,5 @@
 <template>
-  <div class="signin_container">
+  <div class="signin_container my-7">
     <VeeForm @submit="Login" :validation-schema="formSchema">
       <h1>Sign in</h1>
 

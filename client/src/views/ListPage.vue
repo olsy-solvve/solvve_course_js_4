@@ -5,69 +5,110 @@
         :value="pets"
         :layout="layout"
         :paginator="true"
-        :rows="9"
-        :sortOrder="sortOrder"
-        :sortField="sortField"
+        :rows="4"
       >
         <template #header>
-          <h1>List Of All Pets</h1>
-          <div class="grid grid-nogutter">
-            <div class="col-6" style="text-align: right">
-              <!-- <FormDropdown v-model="layout"></FormDropdown> -->
-            </div>
-          </div>
+          <h1>My Pets</h1>
+          <PrimeButton @click="addPet()" label="Add a pet"/>
         </template>
+
         <template #list="slotProps">
           <div class="col-12">
-            <div class="pets-list-item">
+            <div class="pets-list-item" @click="openDescriptWindow(slotProps.data)">
               <div class="img-block">
                 <img :src="slotProps.data.img" :alt="slotProps.data.name" />
               </div>
               <div class="pets-list-detail">
-                <div class="pets-name">{{ slotProps.data.name }}</div>
-                <div class="status-info">{{ slotProps.data.status }}</div>
-                <div class="period-info">{{ slotProps.data.periodInfo }}</div>
+                <div class = "type-info">Name : <span class="pets-name">{{ slotProps.data.name }}</span></div>
+                <div class = "type-info">Status : <span class="status">{{ slotProps.data.status }}</span></div>
               </div>
-              <div class="pets-list-action">
+              <div class="pets-list-action">              
                 <PrimeButton
-                  label="Reply"
+                  label="Delete pet"
+                  icon="pi pi-trash"                  
                   class="p-button-raised p-button-rounded"
+                  @click="deleteAnimal(slotProps.data.id)"
                 />
               </div>
             </div>
-          </div>
-        </template>
-
-        <template #grid="slotProps">
-          <div class="col-12 md:col-4">
-            <div class="pets-grid-item card">
-              <div class="pets-grid-item-top">
-                <span class="status-info">{{ slotProps.data.status }}</span>
-              </div>
-              <div class="pets-grid-item-content">
-                <div class="img-block">
-                  <img :src="slotProps.data.img" :alt="slotProps.data.name" />
-                </div>
-                <div class="pets-name">{{ slotProps.data.name }}</div>
-                <div class="period-info">{{ slotProps.data.periodInfo }}</div>
-              </div>
-              <div class="pets-grid-item-bottom">
-                <PrimeButton
-                  label="Reply"
-                  class="p-button-raised p-button-rounded but"
-                />
-              </div>
-            </div>
-          </div>
+          </div>  
         </template>
       </ListOfAllPets>
+
+      <PrimeDialog v-model:visible="displayDescriptWindow" >
+        <img class="img-descpipt" :src="currentData.img" :alt="currentData.name" />
+        <div class = "type-info">Name : <span class="pets-name">{{ currentData.name }}</span></div>
+        <div class = "type-info">Status : <span class="status">{{ currentData.status }}</span></div>
+        <div class = "type-info">Animal : <span class="animal">{{ currentData.animal }}</span></div>
+        <div class = "type-info">Gender : <span class="gender">{{ currentData.gender }}</span></div>
+        <div class = "type-info">Period : <span class="gender">{{ currentData.periodInfo }}</span></div>
+        <div class = "type-info">ID : <span class="id">{{ currentData.id }}</span></div>
+        <template #footer>
+          <PrimeButton label="Change information of an pet" icon="pi pi-pensil" @click="openChangeWindow(currentData)"/>
+        </template>
+      </PrimeDialog>
+
+      <PrimeDialog v-model:visible="displayChangeWindow">
+
+
+        <div class="field col-12 md:col-4">
+          <label class="type-info">Pet Status</label>
+          <FormDropdown
+            v-model="selectedStatus"
+            :options="status"
+            optionLabel="valueStatus"
+            placeholder="Select a Status"
+          ></FormDropdown>
+        </div>
+
+        <div class="field col-12 md:col-4">
+          <label class="type-info">Animal</label>
+            <FormDropdown
+              v-model="selectedAnimal"
+              :options="animal"
+              optionLabel="type"
+              placeholder="Select a type of Animal"
+            ></FormDropdown>
+        </div>
+
+        <div class="field col-12 md:col-4">
+          <label class="type-info">Pet Gender</label>
+            <FormDropdown
+              v-model="selectedGender"
+              :options="genders"
+              optionLabel="gen"
+              placeholder="Select a Genger"
+            ></FormDropdown>
+        </div>
+
+        <div class="field col-12 md:col-4">
+          <label for="description" class="type-info">Date</label>
+            <span class="p-float-label">
+              <InputText id="date" v-model="description" type="text" />
+              <label for="date">Description</label>
+            </span>
+        </div>
+        <template #footer>
+          <PrimeButton
+            label="Cancel"
+            icon="pi pi-times"
+            @click="closeChangeWindow"
+            class="p-button-text"
+          />
+          <PrimeButton
+            label="Submit"
+            icon="pi pi-check"
+            @click="closeChangeWindow"
+            autofocus
+          />
+        </template>
+      </PrimeDialog> 
     </div>
   </section>
 </template>
 
 <script>
 import images from "@/assets/images.js";
-
 export default {
   data() {
     return {
@@ -75,8 +116,10 @@ export default {
         {
           id: 1,
           img: images.car01,
-          name: null,
+          name: "Lora",
           status: "Found Pet",
+          animal: "Cat",
+          gender: "Female",
           periodInfo: "Found 5 days ago",
           link: "/found",
         },
@@ -85,22 +128,28 @@ export default {
           img: images.car02,
           name: "Barsik",
           status: "Lost pet",
+          animal: "Cat",
+          gender: "Male",
           periodInfo: "Found 12 hours ago",
           link: "/found",
         },
         {
           id: 3,
           img: images.car03,
-          name: null,
+          name: "Sema",
           status: "Found pet",
+          animal: "Cat",
+          gender: "Male",
           periodInfo: "Found 7 days ago",
           link: "/lost",
         },
         {
           id: 4,
           img: images.car04,
-          name: null,
+          name: "Alisha",
           status: "Found pet",
+          animal: "Cat",
+          gender: "Female",
           periodInfo: "Found 3 days ago",
           link: "/found",
         },
@@ -109,12 +158,61 @@ export default {
           img: images.car05,
           name: "Tom",
           status: "Lost pet",
+          animal: "Cat",
+          gender: "Male",
           periodInfo: "Found 2 days ago",
           link: "/lost",
         },
       ],
+      status: [{ valueStatus: "Found" }, { valueStatus: "Lost" }],
+      animal: [{ type: "Cat" }, { type: "Dog" }],
+      genders: [{ gen: "Female" }, { gen: "Male" }],
       layout: "list",
+      displayDescriptWindow: false,
+      displayChangeWindow: false,
+      selectedName: null,
+      selectedStatus: null,
+      selectedAnimal: null,
+      selectedGender: null,
+      //data od period
+      Description: null,
     };
+  },
+  methods: {
+
+    openDescriptWindow(data){
+      this.currentData = data;
+      this.displayDescriptWindow = true;
+    },
+    closeDescriptWindow(){
+      this.displayDescriptWindow = false;
+    },
+
+    openChangeWindow(data) {  
+      this.currentData = data;
+      // if(data.status)  
+      // this.selectedStatus.change() 
+      this.displayChangeWindow = true;
+    },
+    closeChangeWindow() {
+      this.displayChangeWindow = false;
+    },
+    
+  
+    deleteAnimal(id) {
+      console.log(id)
+      this.pets.splice(id-1, 1)
+      this.showList();
+    },
+
+    showList() {
+      this.$router.push("/listPage");
+    },
+
+    addPet() {
+      this.$router.push("/found");
+    },
+
   },
 };
 </script>
@@ -124,10 +222,17 @@ export default {
   max-width: 900px;
   margin: 0 auto;
 }
-
+.type-info {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
 .pets-name {
-  font-size: 1.5rem;
   font-weight: 700;
+}
+.img-descpipt{
+  width: 400px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  margin-right: 2rem;
 }
 
 ::v-deep(.pets-list-item) {
@@ -149,29 +254,6 @@ export default {
   }
   .p-button {
     margin-bottom: 0.5rem;
-  }
-}
-::v-deep(.pets-grid-item) {
-  margin: 0.5rem;
-  border: 1px solid var(--surface-border);
-  .pets-grid-item-top,
-  .pets-grid-item-bottom {
-    display: flex;
-    align-items: center;
-  }
-  .but {
-    left: 45%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-
-  img {
-    width: 75%;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    margin: 2rem 0;
-  }
-  .pets-grid-item-content {
-    text-align: center;
   }
 }
 </style>

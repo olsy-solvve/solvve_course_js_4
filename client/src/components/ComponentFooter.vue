@@ -14,7 +14,7 @@ export default {
 <template>
   <footer class="text-white py-5 mt-8">
     <div class="container">
-      <div class="footer-blocks flex flex-wrap justify-content-center">
+      <div class="footer-blocks flex flex-wrap justify-content-between">
         <div class="text-lg w-3 mx-4">
           <h3 class="text-3xl">Connect</h3>
           <p>If you have any questions or proposition, you can contact us:</p>
@@ -54,7 +54,7 @@ export default {
             </figcaption>
           </figure>
         </div>
-        <div class="w-3 mx-4">
+        <div class="w-4 mx-4">
           <p class="text-2xl line-height-1">
             This project is voluntary, created by the development team:
           </p>
