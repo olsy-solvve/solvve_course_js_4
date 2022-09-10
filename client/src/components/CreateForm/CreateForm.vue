@@ -66,6 +66,7 @@
         :disabled="isButtonDisabled"
       />
     </form>
+    <PrimeToast />
   </div>
 </template>
 
@@ -74,11 +75,13 @@ import PhotoUploader from "./PhotoUploader.vue";
 import { useRouter, useRoute } from "vue-router";
 import { computed, ref } from "vue";
 import myAxios from "../../axios";
+import { useToast } from "primevue/usetoast";
 
 export default {
   setup() {
     const router = useRouter();
     const route = useRoute();
+    const toast = useToast();
 
     const info = ref("");
     const date = ref();
@@ -129,8 +132,13 @@ export default {
       files.value.length <= 3 ? false : true
     );
 
+    const showMessage = (type, text) => {
+      toast.add({severity: type, summary: 'Error Message', detail: text, life: 3000});
+    }
+
     //this function creates a new pet, creates an object from the input and sends it to the back
     const onSubmit = async () => {
+      try {
       const formData = new FormData();
       formData.append("date", date.value);
       formData.append("gender", gender.value);
@@ -147,7 +155,17 @@ export default {
         { 'Content-Type': 'multipart/form-data' }
       })
 
-      router.push("/myDashboard");
+      showMessage('success', "Created");
+      setTimeout(() => {
+        router.push("/myDashboard");
+      }, 1000)
+      
+      } catch(e) {
+        if(e.response.status = 500) {
+          showMessage('error', "It's not an image");
+          files.value=[]
+        }
+      }
     };
 
     return {
