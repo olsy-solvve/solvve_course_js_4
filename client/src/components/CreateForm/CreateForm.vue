@@ -160,9 +160,8 @@ export default {
         });
 
         showMessage("success", "Success", "Created");
-        
+
         router.push("/myDashboard");
-        
       } catch (e) {
         if (e.response.status === 500) {
           showMessage("error", "Error", "It's not an image");
