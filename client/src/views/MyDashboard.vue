@@ -1,6 +1,6 @@
 <template>
   <div class="page-wrapper mx-auto my-0">
-    <div class="flex gap-2 mb-4">
+    <div class="flex gap-2 mb-4 mt-3">
       <MyDashboardMenu />
       <div class="flex-auto">
         <h2 class="text-center">My Pets</h2>

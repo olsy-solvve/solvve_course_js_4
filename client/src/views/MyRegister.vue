@@ -27,7 +27,7 @@
 
     <div class="flex justify-content-center">
       <div class="card">
-        <h1 class="text-center">Sing up</h1>
+        <h1 class="text-center mt-8">Sing up</h1>
         <form @submit.prevent="handleSubmit(!v$.$invalid)" class="p-fluid">
           <div class="field">
             <div class="p-float-label">
