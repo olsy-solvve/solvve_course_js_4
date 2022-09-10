@@ -12,34 +12,85 @@ export default {
 </script>
 
 <template>
-  <footer>
+  <footer class="text-white py-5 mt-8">
     <div class="container">
-      <div class="footer-blocks">
-        <div class="footer--blocks_contacts">
-          <h3>Connect</h3>
+      <div class="footer-blocks flex flex-wrap justify-content-center">
+        <div class="text-lg w-3 mx-4">
+          <h3 class="text-3xl">Connect</h3>
           <p>If you have any questions or proposition, you can contact us:</p>
           <i class="pi pi-envelope"></i
-          ><span><u>dev-solvvejs-4@gmail.com</u></span>
+          ><span class="text-center"><u>dev-solvvejs-4@gmail.com</u></span>
           <p>Join to our social network:</p>
-          <ul class="footer-icons">
+          <ul class="footer-icons list-none flex pl-0">
             <li>
-              <a href="#"><i class="pi pi-instagram"></i></a>
+              <a class="mr-4" href="#"
+                ><i class="pi pi-instagram text-white text-2xl"></i
+              ></a>
             </li>
             <li>
-              <a href="#"><i class="pi pi-facebook"></i></a>
+              <a class="mr-4" href="#"
+                ><i class="pi pi-facebook text-white text-2xl"></i
+              ></a>
             </li>
             <li>
-              <a href="#"><i class="pi pi-twitter"></i></a>
+              <a class="mr-4" href="#"
+                ><i class="pi pi-twitter text-white text-2xl"></i
+              ></a>
             </li>
             <li>
-              <a href="#"><i class="pi pi-linkedin"></i></a>
+              <a class="mr-4" href="#"
+                ><i class="pi pi-linkedin text-white text-2xl"></i
+              ></a>
             </li>
           </ul>
         </div>
-        <div><img class="img-footer" :src="img" /></div>
-      </div>
-      <div>
-        <p class="footer-text">All rights reserved &copy; {{ year }}</p>
+        <div class="w-3 mx-4">
+          <figure>
+            <img class="img-footer" :src="img" />
+            <figcaption>
+              <p class="footer-text text-center">
+                All rights reserved &copy; {{ year }}
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="w-3 mx-4">
+          <p class="text-2xl line-height-1">
+            This project is voluntary, created by the development team:
+          </p>
+          <ul class="text-lg pl-0 mt-4 list-none">
+            <li>
+              <a href="#" class="no-underline text-white">
+                <i class="text-lg pi pi-linkedin pr-2"></i>
+                <span>Maslo Oleksii</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="no-underline text-white">
+                <i class="text-lg pi pi-linkedin pr-2"></i>
+                <span>Ustimov Dmytro</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="no-underline text-white">
+                <i class="text-lg pi pi-linkedin pr-2"></i>
+                <span>Shevchenko Yevhenii</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="no-underline text-white">
+                <i class="text-lg pi pi-linkedin pr-2"></i>
+                <span>Sulska Lina</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="no-underline text-white">
+                <i class="text-lg pi pi-linkedin pr-2"></i>
+                <span>Shvets Kateryna</span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </footer>
@@ -47,42 +98,27 @@ export default {
 
 <style scoped>
 footer {
-  color: white;
   background-color: #787878;
-  padding: 26px 0;
 }
 
 h3 {
-  font-size: 40px;
-  margin-bottom: 38px;
+  margin-bottom: 24px;
 }
 
 .container {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0 75px;
+  margin: auto;
+  padding: 0;
+  max-width: 1170px !important;
+  min-width: 320px !important;
 }
 
 .footer--blocks_contacts {
-  margin-top: 42px;
-}
-
-.footer--blocks_contacts p,
-span {
-  font-size: 18px;
-  padding-right: 35px;
+  margin-top: 22px;
 }
 
 .footer-icons {
-  list-style-type: none;
-  display: flex;
-  margin-top: 40px;
-  padding-left: 0;
-}
-
-.footer-icons i {
-  font-size: 30px;
-  color: white;
+  margin-top: 20px;
 }
 
 .pi-envelope {
@@ -92,28 +128,13 @@ span {
 .footer-icons a {
   text-decoration: none;
   cursor: pointer;
-  padding: 25px;
 }
-
-.footer-blocks {
-  display: flex;
-}
-
-.footer-blocks div {
-  width: 50%;
-}
-
 .img-footer {
   width: 100%;
   height: auto;
 }
 
-span {
-  text-align: center;
-}
-
 .footer-text {
-  text-align: center;
-  margin-top: 46px;
+  margin-top: 26px;
 }
 </style>
