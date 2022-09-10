@@ -136,12 +136,10 @@
 import { ref, onMounted } from "vue";
 import MyPetsList from "@/my_pets_list/MyPetsList";
 import MyDashboardMenu from "@/components/MyDashboardMenu/MyDashboardMenu.vue";
-import CreateForm from "@/components/CreateForm/CreateForm.vue";
 
 export default {
   components: {
     MyDashboardMenu,
-    CreateForm,
   },
 
   data() {
