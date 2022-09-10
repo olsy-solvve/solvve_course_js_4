@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="my-7">
     <form
       @submit.prevent="onSubmit"
       class="solvve-form flex flex-column justify-content-center align-items-center"
