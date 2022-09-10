@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="my-7">
     <form
       @submit.prevent="onSubmit"
       class="solvve-form flex flex-column justify-content-center align-items-center"
@@ -133,37 +133,41 @@ export default {
     );
 
     const showMessage = (type, text) => {
-      toast.add({severity: type, summary: 'Error Message', detail: text, life: 3000});
-    }
+      toast.add({
+        severity: type,
+        summary: "Error Message",
+        detail: text,
+        life: 3000,
+      });
+    };
 
     //this function creates a new pet, creates an object from the input and sends it to the back
     const onSubmit = async () => {
       try {
-      const formData = new FormData();
-      formData.append("date", date.value);
-      formData.append("gender", gender.value);
-      formData.append("info", info.value);
-      formData.append("name", name.value);
-      formData.append("petType", petType.value);
-      formData.append("status", selectedStatus.value);
-      files.value.forEach( item => {
-        formData.append("photos", item)
-        formData.append("image", item.name)
-      })
+        const formData = new FormData();
+        formData.append("date", date.value);
+        formData.append("gender", gender.value);
+        formData.append("info", info.value);
+        formData.append("name", name.value);
+        formData.append("petType", petType.value);
+        formData.append("status", selectedStatus.value);
+        files.value.forEach((item) => {
+          formData.append("photos", item);
+          formData.append("image", item.name);
+        });
 
-      await myAxios.post('createPet', formData, { headers:
-        { 'Content-Type': 'multipart/form-data' }
-      })
+        await myAxios.post("createPet", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
 
-      showMessage('success', "Created");
-      setTimeout(() => {
-        router.push("/myDashboard");
-      }, 1000)
-      
-      } catch(e) {
-        if(e.response.status = 500) {
-          showMessage('error', "It's not an image");
-          files.value=[]
+        showMessage("success", "Created");
+        setTimeout(() => {
+          router.push("/myDashboard");
+        }, 1000);
+      } catch (e) {
+        if ((e.response.status = 500)) {
+          showMessage("error", "It's not an image");
+          files.value = [];
         }
       }
     };
