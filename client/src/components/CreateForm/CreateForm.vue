@@ -132,38 +132,43 @@ export default {
       files.value.length <= 3 ? false : true
     );
 
-    const showMessage = (type, text) => {
-      toast.add({severity: type, summary: 'Error Message', detail: text, life: 3000});
-    }
+    const showMessage = (type, title, text) => {
+      toast.add({
+        severity: type,
+        summary: title,
+        detail: text,
+        life: 3000,
+      });
+    };
 
     //this function creates a new pet, creates an object from the input and sends it to the back
     const onSubmit = async () => {
       try {
-      const formData = new FormData();
-      formData.append("date", date.value);
-      formData.append("gender", gender.value);
-      formData.append("info", info.value);
-      formData.append("name", name.value);
-      formData.append("petType", petType.value);
-      formData.append("status", selectedStatus.value);
-      files.value.forEach( item => {
-        formData.append("photos", item)
-        formData.append("image", item.name)
-      })
+        const formData = new FormData();
+        formData.append("date", date.value);
+        formData.append("gender", gender.value);
+        formData.append("info", info.value);
+        formData.append("name", name.value);
+        formData.append("petType", petType.value);
+        formData.append("status", selectedStatus.value);
+        files.value.forEach((item) => {
+          formData.append("photos", item);
+          formData.append("image", item.name);
+        });
 
-      await myAxios.post('createPet', formData, { headers:
-        { 'Content-Type': 'multipart/form-data' }
-      })
+        await myAxios.post("createPet", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
 
-      showMessage('success', "Created");
-      setTimeout(() => {
+        showMessage("success", "Success", "Created");
+
         router.push("/myDashboard");
-      }, 1000)
-      
-      } catch(e) {
-        if(e.response.status = 500) {
-          showMessage('error', "It's not an image");
-          files.value=[]
+      } catch (e) {
+        if (e.response.status === 500) {
+          showMessage("error", "Error", "It's not an image");
+          files.value = [];
+        } else {
+          showMessage("error", "Error", e.response.statusText);
         }
       }
     };
