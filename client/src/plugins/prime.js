@@ -1,5 +1,5 @@
 import PrimeVue from "primevue/config";
-import ToastService from 'primevue/toastservice';
+import ToastService from "primevue/toastservice";
 
 import "primevue/resources/themes/saga-blue/theme.css"; //theme
 import "primevue/resources/primevue.min.css"; //core css
@@ -20,7 +20,7 @@ import RadioButton from "primevue/radiobutton";
 import Dialog from "primevue/dialog";
 import DataView from "primevue/dataview";
 import Card from "primevue/card";
-import Toast from 'primevue/toast';
+import Toast from "primevue/toast";
 import Checkbox from "primevue/checkbox";
 
 export default (app) => {

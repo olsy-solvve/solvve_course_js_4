@@ -18,10 +18,14 @@
         <template #item="slotProps">
           <div class="product-item flex align-items-center w-full p-2">
             <div class="image-container w-3">
-              <img 
+              <img
                 @click="() => showPetCard(slotProps.item.id)"
                 class="w-full mr-1"
-                :src="slotProps.item.image ? slotProps.item.image[0] : '../src/assets/img/cat.png'"
+                :src="
+                  slotProps.item.image
+                    ? slotProps.item.image[0]
+                    : '../src/assets/img/cat.png'
+                "
                 :alt="slotProps.item.status"
               />
             </div>
@@ -71,7 +75,8 @@
     <PrimeDialog class="mb-7" v-model:visible="display2">
       <PrimeCard style="width: 25em">
         <template #header>
-          <img v-for="img in pets[petIndex].image"
+          <img
+            v-for="img in pets[petIndex].image"
             class="w-full mr-1"
             :src="img"
             :alt="pets[petIndex].status"
@@ -91,8 +96,7 @@
               <span class="font-bold">Name: </span>{{ pets[petIndex].name }}
             </small>
             <small>
-              <span class="font-bold">Status: </span
-              >{{ pets[petIndex].status }}
+              <span class="font-bold">Status: </span>{{ pets[petIndex].status }}
             </small>
             <small v-if="pets[petIndex].petType !== 'undefined'">
               <span class="font-bold">Animal:</span>
@@ -110,7 +114,10 @@
               <span class="font-bold">ID:</span>
               {{ pets[petIndex].id }}
             </small>
-            <small class="w-23rem white-space-normal" v-if="pets[petIndex].info">
+            <small
+              class="w-23rem white-space-normal"
+              v-if="pets[petIndex].info"
+            >
               <span class="font-bold">Description:</span>
               {{ pets[petIndex].info }}
             </small>
@@ -134,7 +141,7 @@ import CreateForm from "@/components/CreateForm/CreateForm.vue";
 export default {
   components: {
     MyDashboardMenu,
-    CreateForm
+    CreateForm,
   },
 
   data() {
