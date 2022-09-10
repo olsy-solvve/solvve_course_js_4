@@ -31,37 +31,69 @@
                 <div class="period-info">{{ slotProps.data.periodInfo }}</div>
               </div>
               <div class="pets-list-action">
-                <PrimeButton
+                <MyButton
                   label="Reply"
                   class="p-button-raised p-button-rounded"
                 />
               </div>
             </div>
-          </div>
-        </template>
+          </div>  
 
-        <template #grid="slotProps">
-          <div class="col-12 md:col-4">
-            <div class="pets-grid-item card">
-              <div class="pets-grid-item-top">
-                <span class="status-info">{{ slotProps.data.status }}</span>
-              </div>
-              <div class="pets-grid-item-content">
-                <div class="img-block">
-                  <img :src="slotProps.data.img" :alt="slotProps.data.name" />
-                </div>
-                <div class="pets-name">{{ slotProps.data.name }}</div>
-                <div class="period-info">{{ slotProps.data.periodInfo }}</div>
-              </div>
-              <div class="pets-grid-item-bottom">
-                <PrimeButton
-                  label="Reply"
-                  class="p-button-raised p-button-rounded but"
-                />
-              </div>
-            </div>
+          <div class="field col-12 md:col-4">
+            <label class="type-info">Pet Status</label>
+            <FormDropdown
+              v-model="selectedStatus"
+              :options="status"
+              optionLabel="status"
+              placeholder="Select a Status"
+            ></FormDropdown>
+          </div>
+
+          <div class="field col-12 md:col-4">
+              <label class="type-info">Animal</label>
+              <FormDropdown
+                v-model="selectedAnimal"
+                :options="animal"
+                optionLabel="type"
+                placeholder="Select a typr of Animal"
+              ></FormDropdown>
           </div>
         </template>
+                
+        <PrimeDialog>
+          <div class="field col-12 md:col-4">
+            <label class="type-info">Pet Gender</label>
+              <FormDropdown
+                v-model="selectedGender"
+                :options="genders"
+                optionLabel="gen"
+                placeholder="Select a Genger"
+              ></FormDropdown>
+          </div>
+
+          <div class="field col-12 md:col-4">
+            <label for="date" class="type-info">Date</label>
+              <span class="p-float-label">
+                <InputText id="date" v-model="value2" type="text" />
+                <label for="date">When was pet losted</label>
+              </span>
+          </div>
+
+          <template #footer>
+            <PrimeButton
+              label="Cancel"
+              icon="pi pi-times"
+              @click="closeModuleWindow"
+              class="p-button-text"
+            />
+            <PrimeButton
+              label="Submit"
+                icon="pi pi-check"
+                @click="closeModuleWindow"
+                autofocus
+            />
+          </template>
+        </PrimeDialog>
       </ListOfAllPets>
     </div>
   </section>
@@ -69,7 +101,6 @@
 
 <script>
 import images from "@/assets/images.js";
-
 export default {
   data() {
     return {
