@@ -1,66 +1,101 @@
 <template>
   <section class="section-list">
     <div class="page-wrapper">
-      <ListOfAllPets
-        :value="pets"
-        :layout="layout"
-        :paginator="true"
-        :rows="4"
-      >
+      <ListOfAllPets :value="pets" :layout="layout" :paginator="true" :rows="4">
         <template #header>
           <h1>My Pets</h1>
-          <PrimeButton @click="addPet()" label="Add a pet"/>
+          <PrimeButton @click="addPet()" label="Add a pet" />
         </template>
 
         <template #list="slotProps">
           <div class="col-12">
-            <div class="pets-list-item" @click.self="openDescriptWindow(slotProps.data)">
+            <div
+              class="pets-list-item"
+              @click.self="openDescriptWindow(slotProps.data)"
+            >
               <div class="img-block">
                 <img :src="slotProps.data.img" :alt="slotProps.data.name" />
               </div>
               <div class="pets-list-detail">
-                <div class = "type-info">Name : <span class="pets-name">{{ slotProps.data.name }}</span></div>
-                <div class = "type-info">Status : <span class="status">{{ slotProps.data.status }}</span></div>
+                <div class="type-info">
+                  Name :
+                  <span class="pets-name">{{ slotProps.data.name }}</span>
+                </div>
+                <div class="type-info">
+                  Status :
+                  <span class="status">{{ slotProps.data.status }}</span>
+                </div>
               </div>
-              <div class="pets-list-action">              
+              <div class="pets-list-action">
                 <PrimeButton
                   label="Delete pet"
-                  icon="pi pi-trash"                  
+                  icon="pi pi-trash"
                   class="p-button-raised p-button-rounded"
                   @click="deleteAnimal(slotProps.data.id)"
                 />
               </div>
             </div>
-          </div>  
+          </div>
         </template>
       </ListOfAllPets>
 
-      <PrimeDialog v-model:visible="displayDescriptWindow" :breakpoints="{ '960px': '75vw', '640px': '90vw' }" :style="{ width: '50vw' }">
-        <img class="img-descpipt" :src="currentData.img" :alt="currentData.name" />
-        <div class = "type-info">Name : <span class="pets-name">{{ currentData.name }}</span></div>
-        <div class = "type-info">Status : <span class="status">{{ currentData.status }}</span></div>
-        <div class = "type-info">Animal : <span class="animal">{{ currentData.animal }}</span></div>
-        <div class = "type-info">Gender : <span class="gender">{{ currentData.gender }}</span></div>
-        <div class = "type-info">Period : <span class="gender">{{ currentData.periodInfo }}</span></div>
-        <div class = "type-info">ID : <span class="id">{{ currentData.id }}</span></div>
-        <div class = "type-info">Description : <span class="id">{{ currentData.description }}</span></div>
+      <PrimeDialog
+        v-model:visible="displayDescriptWindow"
+        :breakpoints="{ '960px': '75vw', '640px': '90vw' }"
+        :style="{ width: '50vw' }"
+      >
+        <img
+          class="img-descpipt"
+          :src="currentData.img"
+          :alt="currentData.name"
+        />
+        <div class="type-info">
+          Name : <span class="pets-name">{{ currentData.name }}</span>
+        </div>
+        <div class="type-info">
+          Status : <span class="status">{{ currentData.status }}</span>
+        </div>
+        <div class="type-info">
+          Animal : <span class="animal">{{ currentData.animal }}</span>
+        </div>
+        <div class="type-info">
+          Gender : <span class="gender">{{ currentData.gender }}</span>
+        </div>
+        <div class="type-info">
+          Period : <span class="gender">{{ currentData.periodInfo }}</span>
+        </div>
+        <div class="type-info">
+          ID : <span class="id">{{ currentData.id }}</span>
+        </div>
+        <div class="type-info">
+          Description : <span class="id">{{ currentData.description }}</span>
+        </div>
         <template #footer>
-          <PrimeButton label="Change information of an pet" icon="pi pi-pensil" @click="openChangeWindow(currentData)"/>
+          <PrimeButton
+            label="Change information of an pet"
+            icon="pi pi-pensil"
+            @click="openChangeWindow(currentData)"
+          />
         </template>
       </PrimeDialog>
 
-      <PrimeDialog v-model:visible="displayChangeWindow" :breakpoints="{ '960px': '75vw', '640px': '90vw' }" :style="{ width: '50vw' }">
+      <PrimeDialog
+        v-model:visible="displayChangeWindow"
+        :breakpoints="{ '960px': '75vw', '640px': '90vw' }"
+        :style="{ width: '50vw' }"
+      >
         <template #body>
           <div class="field col-12 md:col-4">
             <label class="type-info">Pet Name</label>
-            <FormDropdown 
-              v-model="selectedName" 
-              :options="pets" optionLabel="name" 
+            <FormDropdown
+              v-model="selectedName"
+              :options="pets"
+              optionLabel="name"
               :editable="true"
               placeholder="Enter a name"
             />
           </div>
-        
+
           <div class="field col-12 md:col-4">
             <label class="type-info">Pet Status</label>
             <FormDropdown
@@ -73,39 +108,50 @@
 
           <div class="field col-12 md:col-4">
             <label class="type-info">Animal</label>
-              <FormDropdown
-                v-model="selectedAnimal"
-                :options="animal"
-                optionLabel="type"
-                placeholder="Select a type of Animal"
-              ></FormDropdown>
+            <FormDropdown
+              v-model="selectedAnimal"
+              :options="animal"
+              optionLabel="type"
+              placeholder="Select a type of Animal"
+            ></FormDropdown>
           </div>
 
           <div class="field col-12 md:col-4">
             <label class="type-info">Pet Gender</label>
-              <FormDropdown
-                v-model="selectedGender"
-                :options="genders"
-                optionLabel="gen"
-                placeholder="Select a Genger"
-              ></FormDropdown>
+            <FormDropdown
+              v-model="selectedGender"
+              :options="genders"
+              optionLabel="gen"
+              placeholder="Select a Genger"
+            ></FormDropdown>
           </div>
 
           <div class="field col-12 md:col-4">
             <label for="description" class="type-info">Description: </label>
-              <span class="p-float-label">
-                <InputText id="date" v-model="description" type="text" />
-                <label for="date"></label>
-              </span>
+            <span class="p-float-label">
+              <InputText id="date" v-model="description" type="text" />
+              <label for="date"></label>
+            </span>
           </div>
 
           <div class="date">
             <div class="field col-12 md:col-4">
               <label for="dateformat" class="type-info">Date Information</label>
               <label for="dateformat">Date</label>
-              <FormCalendar v-model="date2" inputId="time12" dateFormat="mm-dd-yy" hourFormat="12" :showIcon="true"/>
+              <FormCalendar
+                v-model="day"
+                inputId="time12"
+                dateFormat="mm-dd-yy"
+                hourFormat="12"
+                :showIcon="true"
+              />
               <label for="dateformat">Time</label>
-              <FormCalendar v-model="date8" inputId="time12" :timeOnly="true" hourFormat="12" />
+              <FormCalendar
+                v-model="time"
+                inputId="time12"
+                :timeOnly="true"
+                hourFormat="12"
+              />
             </div>
           </div>
         </template>
@@ -120,11 +166,11 @@
           <PrimeButton
             label="Submit"
             icon="pi pi-check"
-            @click="submit()"
+            @click="closeChangeWindow"
             autofocus
           />
         </template>
-      </PrimeDialog> 
+      </PrimeDialog>
     </div>
   </section>
 </template>
@@ -201,21 +247,22 @@ export default {
       selectedStatus: null,
       selectedAnimal: null,
       selectedGender: null,
+      day: null,
+      time: null,
       //data od period
       Description: null,
     };
   },
   methods: {
-
-    openDescriptWindow(data){
+    openDescriptWindow(data) {
       this.currentData = data;
       this.displayDescriptWindow = true;
     },
-    closeDescriptWindow(){
+    closeDescriptWindow() {
       this.displayDescriptWindow = false;
     },
 
-    openChangeWindow(data) {  
+    openChangeWindow(data) {
       this.currentData = data;
       this.displayChangeWindow = true;
     },
@@ -223,12 +270,13 @@ export default {
       this.displayChangeWindow = false;
     },
 
-    submit(){
-///////////////////////////////
+    submit() {
+      ///////////////////////////////
     },
 
-    deleteAnimal(id) { //last element???
-      this.pets.splice(id-1, 1)
+    deleteAnimal(id) {
+      //last element???
+      this.pets.splice(id - 1, 1);
       this.showList();
     },
 
@@ -239,7 +287,6 @@ export default {
     addPet() {
       this.$router.push("/found");
     },
-
   },
 };
 </script>
@@ -256,7 +303,7 @@ export default {
 .pets-name {
   font-weight: 700;
 }
-.img-descpipt{
+.img-descpipt {
   width: 400px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   margin-right: 2rem;
