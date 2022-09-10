@@ -9,7 +9,7 @@
       >
         <template #header>
           <h1>My Pets</h1>
-          <PrimeButton @click="addPet()" label="Add a pet" />
+          <PrimeButton @click="addPet()" label="Add a pet"/>
         </template>
 
         <template #list="slotProps">
@@ -184,11 +184,14 @@ export default {
       this.currentData = data;
       this.displayDescriptWindow = true;
     },
+    closeDescriptWindow(){
+      this.displayDescriptWindow = false;
+    },
 
     openChangeWindow(data) {  
       this.currentData = data;
       // if(data.status)  
-      this.selectedStatus.change() 
+      // this.selectedStatus.change() 
       this.displayChangeWindow = true;
     },
     closeChangeWindow() {
@@ -196,14 +199,15 @@ export default {
     },
     
   
-    // async deleteAnimal(id) {
-    //   await this.pets.deleteFromList(id);
-    //   this.showList();
-    // },
+    deleteAnimal(id) {
+      console.log(id)
+      this.pets.splice(id-1, 1)
+      this.showList();
+    },
 
-    // showList() {
-    //   this.pets.getPetsList().then((data) => (this.pets = data));
-    // },
+    showList() {
+      this.$router.push("/listPage");
+    },
 
     addPet() {
       this.$router.push("/found");
