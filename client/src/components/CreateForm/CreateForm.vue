@@ -6,7 +6,7 @@
     >
       <div class="solvve-form-type flex w-full">
         <div
-          v-for="item of types"
+          v-for="item of status"
           :key="item.key"
           class="field-radiobutton"
           style="margin-right: 5px"
@@ -16,7 +16,7 @@
             @change="onChange()"
             name="item"
             :value="item.name"
-            v-model="selectedType"
+            v-model="selectedStatus"
           />
           <label :for="item.key">{{ "  " + item.name }}</label>
         </div>
@@ -61,11 +61,12 @@
       <PhotoUploader v-model="files" />
       <PrimeButton
         class="solvve-form-btn w-full max-w-12rem"
-        label="Submit"
+        label="Create"
         type="submit"
         :disabled="isButtonDisabled"
       />
     </form>
+    <PrimeToast />
   </div>
 </template>
 
@@ -73,11 +74,14 @@
 import PhotoUploader from "./PhotoUploader.vue";
 import { useRouter, useRoute } from "vue-router";
 import { computed, ref } from "vue";
+import myAxios from "../../axios";
+import { useToast } from "primevue/usetoast";
 
 export default {
   setup() {
     const router = useRouter();
     const route = useRoute();
+    const toast = useToast();
 
     const info = ref("");
     const date = ref();
@@ -86,7 +90,7 @@ export default {
     const files = ref([]);
     const petType = ref();
 
-    const types = ref([
+    const status = ref([
       { name: "Found", key: "F" },
       { name: "Lost", key: "L" },
     ]);
@@ -105,11 +109,11 @@ export default {
     ]);
 
     //this property returns the desired value of the radio button depending on the route
-    const selectedType = computed(() => {
+    const selectedStatus = computed(() => {
       if (route.path === "/found") {
-        return types.value[0].name;
+        return status.value[0].name;
       } else if (route.path === "/lostPet") {
-        return types.value[1].name;
+        return status.value[1].name;
       }
       return "";
     });
@@ -128,22 +132,40 @@ export default {
       files.value.length <= 3 ? false : true
     );
 
+    const showMessage = (type, text) => {
+      toast.add({severity: type, summary: 'Error Message', detail: text, life: 3000});
+    }
+
     //this function creates a new pet, creates an object from the input and sends it to the back
-    const onSubmit = () => {
+    const onSubmit = async () => {
+      try {
       const formData = new FormData();
-      formData.append("files", files.value);
       formData.append("date", date.value);
       formData.append("gender", gender.value);
       formData.append("info", info.value);
       formData.append("name", name.value);
       formData.append("petType", petType.value);
-      formData.append("type", selectedType.value);
+      formData.append("status", selectedStatus.value);
+      files.value.forEach( item => {
+        formData.append("photos", item)
+        formData.append("image", item.name)
+      })
 
-      for (var value of formData.values()) {
-        console.log(value);
+      await myAxios.post('createPet', formData, { headers:
+        { 'Content-Type': 'multipart/form-data' }
+      })
+
+      showMessage('success', "Created");
+      setTimeout(() => {
+        router.push("/myDashboard");
+      }, 1000)
+      
+      } catch(e) {
+        if(e.response.status = 500) {
+          showMessage('error', "It's not an image");
+          files.value=[]
+        }
       }
-
-      router.push("/");
     };
 
     return {
@@ -154,11 +176,11 @@ export default {
       name,
       files,
       petType,
-      types,
+      status,
       genders,
       petTypes,
       //computed
-      selectedType,
+      selectedStatus,
       isButtonDisabled,
       //functions
       onChange,

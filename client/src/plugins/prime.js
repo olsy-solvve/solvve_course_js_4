@@ -1,4 +1,5 @@
 import PrimeVue from "primevue/config";
+import ToastService from 'primevue/toastservice';
 
 import "primevue/resources/themes/saga-blue/theme.css"; //theme
 import "primevue/resources/primevue.min.css"; //core css
@@ -18,9 +19,12 @@ import Calendar from "primevue/calendar";
 import RadioButton from "primevue/radiobutton";
 import Dialog from "primevue/dialog";
 import DataView from "primevue/dataview";
+import Card from "primevue/card";
+import Toast from 'primevue/toast';
 
 export default (app) => {
   app.use(PrimeVue, { ripple: true });
+  app.use(ToastService);
   app.component("PrimeMenu", TabMenu);
   app.component("InputText", InputText);
   app.component("PrimePassword", Password);
@@ -34,4 +38,6 @@ export default (app) => {
   app.component("FormRadioButton", RadioButton);
   app.component("PrimeDialog", Dialog);
   app.component("ListOfAllPets", DataView);
+  app.component("PrimeCard", Card);
+  app.component("PrimeToast", Toast);
 };
