@@ -77,7 +77,7 @@ const routes = [
     beforeEnter: [isAuth],
   },
   {
-    path: "/chage",
+    path: "/registerForm",
     name: "MyRegister",
     component: MyRegister,
   },
