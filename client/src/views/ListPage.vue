@@ -84,76 +84,76 @@
         :breakpoints="{ '960px': '75vw', '640px': '90vw' }"
         :style="{ width: '50vw' }"
       >
+        <div class="field col-12 md:col-4">
+          <label class="type-info">Pet Name</label>
+          <FormDropdown
+            v-model="selectedName"
+            :options="pets"
+            optionLabel="name"
+            :editable="true"
+            placeholder="Enter a name"
+          />
+        </div>
+
+        <div class="field col-12 md:col-4">
+          <label class="type-info">Pet Status</label>
+          <FormDropdown
+            v-model="selectedStatus"
+            :options="status"
+            optionLabel="valueStatus"
+            placeholder="Select a Status"
+          ></FormDropdown>
+        </div>
+
+        <div class="field col-12 md:col-4">
+          <label class="type-info">Animal</label>
+          <FormDropdown
+            v-model="selectedAnimal"
+            :options="animal"
+            optionLabel="type"
+            placeholder="Select a type of Animal"
+          ></FormDropdown>
+        </div>
+
+        <div class="field col-12 md:col-4">
+          <label class="type-info">Pet Gender</label>
+          <FormDropdown
+            v-model="selectedGender"
+            :options="genders"
+            optionLabel="gen"
+            placeholder="Select a Genger"
+          ></FormDropdown>
+        </div>
+
+        <div class="field col-12 md:col-4">
+          <label for="description" class="type-info">Description: </label>
+          <span class="p-float-label">
+            <InputText id="date" v-model="description" type="text" />
+            <label for="date"></label>
+          </span>
+        </div>
+
+        <div class="date">
           <div class="field col-12 md:col-4">
-            <label class="type-info">Pet Name</label>
-            <FormDropdown
-              v-model="selectedName"
-              :options="pets"
-              optionLabel="name"
-              :editable="true"
-              placeholder="Enter a name"
+            <label for="dateformat" class="type-info">Date Information</label>
+            <label for="dateformat">Date</label>
+            <FormCalendar
+              v-model="day"
+              inputId="time12"
+              dateFormat="mm-dd-yy"
+              hourFormat="12"
+              :showIcon="true"
+            />
+            <label for="dateformat">Time</label>
+            <FormCalendar
+              v-model="time"
+              inputId="time12"
+              :timeOnly="true"
+              hourFormat="12"
             />
           </div>
+        </div>
 
-          <div class="field col-12 md:col-4">
-            <label class="type-info">Pet Status</label>
-            <FormDropdown
-              v-model="selectedStatus"
-              :options="status"
-              optionLabel="valueStatus"
-              placeholder="Select a Status"
-            ></FormDropdown>
-          </div>
-
-          <div class="field col-12 md:col-4">
-            <label class="type-info">Animal</label>
-            <FormDropdown
-              v-model="selectedAnimal"
-              :options="animal"
-              optionLabel="type"
-              placeholder="Select a type of Animal"
-            ></FormDropdown>
-          </div>
-
-          <div class="field col-12 md:col-4">
-            <label class="type-info">Pet Gender</label>
-            <FormDropdown
-              v-model="selectedGender"
-              :options="genders"
-              optionLabel="gen"
-              placeholder="Select a Genger"
-            ></FormDropdown>
-          </div>
-
-          <div class="field col-12 md:col-4">
-            <label for="description" class="type-info">Description: </label>
-            <span class="p-float-label">
-              <InputText id="date" v-model="description" type="text" />
-              <label for="date"></label>
-            </span>
-          </div>
-
-          <div class="date">
-            <div class="field col-12 md:col-4">
-              <label for="dateformat" class="type-info">Date Information</label>
-              <label for="dateformat">Date</label>
-              <FormCalendar
-                v-model="day"
-                inputId="time12"
-                dateFormat="mm-dd-yy"
-                hourFormat="12"
-                :showIcon="true"
-              />
-              <label for="dateformat">Time</label>
-              <FormCalendar
-                v-model="time"
-                inputId="time12"
-                :timeOnly="true"
-                hourFormat="12"
-              />
-            </div>
-          </div>
-       
         <template #footer>
           <PrimeButton
             label="Cancel"
@@ -256,7 +256,7 @@ export default {
       this.currentData = data;
       this.displayDescriptWindow = true;
     },
-    closeDescriptWindow()  {
+    closeDescriptWindow() {
       this.displayDescriptWindow = false;
     },
 
@@ -301,7 +301,7 @@ export default {
 .pets-name {
   font-weight: 700;
 }
-.img-descpipt  {
+.img-descpipt {
   width: 400px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   margin-right: 2rem;
