@@ -84,7 +84,6 @@
         :breakpoints="{ '960px': '75vw', '640px': '90vw' }"
         :style="{ width: '50vw' }"
       >
-        <template #body>
           <div class="field col-12 md:col-4">
             <label class="type-info">Pet Name</label>
             <FormDropdown
@@ -154,8 +153,7 @@
               />
             </div>
           </div>
-        </template>
-
+       
         <template #footer>
           <PrimeButton
             label="Cancel"
