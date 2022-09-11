@@ -2,7 +2,7 @@
   <header class="bg-white p-4">
     <div class="container">
       <div class="flex justify-content-center">
-        <PrimeMenubar class="main-menu-burger" :model="items">
+        <PrimeMenubar class="main-menu-burger" :model="menuItems">
           <template #start>
             <img alt="logo" :src="main_logo" height="40" class="mr-2" />
           </template>
@@ -21,23 +21,16 @@ export default {
     isAuthUser() {
       return this.$store.getters["user/isAuthUser"];
     },
-  },
-  data() {
-    return {
-      main_logo: images.main_logo,
-      items: [
-        {
-          label: "Home",
-          icon: "pi pi-fw pi-home",
-          to: "/",
-        },
+    menuItems() {
+      return [
+        { label: "Home", icon: "pi pi-fw pi-home", to: "/" },
         {
           label: "I Found a Pet",
-          to: "found",
+          to: this.isAuthUser ? "/found" : "/Register",
         },
         {
           label: "I Lost a Pet",
-          to: "lostPet",
+          to: this.isAuthUser ? "/lostPet" : "/Register",
         },
         {
           label: "Pets List",
@@ -45,16 +38,22 @@ export default {
         },
         {
           label: "My Dashboard",
-          to: "myDashboard",
+          icon: "pi pi-fw pi-star",
+          to: "/myDashboard",
           visible: this.isAuthUser,
         },
         {
           label: "Sing in",
           icon: "pi pi-fw pi-sign-in",
-          to: "Register",
+          to: "/Register",
           visible: !this.isAuthUser,
         },
-      ],
+      ];
+    },
+  },
+  data() {
+    return {
+      main_logo: images.main_logo,
     };
   },
 };
