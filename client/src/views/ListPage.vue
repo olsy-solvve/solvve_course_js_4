@@ -1,17 +1,14 @@
 <template>
   <section class="section-list mt-6">
     <div class="page-wrapper">
-      <ListOfAllPets
-        :value="pets"
-        :layout="layout"
-        :paginator="true" 
-        :rows="3"
-      >
+      <ListOfAllPets :value="pets" :layout="layout" :paginator="true" :rows="3">
         <template #header>
           <h1 class="title">My Pets</h1>
           <div class="action-list">
-            <div style="text-align: right"><PrimeButton @click="addPet()" label="Add a pet" /></div>
-           </div>         
+            <div style="text-align: right">
+              <PrimeButton @click="addPet()" label="Add a pet" />
+            </div>
+          </div>
         </template>
 
         <template #list="slotProps">
@@ -153,12 +150,12 @@ export default {
     addPet() {
       this.$router.push("/found");
     },
- },
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-.title{
+.title {
   text-align: center;
 }
 .page-wrapper {
