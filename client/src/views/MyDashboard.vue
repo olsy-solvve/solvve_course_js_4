@@ -29,7 +29,7 @@
                 :alt="slotProps.item.status"
               />
             </div>
-            <div class="flex flex-column gap-1 ml-2 mb-2">
+            <div class="flex flex-column gap-1 ml-2 mb-2 w-20rem">
               <small v-if="slotProps.item.name !== 'undefined'">
                 <span class="font-bold">Name: </span>{{ slotProps.item.name }}
               </small>
@@ -115,10 +115,7 @@
               <span class="font-bold">ID:</span>
               {{ pets[petIndex].id }}
             </small>
-            <small
-              class="w-23rem white-space-normal"
-              v-if="pets[petIndex].info"
-            >
+            <small v-if="pets[petIndex].info">
               <span class="font-bold">Description:</span>
               {{ pets[petIndex].info }}
             </small>
