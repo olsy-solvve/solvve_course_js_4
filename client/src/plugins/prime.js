@@ -22,6 +22,7 @@ import DataView from "primevue/dataview";
 import Card from "primevue/card";
 import Toast from "primevue/toast";
 import Checkbox from "primevue/checkbox";
+import Menubar from "primevue/menubar";
 
 export default (app) => {
   app.use(PrimeVue, { ripple: true });
@@ -42,4 +43,5 @@ export default (app) => {
   app.component("PrimeCard", Card);
   app.component("PrimeCheckbox", Checkbox);
   app.component("PrimeToast", Toast);
+  app.component("PrimeMenubar", Menubar);
 };
