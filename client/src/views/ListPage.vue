@@ -1,5 +1,5 @@
 <template>
-  <section class="section-list">
+  <section class="section-list mt-6">
     <div class="page-wrapper">
       <ListOfAllPets :value="pets" :layout="layout" :paginator="true" :rows="4">
         <template #header>
@@ -256,7 +256,7 @@ export default {
       this.currentData = data;
       this.displayDescriptWindow = true;
     },
-    closeDescriptWindow() {
+    closeDescriptWindow()  {
       this.displayDescriptWindow = false;
     },
 
@@ -301,7 +301,7 @@ export default {
 .pets-name {
   font-weight: 700;
 }
-.img-descpipt {
+.img-descpipt  {
   width: 400px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   margin-right: 2rem;

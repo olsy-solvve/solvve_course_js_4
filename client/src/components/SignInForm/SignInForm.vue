@@ -1,5 +1,5 @@
 <template>
-  <div class="signin_container">
+  <div class="signin_container my-7">
     <VeeForm @submit="Login" :validation-schema="formSchema">
       <h1>Sign in</h1>
 
@@ -42,6 +42,14 @@
         class="btn mb-3 btn-block"
         :label="'Sign in'"
       />
+      <div class="flex justify-content-center mb-4 gap-1">
+        <h4>Is this your first time here?</h4>
+        <h4>
+          <router-link class="text-blue-600" to="/registerForm"
+            >Sing up!</router-link
+          >
+        </h4>
+      </div>
     </VeeForm>
   </div>
 </template>

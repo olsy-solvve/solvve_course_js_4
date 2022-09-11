@@ -21,6 +21,7 @@ import Dialog from "primevue/dialog";
 import DataView from "primevue/dataview";
 import Card from "primevue/card";
 import Toast from "primevue/toast";
+import Checkbox from "primevue/checkbox";
 
 export default (app) => {
   app.use(PrimeVue, { ripple: true });
@@ -39,5 +40,6 @@ export default (app) => {
   app.component("PrimeDialog", Dialog);
   app.component("ListOfAllPets", DataView);
   app.component("PrimeCard", Card);
+  app.component("PrimeCheckbox", Checkbox);
   app.component("PrimeToast", Toast);
 };

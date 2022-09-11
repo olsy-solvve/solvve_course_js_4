@@ -1,6 +1,6 @@
 <template>
   <div class="form-demo">
-    <Dialog
+    <PrimeDialog
       v-model:visible="showMessage"
       :breakpoints="{ '960px': '80vw' }"
       :style="{ width: '30vw' }"
@@ -20,14 +20,14 @@
       </div>
       <template #footer>
         <div class="flex justify-content-center">
-          <Button label="OK" @click="toggleDialog" class="p-button-text" />
+          <PrimeButton label="OK" @click="toggleDialog" class="p-button-text" />
         </div>
       </template>
-    </Dialog>
+    </PrimeDialog>
 
     <div class="flex justify-content-center">
       <div class="card">
-        <h5 class="text-center">Register</h5>
+        <h1 class="text-center mt-8">Sing up</h1>
         <form @submit.prevent="handleSubmit(!v$.$invalid)" class="p-fluid">
           <div class="field">
             <div class="p-float-label">
@@ -105,7 +105,7 @@
           </div>
           <div class="field">
             <div class="p-float-label">
-              <PasswordForm
+              <PrimePassword
                 id="password"
                 v-model="v$.password.$model"
                 :class="{ 'p-invalid': v$.password.$invalid && submitted }"
@@ -125,7 +125,7 @@
                     <li>Minimum 8 characters</li>
                   </ul>
                 </template>
-              </PasswordForm>
+              </PrimePassword>
               <label
                 for="password"
                 :class="{ 'p-error': v$.password.$invalid && submitted }"
@@ -144,7 +144,7 @@
             >
           </div>
           <div class="field-checkbox">
-            <Checkbox
+            <PrimeCheckbox
               id="accept"
               name="accept"
               value="Accept"
@@ -157,7 +157,7 @@
               >I agree to the terms and conditions*</label
             >
           </div>
-          <MyButton type="submit" label="Submit" class="mt-2" />
+          <div class="mb-6"><PrimeButton type="submit" label="Submit" /></div>
         </form>
       </div>
     </div>

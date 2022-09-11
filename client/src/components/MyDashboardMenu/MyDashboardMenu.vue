@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-column gap-3 flex-initial p-2 bg-white">
+  <div class="flex flex-column gap-3 flex-initial p-2 bg-white mt-3">
     <h5>
       <router-link class="text-black-alpha-90" to="/myDashboard"
         >Pets</router-link

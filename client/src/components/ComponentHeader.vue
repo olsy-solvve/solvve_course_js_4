@@ -14,11 +14,10 @@ export default {
     menuItems() {
       return [
         { label: "Home", icon: "pi pi-fw pi-home", to: "/" },
-        { label: "I Found a Pet", icon: "pi pi-fw pi-plus", to: "/found" },
-        { label: "I Lost a Pet", icon: "pi pi-fw pi-minus", to: "/lostPet" },
+        { label: "I Found a Pet", to: "/found" },
+        { label: "I Lost a Pet", to: "/lostPet" },
         {
           label: "Animals",
-          icon: "pi pi-fw pi-list",
           to: "listPage",
         },
         {
@@ -40,34 +39,28 @@ export default {
 </script>
 
 <template>
-  <header>
+  <header class="bg-white p-4">
     <div class="container">
-      <div class="main-logo">
-        <img :src="main_logo" />
-      </div>
-      <div class="main-menu">
-        <nav>
-          <PrimeMenu :model="menuItems"> </PrimeMenu>
-        </nav>
+      <div class="flex justify-content-between">
+        <div class="main-logo w-3">
+          <img class="w-4rem h-auto" :src="main_logo" />
+        </div>
+        <div class="main-menu w-7">
+          <nav class="flex justify-content-end">
+            <PrimeMenu :model="menuItems"> </PrimeMenu>
+          </nav>
+        </div>
       </div>
     </div>
   </header>
 </template>
 
 <style scoped>
-header {
-  background-color: #f5f5f5;
-  padding: 20px;
-}
-
-nav {
-  display: flex;
-  justify-content: center;
-}
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
+  box-sizing: border-box;
+  margin: auto;
+  padding: 0;
+  max-width: 1170px !important;
+  min-width: 320px !important;
 }
 </style>
