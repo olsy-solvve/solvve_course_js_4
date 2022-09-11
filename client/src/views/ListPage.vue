@@ -1,10 +1,17 @@
 <template>
   <section class="section-list mt-6">
     <div class="page-wrapper">
-      <ListOfAllPets :value="pets" :layout="layout" :paginator="true" :rows="4">
+      <ListOfAllPets
+        :value="pets"
+        :layout="layout"
+        :paginator="true" 
+        :rows="3"
+      >
         <template #header>
-          <h1>My Pets</h1>
-          <PrimeButton @click="addPet()" label="Add a pet" />
+          <h1 class="title">My Pets</h1>
+          <div class="action-list">
+            <div style="text-align: right"><PrimeButton @click="addPet()" label="Add a pet" /></div>
+           </div>         
         </template>
 
         <template #list="slotProps">
@@ -25,14 +32,6 @@
                   Status :
                   <span class="status">{{ slotProps.data.status }}</span>
                 </div>
-              </div>
-              <div class="pets-list-action">
-                <PrimeButton
-                  label="Delete pet"
-                  icon="pi pi-trash"
-                  class="p-button-raised p-button-rounded"
-                  @click="deleteAnimal(slotProps.data.id)"
-                />
               </div>
             </div>
           </div>
@@ -70,104 +69,6 @@
         <div class="type-info">
           Description : <span class="id">{{ currentData.description }}</span>
         </div>
-        <template #footer>
-          <PrimeButton
-            label="Change information of an pet"
-            icon="pi pi-pensil"
-            @click="openChangeWindow(currentData)"
-          />
-        </template>
-      </PrimeDialog>
-
-      <PrimeDialog
-        v-model:visible="displayChangeWindow"
-        :breakpoints="{ '960px': '75vw', '640px': '90vw' }"
-        :style="{ width: '50vw' }"
-      >
-        <div class="field col-12 md:col-4">
-          <label class="type-info">Pet Name</label>
-          <FormDropdown
-            v-model="selectedName"
-            :options="pets"
-            optionLabel="name"
-            :editable="true"
-            placeholder="Enter a name"
-          />
-        </div>
-
-        <div class="field col-12 md:col-4">
-          <label class="type-info">Pet Status</label>
-          <FormDropdown
-            v-model="selectedStatus"
-            :options="status"
-            optionLabel="valueStatus"
-            placeholder="Select a Status"
-          ></FormDropdown>
-        </div>
-
-        <div class="field col-12 md:col-4">
-          <label class="type-info">Animal</label>
-          <FormDropdown
-            v-model="selectedAnimal"
-            :options="animal"
-            optionLabel="type"
-            placeholder="Select a type of Animal"
-          ></FormDropdown>
-        </div>
-
-        <div class="field col-12 md:col-4">
-          <label class="type-info">Pet Gender</label>
-          <FormDropdown
-            v-model="selectedGender"
-            :options="genders"
-            optionLabel="gen"
-            placeholder="Select a Genger"
-          ></FormDropdown>
-        </div>
-
-        <div class="field col-12 md:col-4">
-          <label for="description" class="type-info">Description: </label>
-          <span class="p-float-label">
-            <InputText id="date" v-model="description" type="text" />
-            <label for="date"></label>
-          </span>
-        </div>
-
-        <div class="date">
-          <div class="field col-12 md:col-4">
-            <label for="dateformat" class="type-info">Date Information</label>
-            <label for="dateformat">Date</label>
-            <FormCalendar
-              v-model="day"
-              inputId="time12"
-              dateFormat="mm-dd-yy"
-              hourFormat="12"
-              :showIcon="true"
-            />
-            <label for="dateformat">Time</label>
-            <FormCalendar
-              v-model="time"
-              inputId="time12"
-              :timeOnly="true"
-              hourFormat="12"
-            />
-          </div>
-        </div>
-
-        <template #footer>
-          <PrimeButton
-            label="Cancel"
-            icon="pi pi-times"
-            @click="closeChangeWindow"
-            class="p-button-text"
-          />
-          <PrimeButton
-            label="Submit"
-            icon="pi pi-check"
-            @click="closeChangeWindow"
-            autofocus
-          />
-        </template>
       </PrimeDialog>
     </div>
   </section>
@@ -175,6 +76,7 @@
 
 <script>
 import images from "@/assets/images.js";
+
 export default {
   data() {
     return {
@@ -183,7 +85,7 @@ export default {
           id: 1,
           img: images.car01,
           name: "Lora",
-          status: "Found Pet",
+          status: "Found",
           animal: "Cat",
           gender: "Female",
           periodInfo: "Found 5 days ago",
@@ -194,7 +96,7 @@ export default {
           id: 2,
           img: images.car02,
           name: "Barsik",
-          status: "Lost pet",
+          status: "Lost",
           animal: "Cat",
           gender: "Male",
           periodInfo: "Found 12 hours ago",
@@ -205,7 +107,7 @@ export default {
           id: 3,
           img: images.car03,
           name: "Sema",
-          status: "Found pet",
+          status: "Found",
           animal: "Cat",
           gender: "Male",
           periodInfo: "Found 7 days ago",
@@ -216,7 +118,7 @@ export default {
           id: 4,
           img: images.car04,
           name: "Alisha",
-          status: "Found pet",
+          status: "Found",
           animal: "Cat",
           gender: "Female",
           periodInfo: "Found 3 days ago",
@@ -227,7 +129,7 @@ export default {
           id: 5,
           img: images.car05,
           name: "Tom",
-          status: "Lost pet",
+          status: "Lost",
           animal: "Cat",
           gender: "Male",
           periodInfo: "Found 2 days ago",
@@ -235,20 +137,12 @@ export default {
           link: "/lost",
         },
       ],
-      status: [{ valueStatus: "Found" }, { valueStatus: "Lost" }],
-      animal: [{ type: "Cat" }, { type: "Dog" }],
-      genders: [{ gen: "Female" }, { gen: "Male" }],
+      // status: [
+      //   { label: 'Found', value: '!lost' },
+      //   { label: 'Lost', value: 'lost' },
+      // ],
       layout: "list",
       displayDescriptWindow: false,
-      displayChangeWindow: false,
-      selectedName: null,
-      selectedStatus: null,
-      selectedAnimal: null,
-      selectedGender: null,
-      day: null,
-      time: null,
-      //data od period
-      Description: null,
     };
   },
   methods: {
@@ -256,40 +150,17 @@ export default {
       this.currentData = data;
       this.displayDescriptWindow = true;
     },
-    closeDescriptWindow() {
-      this.displayDescriptWindow = false;
-    },
-
-    openChangeWindow(data) {
-      this.currentData = data;
-      this.displayChangeWindow = true;
-    },
-    closeChangeWindow() {
-      this.displayChangeWindow = false;
-    },
-
-    submit() {
-      ///////////////////////////////
-    },
-
-    deleteAnimal(id) {
-      //last element???
-      this.pets.splice(id - 1, 1);
-      this.showList();
-    },
-
-    showList() {
-      this.$router.push("/listPage");
-    },
-
     addPet() {
       this.$router.push("/found");
     },
-  },
-};
+ },
+}
 </script>
 
 <style lang="scss" scoped>
+.title{
+  text-align: center;
+}
 .page-wrapper {
   max-width: 900px;
   margin: 0 auto;
@@ -319,13 +190,6 @@ export default {
   }
   .pets-list-detail {
     flex: 1 1 0;
-  }
-  .pets-list-action {
-    display: flex;
-    flex-direction: column;
-  }
-  .p-button {
-    margin-bottom: 0.5rem;
   }
 }
 </style>
