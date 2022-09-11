@@ -2,7 +2,7 @@
   <header class="bg-white p-4">
     <div class="container">
       <div class="flex justify-content-center">
-        <PrimeMenubar :model="items">
+        <PrimeMenubar class="main-menu-burger" :model="items">
           <template #start>
             <img alt="logo" :src="main_logo" height="40" class="mr-2" />
           </template>
@@ -33,11 +33,11 @@ export default {
         },
         {
           label: "I Found a Pet",
-          to: "/found",
+          to: "found",
         },
         {
           label: "I Lost a Pet",
-          to: "/lostPet",
+          to: "lostPet",
         },
         {
           label: "Pets List",
@@ -45,13 +45,13 @@ export default {
         },
         {
           label: "My Dashboard",
-          to: "/myDashboard",
+          to: "myDashboard",
           visible: this.isAuthUser,
         },
         {
           label: "Sing in",
           icon: "pi pi-fw pi-sign-in",
-          to: "/Register",
+          to: "Register",
           visible: !this.isAuthUser,
         },
       ],
@@ -60,8 +60,31 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .container {
   box-sizing: border-box;
+  margin: auto;
+  padding: 0;
+  max-width: 1170px !important;
+  min-width: 320px !important;
+}
+</style>
+
+<style lang="scss">
+.main-menu-burger {
+  @media screen and (max-width: 960px) {
+    width: 100%;
+    display: grid !important;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+  }
+
+  .p-menubar-root-list {
+    @media screen and (max-width: 960px) {
+      width: 138px !important;
+      left: auto !important;
+      right: 0;
+    }
+  }
 }
 </style>

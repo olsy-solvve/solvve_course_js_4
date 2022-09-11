@@ -6,7 +6,6 @@ import "primevue/resources/primevue.min.css"; //core css
 import "primeicons/primeicons.css"; //icons
 import "primeflex/primeflex.scss";
 
-import TabMenu from "primevue/tabmenu";
 import InputText from "primevue/inputtext";
 import Password from "primevue/password";
 import Dropdown from "primevue/dropdown";
@@ -27,7 +26,6 @@ import Menubar from "primevue/menubar";
 export default (app) => {
   app.use(PrimeVue, { ripple: true });
   app.use(ToastService);
-  app.component("PrimeMenu", TabMenu);
   app.component("InputText", InputText);
   app.component("PrimePassword", Password);
   app.component("PrimeButton", Button);
