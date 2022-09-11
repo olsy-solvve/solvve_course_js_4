@@ -6,7 +6,6 @@ import "primevue/resources/primevue.min.css"; //core css
 import "primeicons/primeicons.css"; //icons
 import "primeflex/primeflex.scss";
 
-import TabMenu from "primevue/tabmenu";
 import InputText from "primevue/inputtext";
 import Password from "primevue/password";
 import Dropdown from "primevue/dropdown";
@@ -22,11 +21,11 @@ import DataView from "primevue/dataview";
 import Card from "primevue/card";
 import Toast from "primevue/toast";
 import Checkbox from "primevue/checkbox";
+import Menubar from "primevue/menubar";
 
 export default (app) => {
   app.use(PrimeVue, { ripple: true });
   app.use(ToastService);
-  app.component("PrimeMenu", TabMenu);
   app.component("InputText", InputText);
   app.component("PrimePassword", Password);
   app.component("PrimeButton", Button);
@@ -42,4 +41,5 @@ export default (app) => {
   app.component("PrimeCard", Card);
   app.component("PrimeCheckbox", Checkbox);
   app.component("PrimeToast", Toast);
+  app.component("PrimeMenubar", Menubar);
 };
