@@ -2,11 +2,16 @@
   <section class="section-list mt-6">
     <div class="page-wrapper">
       <ListOfAllPets :value="pets" :layout="layout" :paginator="true" :rows="4">
+        <template #header>
+          <h1>My Pets</h1>
+          <PrimeButton @click="addPet()" label="Add a pet" />
+        </template>
+
         <template #list="slotProps">
           <div class="col-12">
             <div
               class="pets-list-item"
-              @click="openDescriptWindow(slotProps.data)"
+              @click.self="openDescriptWindow(slotProps.data)"
             >
               <div class="img-block">
                 <img :src="slotProps.data.img" :alt="slotProps.data.name" />
@@ -21,12 +26,24 @@
                   <span class="status">{{ slotProps.data.status }}</span>
                 </div>
               </div>
+              <div class="pets-list-action">
+                <PrimeButton
+                  label="Delete pet"
+                  icon="pi pi-trash"
+                  class="p-button-raised p-button-rounded"
+                  @click="deleteAnimal(slotProps.data.id)"
+                />
+              </div>
             </div>
           </div>
         </template>
       </ListOfAllPets>
 
-      <PrimeDialog class="w-29rem" v-model:visible="displayDescriptWindow">
+      <PrimeDialog
+        v-model:visible="displayDescriptWindow"
+        :breakpoints="{ '960px': '75vw', '640px': '90vw' }"
+        :style="{ width: '50vw' }"
+      >
         <img
           class="img-descpipt"
           :src="currentData.img"
@@ -53,10 +70,31 @@
         <div class="type-info">
           Description : <span class="id">{{ currentData.description }}</span>
         </div>
-        <template #footer> </template>
+        <template #footer>
+          <PrimeButton
+            label="Change information of an pet"
+            icon="pi pi-pensil"
+            @click="openChangeWindow(currentData)"
+          />
+        </template>
       </PrimeDialog>
 
-      <PrimeDialog v-model:visible="displayChangeWindow">
+      <PrimeDialog
+        v-model:visible="displayChangeWindow"
+        :breakpoints="{ '960px': '75vw', '640px': '90vw' }"
+        :style="{ width: '50vw' }"
+      >
+        <div class="field col-12 md:col-4">
+          <label class="type-info">Pet Name</label>
+          <FormDropdown
+            v-model="selectedName"
+            :options="pets"
+            optionLabel="name"
+            :editable="true"
+            placeholder="Enter a name"
+          />
+        </div>
+
         <div class="field col-12 md:col-4">
           <label class="type-info">Pet Status</label>
           <FormDropdown
@@ -88,12 +126,34 @@
         </div>
 
         <div class="field col-12 md:col-4">
-          <label for="description" class="type-info">Date</label>
+          <label for="description" class="type-info">Description: </label>
           <span class="p-float-label">
             <InputText id="date" v-model="description" type="text" />
-            <label for="date">Description</label>
+            <label for="date"></label>
           </span>
         </div>
+
+        <div class="date">
+          <div class="field col-12 md:col-4">
+            <label for="dateformat" class="type-info">Date Information</label>
+            <label for="dateformat">Date</label>
+            <FormCalendar
+              v-model="day"
+              inputId="time12"
+              dateFormat="mm-dd-yy"
+              hourFormat="12"
+              :showIcon="true"
+            />
+            <label for="dateformat">Time</label>
+            <FormCalendar
+              v-model="time"
+              inputId="time12"
+              :timeOnly="true"
+              hourFormat="12"
+            />
+          </div>
+        </div>
+
         <template #footer>
           <PrimeButton
             label="Cancel"
@@ -127,8 +187,7 @@ export default {
           animal: "Cat",
           gender: "Female",
           periodInfo: "Found 5 days ago",
-          description:
-            "I found a cat, the owner of the animal, please come forward.",
+          description: "Black little",
           link: "/found",
         },
         {
@@ -139,7 +198,7 @@ export default {
           animal: "Cat",
           gender: "Male",
           periodInfo: "Found 12 hours ago",
-          description: "I lost a cat, please help me",
+          description: "Fluffy gray cat",
           link: "/found",
         },
         {
@@ -150,8 +209,7 @@ export default {
           animal: "Cat",
           gender: "Male",
           periodInfo: "Found 7 days ago",
-          description:
-            "I found a cat, the owner of the animal, please come forward.",
+          description: "Bid ginger cat",
           link: "/lost",
         },
         {
@@ -162,7 +220,7 @@ export default {
           animal: "Cat",
           gender: "Female",
           periodInfo: "Found 3 days ago",
-          description: "I lost a cat, please help me",
+          description: "Little gray cat",
           link: "/found",
         },
         {
@@ -173,7 +231,7 @@ export default {
           animal: "Cat",
           gender: "Male",
           periodInfo: "Found 2 days ago",
-          description: "I lost a cat, please help me",
+          description: "Big fluffy cat",
           link: "/lost",
         },
       ],
@@ -187,6 +245,8 @@ export default {
       selectedStatus: null,
       selectedAnimal: null,
       selectedGender: null,
+      day: null,
+      time: null,
       //data od period
       Description: null,
     };
@@ -202,16 +262,18 @@ export default {
 
     openChangeWindow(data) {
       this.currentData = data;
-      // if(data.status)
-      // this.selectedStatus.change()
       this.displayChangeWindow = true;
     },
     closeChangeWindow() {
       this.displayChangeWindow = false;
     },
 
+    submit() {
+      ///////////////////////////////
+    },
+
     deleteAnimal(id) {
-      console.log(id);
+      //last element???
       this.pets.splice(id - 1, 1);
       this.showList();
     },
