@@ -53,7 +53,7 @@
   <PrimeDialog
     v-model:visible="displayDescriptWindow"
     :breakpoints="{ '960px': '75vw', '640px': '90vw' }"
-    :style="{ width: '50vw' }"
+    :style="{ width: '30vw' }"
   >
     <img
       class="img-descpipt"
@@ -237,5 +237,10 @@ p {
   .p-carousel-item {
     padding: 5px;
   }
+}
+.img-descpipt {
+  width: 300px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  margin-right: 2rem;
 }
 </style>

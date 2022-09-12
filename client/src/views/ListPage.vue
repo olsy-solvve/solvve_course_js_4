@@ -47,7 +47,7 @@
       <PrimeDialog
         v-model:visible="displayDescriptWindow"
         :breakpoints="{ '960px': '75vw', '640px': '90vw' }"
-        :style="{ width: '50vw' }"
+        :style="{ width: '30vw' }"
       >
         <img
           class="img-descpipt"
@@ -177,9 +177,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.title {
-  text-align: center;
-}
 .page-wrapper {
   max-width: 900px;
   margin: 0 auto;
@@ -192,7 +189,7 @@ export default {
   font-weight: 700;
 }
 .img-descpipt {
-  width: 400px;
+  width: 300px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   margin-right: 2rem;
 }
