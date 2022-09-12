@@ -147,6 +147,17 @@ export default {
           description: "Big fluffy cat",
           link: "/lost",
         },
+        {
+          id: 6,
+          img: images.car06,///////////////////////////////////
+          name: "Mars",
+          status: "Lost",
+          animal: "Dog",
+          gender: "Male",
+          periodInfo: "Lost 6 days ago",
+          description: "Little black dog",
+          link: "/lost",
+        },
       ],
       dog01: images.dog01,
       displayDescriptWindow: false,

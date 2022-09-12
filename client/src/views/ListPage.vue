@@ -17,6 +17,14 @@
               optionValue="value"
               placeholder="Sort By Status"
             />
+            <FormDropdown
+              v-model="sortAnimal"
+              class="lg:col-3 md:col-4 sm:col-6 col-12"
+              :options="animals"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Sort By Animal"
+            />
           </div>
         </template>
 
@@ -105,9 +113,9 @@ export default {
           status: "Lost",
           animal: "Cat",
           gender: "Male",
-          periodInfo: "Found 12 hours ago",
+          periodInfo: "Lost 12 hours ago",
           description: "Fluffy gray cat",
-          link: "/found",
+          link: "/lost",
         },
         {
           id: 3,
@@ -118,7 +126,7 @@ export default {
           gender: "Male",
           periodInfo: "Found 7 days ago",
           description: "Bid ginger cat",
-          link: "/lost",
+          link: "/found",
         },
         {
           id: 4,
@@ -138,8 +146,19 @@ export default {
           status: "Lost",
           animal: "Cat",
           gender: "Male",
-          periodInfo: "Found 2 days ago",
+          periodInfo: "Lost 2 days ago",
           description: "Big fluffy cat",
+          link: "/lost",
+        },
+        {
+          id: 6,
+          img: images.car06,///////////////////////////////////
+          name: "Mars",
+          status: "Lost",
+          animal: "Dog",
+          gender: "Male",
+          periodInfo: "Lost 6 days ago",
+          description: "Little black dog",
           link: "/lost",
         },
       ],
@@ -148,19 +167,36 @@ export default {
         { label: "Found", value: "Found" },
         { label: "Lost", value: "Lost" },
       ],
+
+      animals: [
+        { label: "All", value: null },
+        { label: "Cat", value: "Cat" },
+        { label: "Dog", value: "Dog" },
+      ],
+
       sortStatus: null,
+      sortAnimal: null,
       layout: "list",
       displayDescriptWindow: false,
     };
   },
   computed: {
     petsComputed() {
-      if (!this.sortStatus) {
+      if (!this.sortStatus && !this.sortAnimal) {
         return this.pets;
+      } else if (this.sortStatus && !this.sortAnimal){
+        return this.pets.filter((pet) => {
+          return pet.status === this.sortStatus;
+        });
+      } else if (!this.sortStatus && this.sortAnimal){
+        return this.pets.filter((pet) => {
+          return pet.animal === this.sortAnimal;
+        });
       }
 
       return this.pets.filter((pet) => {
-        return pet.status === this.sortStatus;
+
+        return (pet.status === this.sortStatus && pet.animal ===this.sortAnimal)
       });
     },
   },
