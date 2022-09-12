@@ -36,7 +36,7 @@
                 </div>
                 <div class="type-info">
                   Status :
-                  <span class="status">{{ slotProps.data.status }}</span>
+                  <span class="status">{{ slotProps.data.status }} pet</span>
                 </div>
               </div>
             </div>
@@ -58,7 +58,7 @@
           Name : <span class="pets-name">{{ currentData.name }}</span>
         </div>
         <div class="type-info">
-          Status : <span class="status">{{ currentData.status }}</span>
+          Status : <span class="status">{{ currentData.status }} pet</span>
         </div>
         <div class="type-info">
           Animal : <span class="animal">{{ currentData.animal }}</span>

@@ -36,17 +36,53 @@
         :responsiveOptions="responsiveOptions"
       >
         <template #item="slotProps">
-          <div class="flex">
-            <img class="w-full" :src="slotProps.data.img" />
-          </div>
-          <div class="info-block">
-            <div class="status-info">{{ slotProps.data.status }}</div>
-            <div class="period-info">{{ slotProps.data.periodInfo }}</div>
+          <div @click="openDescriptWindow(slotProps.data)">
+            <div class="flex">
+              <img class="w-full" :src="slotProps.data.img" />
+            </div>
+            <div class="info-block">
+              <div class="status-info">{{ slotProps.data.status }} pet</div>
+              <div class="period-info">{{ slotProps.data.periodInfo }}</div>
+            </div>
           </div>
         </template>
       </PrimeCarousel>
     </div>
   </section>
+
+  <PrimeDialog
+    v-model:visible="displayDescriptWindow"
+    :breakpoints="{ '960px': '75vw', '640px': '90vw' }"
+    :style="{ width: '50vw' }"
+  >
+    <img
+      class="img-descpipt"
+      :src="currentData.img"
+      :alt="currentData.name"
+    />
+    <div class="type-info">
+      Name : <span class="pets-name">{{ currentData.name }}</span>
+    </div>
+    <div class="type-info">
+      Status : <span class="status">{{ currentData.status }}</span>
+    </div>
+    <div class="type-info">
+      Animal : <span class="animal">{{ currentData.animal }}</span>
+    </div>
+    <div class="type-info">
+      Gender : <span class="gender">{{ currentData.gender }}</span>
+    </div>
+    <div class="type-info">
+      Period : <span class="gender">{{ currentData.periodInfo }}</span>
+    </div>
+    <div class="type-info">
+       ID : <span class="id">{{ currentData.id }}</span>
+    </div>
+    <div class="type-info">
+      Description : <span class="id">{{ currentData.description }}</span>
+    </div>
+  </PrimeDialog>
+
 </template>
 
 <script>
@@ -59,40 +95,61 @@ export default {
         {
           id: 1,
           img: images.car01,
-          status: "Found Pet",
+          name: "Lora",
+          status: "Found",
+          animal: "Cat",
+          gender: "Female",
           periodInfo: "Found 5 days ago",
+          description: "Black little",
           breed: "Poodle",
         },
         {
           id: 2,
           img: images.car02,
-          status: "Found pet",
+          name: "Barsik",
+          status: "Lost",
+          animal: "Cat",
+          gender: "Male",
           periodInfo: "Found 12 hours ago",
+          description: "Fluffy gray cat",
           link: "/found",
         },
         {
           id: 3,
           img: images.car03,
-          status: "Found pet",
+          name: "Sema",
+          status: "Found",
+          animal: "Cat",
+          gender: "Male",
           periodInfo: "Found 7 days ago",
+          description: "Bid ginger cat",
           link: "/lost",
         },
         {
           id: 4,
           img: images.car04,
-          status: "Found pet",
+          name: "Alisha",
+          status: "Found",
+          animal: "Cat",
+          gender: "Female",
           periodInfo: "Found 3 days ago",
+          description: "Little gray cat",
           link: "/found",
         },
         {
           id: 5,
           img: images.car05,
-          status: "Lost pet",
+          name: "Tom",
+          status: "Lost",
+          animal: "Cat",
+          gender: "Male",
           periodInfo: "Found 2 days ago",
+          description: "Big fluffy cat",
           link: "/lost",
         },
       ],
       dog01: images.dog01,
+      displayDescriptWindow: false,
 
       responsiveOptions: [
         {
@@ -112,6 +169,12 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    openDescriptWindow(data) {
+      this.currentData = data;
+      this.displayDescriptWindow = true;
+    },
   },
 };
 </script>
