@@ -48,6 +48,13 @@ export default {
           to: "/Register",
           visible: !this.isAuthUser,
         },
+        {
+          label: "Logout",
+          icon: "pi pi-fw pi-sign-in",
+          to: "/Register",
+          command: () => this.$store.commit('user/logout'),
+          visible: this.isAuthUser,
+        },
       ];
     },
   },

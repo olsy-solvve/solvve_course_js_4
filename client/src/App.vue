@@ -11,12 +11,22 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="wrapper">
     <ComponentHeader></ComponentHeader>
-    <router-view></router-view>
+    <router-view class="wrapper__main"></router-view>
     <ComponentFooter></ComponentFooter>
     <PrimeToast />
   </div>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+  .wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    &__main {
+      flex: 1 1 auto;
+    }
+  }
+</style>

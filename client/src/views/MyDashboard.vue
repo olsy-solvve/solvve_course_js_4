@@ -1,131 +1,133 @@
 <template>
-  <div class="page-wrapper mx-auto my-0">
-    <div class="flex gap-2 mb-4 mt-3">
-      <MyDashboardMenu />
-      <div class="flex-auto">
-        <h2 class="text-center">My Pets</h2>
-        <div class="flex justify-content-center gap-1">
-          <div class="text-center mt-4">
-            <PrimeButton @click="addPet()" label="Add a pet" />
+  <div>
+    <div class="page-wrapper mx-auto my-0">
+      <div class="flex gap-2 mb-4 mt-3">
+        <MyDashboardMenu />
+        <div class="flex-auto">
+          <h2 class="text-center">My Pets</h2>
+          <div class="flex justify-content-center gap-1">
+            <div class="text-center mt-4">
+              <PrimeButton @click="addPet()" label="Add a pet" />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="card mb-4 border-round-md p-5 bg-white">
-      <!-- start pets list -->
-      <OrderList v-model="pets" listStyle="height:auto">
-        <template #header> A list of my pets </template>
-        <template #item="slotProps">
-          <div class="product-item flex align-items-center w-full p-2">
-            <div class="image-container w-3">
-              <img
-                @click="() => showPetCard(slotProps.item.id)"
-                class="w-full mr-1"
-                :src="
-                  slotProps.item.image
-                    ? slotProps.item.image[0]
-                    : '../src/assets/img/cat.png'
-                "
-                :alt="slotProps.item.status"
-              />
-            </div>
-            <div class="flex flex-column gap-1 ml-2 mb-2 w-20rem">
-              <small v-if="slotProps.item.name !== 'undefined'">
-                <span class="font-bold">Name: </span>{{ slotProps.item.name }}
-              </small>
-              <small>
-                <span class="font-bold">Status: </span
-                >{{ slotProps.item.status }}
-              </small>
-              <small v-if="slotProps.item.petType !== 'undefined'">
-                <span class="font-bold">Animal:</span>
-                {{ slotProps.item.petType }}
-              </small>
-              <small v-if="slotProps.item.gender !== 'undefined'">
-                <span class="font-bold">Gender:</span>
-                {{ slotProps.item.gender }}
-              </small>
-              <small v-if="slotProps.item.date !== 'undefined'">
-                <span class="font-bold">Period:</span>
-                {{ slotProps.item.date }}
-              </small>
-              <small>
-                <span class="font-bold">ID:</span>
-                {{ slotProps.item.id }}
-              </small>
-            </div>
-            <div class="flex-auto">
-              <div class="flex justify-content-end">
-                <div class="text-center mt-4 mb-4">
-                  <PrimeButton
-                    @click="() => deleteFromList(slotProps.item.id)"
-                    label="Delete Pet"
-                  />
+      <div class="card mb-4 border-round-md p-5 bg-white">
+        <!-- start pets list -->
+        <OrderList v-model="pets" listStyle="height:auto">
+          <template #header> A list of my pets </template>
+          <template #item="slotProps">
+            <div class="product-item flex align-items-center w-full p-2">
+              <div class="image-container w-3">
+                <img
+                  @click="() => showPetCard(slotProps.item.id)"
+                  class="w-full mr-1"
+                  :src="
+                    slotProps.item.image
+                      ? slotProps.item.image[0]
+                      : '../src/assets/img/cat.png'
+                  "
+                  :alt="slotProps.item.status"
+                />
+              </div>
+              <div class="flex flex-column gap-1 ml-2 mb-2 w-20rem">
+                <small v-if="slotProps.item.name !== 'undefined'">
+                  <span class="font-bold">Name: </span>{{ slotProps.item.name }}
+                </small>
+                <small>
+                  <span class="font-bold">Status: </span
+                  >{{ slotProps.item.status }}
+                </small>
+                <small v-if="slotProps.item.petType !== 'undefined'">
+                  <span class="font-bold">Animal:</span>
+                  {{ slotProps.item.petType }}
+                </small>
+                <small v-if="slotProps.item.gender !== 'undefined'">
+                  <span class="font-bold">Gender:</span>
+                  {{ slotProps.item.gender }}
+                </small>
+                <small v-if="slotProps.item.date !== 'undefined'">
+                  <span class="font-bold">Period:</span>
+                  {{ slotProps.item.date }}
+                </small>
+                <small>
+                  <span class="font-bold">ID:</span>
+                  {{ slotProps.item.id }}
+                </small>
+              </div>
+              <div class="flex-auto">
+                <div class="flex justify-content-end">
+                  <div class="text-center mt-4 mb-4">
+                    <PrimeButton
+                      @click="() => deleteFromList(slotProps.item.id)"
+                      label="Delete Pet"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </template>
-      </OrderList>
-      <!-- end pets list -->
+          </template>
+        </OrderList>
+        <!-- end pets list -->
+      </div>
     </div>
-  </div>
-  <!-- start pets detailed card  -->
-  <div>
-    <PrimeDialog class="mb-7" v-model:visible="display2">
-      <PrimeCard style="width: 25em">
-        <template #header v-if="pets[petIndex].image">
-          <img
-            v-for="(img, index) in pets[petIndex].image"
-            :key="index"
-            class="w-full mr-1"
-            :src="img"
-            :alt="pets[petIndex].status"
-          />
-        </template>
-        <template #header v-else>
-          <img
-            class="w-full mr-1"
-            src="../assets/img/cat.png"
-            :alt="pets[petIndex].status"
-          />
-        </template>
-        <template #title> Detailed Pet Description </template>
-        <template #content>
-          <div class="flex flex-column gap-1 ml-2 mb-2">
-            <small v-if="pets[petIndex].name !== 'undefined'">
-              <span class="font-bold">Name: </span>{{ pets[petIndex].name }}
-            </small>
-            <small>
-              <span class="font-bold">Status: </span>{{ pets[petIndex].status }}
-            </small>
-            <small v-if="pets[petIndex].petType !== 'undefined'">
-              <span class="font-bold">Animal:</span>
-              {{ pets[petIndex].petType }}
-            </small>
-            <small v-if="pets[petIndex].gender !== 'undefined'">
-              <span class="font-bold">Gender:</span>
-              {{ pets[petIndex].gender }}
-            </small>
-            <small v-if="pets[petIndex].date !== 'undefined'">
-              <span class="font-bold">Period:</span>
-              {{ pets[petIndex].date }}
-            </small>
-            <small>
-              <span class="font-bold">ID:</span>
-              {{ pets[petIndex].id }}
-            </small>
-            <small v-if="pets[petIndex].info">
-              <span class="font-bold">Description:</span>
-              {{ pets[petIndex].info }}
-            </small>
-          </div>
-        </template>
-        <template #footer>
-          <PrimeButton icon="pi pi-check" label="Card Editing" />
-        </template>
-      </PrimeCard>
-    </PrimeDialog>
+    <!-- start pets detailed card  -->
+    <div>
+      <PrimeDialog class="mb-7" v-model:visible="display2">
+        <PrimeCard style="width: 25em">
+          <template #header v-if="pets[petIndex].image">
+            <img
+              v-for="(img, index) in pets[petIndex].image"
+              :key="index"
+              class="w-full mr-1"
+              :src="img"
+              :alt="pets[petIndex].status"
+            />
+          </template>
+          <template #header v-else>
+            <img
+              class="w-full mr-1"
+              src="../assets/img/cat.png"
+              :alt="pets[petIndex].status"
+            />
+          </template>
+          <template #title> Detailed Pet Description </template>
+          <template #content>
+            <div class="flex flex-column gap-1 ml-2 mb-2">
+              <small v-if="pets[petIndex].name !== 'undefined'">
+                <span class="font-bold">Name: </span>{{ pets[petIndex].name }}
+              </small>
+              <small>
+                <span class="font-bold">Status: </span>{{ pets[petIndex].status }}
+              </small>
+              <small v-if="pets[petIndex].petType !== 'undefined'">
+                <span class="font-bold">Animal:</span>
+                {{ pets[petIndex].petType }}
+              </small>
+              <small v-if="pets[petIndex].gender !== 'undefined'">
+                <span class="font-bold">Gender:</span>
+                {{ pets[petIndex].gender }}
+              </small>
+              <small v-if="pets[petIndex].date !== 'undefined'">
+                <span class="font-bold">Period:</span>
+                {{ pets[petIndex].date }}
+              </small>
+              <small>
+                <span class="font-bold">ID:</span>
+                {{ pets[petIndex].id }}
+              </small>
+              <small v-if="pets[petIndex].info">
+                <span class="font-bold">Description:</span>
+                {{ pets[petIndex].info }}
+              </small>
+            </div>
+          </template>
+          <template #footer>
+            <PrimeButton icon="pi pi-check" label="Card Editing" />
+          </template>
+        </PrimeCard>
+      </PrimeDialog>
+    </div>
   </div>
   <!-- end pets detailed card -->
 </template>
