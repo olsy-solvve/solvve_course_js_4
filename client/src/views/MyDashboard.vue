@@ -98,7 +98,8 @@
                 <span class="font-bold">Name: </span>{{ pets[petIndex].name }}
               </small>
               <small>
-                <span class="font-bold">Status: </span>{{ pets[petIndex].status }}
+                <span class="font-bold">Status: </span
+                >{{ pets[petIndex].status }}
               </small>
               <small v-if="pets[petIndex].petType !== 'undefined'">
                 <span class="font-bold">Animal:</span>

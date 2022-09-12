@@ -1,4 +1,4 @@
-const TOKEN_KEY = 'jwt-token'
+const TOKEN_KEY = "jwt-token";
 
 const userStore = {
   namespaced: true,
@@ -9,13 +9,13 @@ const userStore = {
   },
   mutations: {
     setToken(state, token) {
-      state.token = token
-      localStorage.setItem(TOKEN_KEY, token)
+      state.token = token;
+      localStorage.setItem(TOKEN_KEY, token);
     },
     logout(state) {
-      state.token = null
-      localStorage.removeItem(TOKEN_KEY)
-    }
+      state.token = null;
+      localStorage.removeItem(TOKEN_KEY);
+    },
   },
   getters: {
     isAuthUser(state) {

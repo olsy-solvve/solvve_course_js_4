@@ -55,11 +55,7 @@
     :breakpoints="{ '960px': '75vw', '640px': '90vw' }"
     :style="{ width: '30vw' }"
   >
-    <img
-      class="img-descpipt"
-      :src="currentData.img"
-      :alt="currentData.name"
-    />
+    <img class="img-descpipt" :src="currentData.img" :alt="currentData.name" />
     <div class="type-info">
       Name : <span class="pets-name">{{ currentData.name }}</span>
     </div>
@@ -76,13 +72,12 @@
       Period : <span class="gender">{{ currentData.periodInfo }}</span>
     </div>
     <div class="type-info">
-       ID : <span class="id">{{ currentData.id }}</span>
+      ID : <span class="id">{{ currentData.id }}</span>
     </div>
     <div class="type-info">
       Description : <span class="id">{{ currentData.description }}</span>
     </div>
   </PrimeDialog>
-
 </template>
 
 <script>

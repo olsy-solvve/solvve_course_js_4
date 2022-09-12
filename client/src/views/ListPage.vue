@@ -152,7 +152,7 @@ export default {
         },
         {
           id: 6,
-          img: images.car06,///////////////////////////////////
+          img: images.car06, ///////////////////////////////////
           name: "Mars",
           status: "Lost",
           animal: "Dog",
@@ -184,19 +184,18 @@ export default {
     petsComputed() {
       if (!this.sortStatus && !this.sortAnimal) {
         return this.pets;
-      } else if (this.sortStatus && !this.sortAnimal){
+      } else if (this.sortStatus && !this.sortAnimal) {
         return this.pets.filter((pet) => {
           return pet.status === this.sortStatus;
         });
-      } else if (!this.sortStatus && this.sortAnimal){
+      } else if (!this.sortStatus && this.sortAnimal) {
         return this.pets.filter((pet) => {
           return pet.animal === this.sortAnimal;
         });
       }
 
       return this.pets.filter((pet) => {
-
-        return (pet.status === this.sortStatus && pet.animal ===this.sortAnimal)
+        return pet.status === this.sortStatus && pet.animal === this.sortAnimal;
       });
     },
   },
