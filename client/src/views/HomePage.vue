@@ -1,7 +1,9 @@
 <template>
   <section class="py-5 my-5">
     <div class="container">
-      <div class="section-content flex gap-3 mb-4">
+      <div
+        class="section-content flex xl:flex-nowrap lg:flex-nowrap md:flex-wrap sm:flex-wrap md:justify-content-center sm:justify-content-center gap-3 mb-4"
+      >
         <div class="flex flex-column gap-3">
           <h1 class="text-5xl">
             We help reunite lost pets with their families.
@@ -10,7 +12,9 @@
             Enter a photo of your missing pet and search our national lost and
             found pet database to find them.
           </p>
-          <div class="section-controls flex flex-grow-1 align-items-end gap-4">
+          <div
+            class="section-controls flex flex-grow-1 align-items-end gap-4 mb-5"
+          >
             <PrimeButton>Found Pet</PrimeButton>
             <PrimeButton
               ><router-link to="/lost">Lost Pet</router-link></PrimeButton
@@ -151,6 +155,16 @@ p {
     img {
       border-radius: 10px 10px 0 0;
     }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .container {
+    width: 90%;
+  }
+
+  .section-content {
+    flex-wrap: wrap;
   }
 }
 </style>

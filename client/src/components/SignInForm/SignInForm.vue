@@ -81,10 +81,8 @@ export default {
       return Math.random().toString(36).substr(2);
     },
     setUserToken() {
-      localStorage.setItem(
-        "token",
-        this.randomUserToken() + this.randomUserToken()
-      );
+      const token = this.randomUserToken() + this.randomUserToken()
+      this.$store.commit('user/setToken', token)
     },
     // values = { email, password } can be set in store
     Login(values, { resetForm }) {
