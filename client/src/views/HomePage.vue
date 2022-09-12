@@ -149,7 +149,7 @@ export default {
         },
         {
           id: 6,
-          img: images.car06,///////////////////////////////////
+          img: images.car06,
           name: "Mars",
           status: "Lost",
           animal: "Dog",
