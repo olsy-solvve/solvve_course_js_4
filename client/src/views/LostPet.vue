@@ -1,20 +1,24 @@
 <template>
-  <section>
-    <div class="page-wrapper">
-      <div class="section-content flex gap-3 mb-4">
+  <section class="py-5 my-5">
+    <div class="container">
+      <div
+        class="section-content flex xl:flex-nowrap lg:flex-nowrap md:flex-wrap sm:flex-wrap md:justify-content-center sm:justify-content-center gap-3 mb-4"
+      >
         <div class="flex flex-column gap-3">
-          <h1 class="text-4xl none">
+          <h1 class="text-5xl">
             We help reunite lost pets with their families.
           </h1>
-          <h2>
+          <p class="text-2xl mr-6">
             Enter a photo of your missing pet and search our national lost and
             found pet database to find them.
-          </h2>
-          <div class="section-controls flex flex-grow-1 align-items-end gap-4">
+          </p>
+          <div
+            class="section-controls flex flex-grow-1 align-items-end gap-4 mb-5"
+          >
+            <PrimeButton>Found Pet</PrimeButton>
             <PrimeButton
-              ><router-link to="/">Found Pet</router-link></PrimeButton
+              ><router-link to="/lost">Lost Pet</router-link></PrimeButton
             >
-            <PrimeButton>Lost Pet</PrimeButton>
           </div>
         </div>
         <div class="section-head-img flex align-items-start">
@@ -23,8 +27,8 @@
       </div>
     </div>
   </section>
-  <section class="section-carousel">
-    <div class="page-wrapper">
+  <section class="section-carousel my-8">
+    <div class="container">
       <PrimeCarousel
         :value="pets"
         :numVisible="3"
@@ -49,43 +53,42 @@
 import images from "@/assets/images.js";
 
 export default {
-  methods: {},
   data() {
     return {
       pets: [
         {
           id: 1,
           img: images.car01,
-          status: "Lost Pet",
-          periodInfo: "Lost 5 days ago",
+          status: "Found Pet",
+          periodInfo: "Found 5 days ago",
           breed: "Poodle",
         },
         {
           id: 2,
           img: images.car02,
-          status: "Lost pet",
-          periodInfo: "Lost 12 hours ago",
+          status: "Found pet",
+          periodInfo: "Found 12 hours ago",
           link: "/found",
         },
         {
           id: 3,
           img: images.car03,
-          status: "Lost pet",
-          periodInfo: "Lost 7 days ago",
+          status: "Found pet",
+          periodInfo: "Found 7 days ago",
           link: "/lost",
         },
         {
           id: 4,
           img: images.car04,
-          status: "Lost pet",
-          periodInfo: "Lost 3 days ago",
+          status: "Found pet",
+          periodInfo: "Found 3 days ago",
           link: "/found",
         },
         {
           id: 5,
           img: images.car05,
           status: "Lost pet",
-          periodInfo: "Lost 2 days ago",
+          periodInfo: "Found 2 days ago",
           link: "/lost",
         },
       ],
@@ -114,9 +117,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page-wrapper {
-  max-width: 900px;
-  margin: 0 auto;
+.container {
+  box-sizing: border-box;
+  margin: auto;
+  padding: 0;
+  max-width: 1170px !important;
+  min-width: 320px !important;
 }
 .section-content {
   > * {
@@ -130,11 +136,11 @@ a {
 }
 
 h1 {
-  color: rgb(0, 32, 91);
+  color: rgb(36, 38, 43);
 }
 
-h2 {
-  color: rgb(0, 32, 91);
+p {
+  color: rgb(82, 91, 107);
 }
 
 .p-carousel {
@@ -147,9 +153,18 @@ h2 {
   }
   .p-carousel-item {
     img {
-      width: 100%;
       border-radius: 10px 10px 0 0;
     }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .container {
+    width: 90%;
+  }
+
+  .section-content {
+    flex-wrap: wrap;
   }
 }
 </style>

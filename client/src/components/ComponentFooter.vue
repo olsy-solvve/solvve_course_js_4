@@ -14,8 +14,12 @@ export default {
 <template>
   <footer class="text-white py-5 mt-8">
     <div class="container">
-      <div class="footer-blocks flex flex-wrap justify-content-between">
-        <div class="text-lg w-3 mx-4">
+      <div
+        class="footer-blocks flex flex-wrap justify-content-between xl:justify-content-between lg:justify-content-around md:justify-content-around sm:justify-content-around"
+      >
+        <div
+          class="footer-contacts text-lg xl:text-lg lg:text-sm md:text-sm sm:text-md w-3 xl:w-3 lg:w-3 md:w-5 sm:w-5 mx-4 xl:mx-4 lg:mx-4 md:mx-1 sm:mx-1"
+        >
           <h3 class="text-3xl">Connect</h3>
           <p>If you have any questions or proposition, you can contact us:</p>
           <i class="pi pi-envelope"></i
@@ -44,7 +48,9 @@ export default {
             </li>
           </ul>
         </div>
-        <div class="w-3 mx-4">
+        <div
+          class="footer-img w-3 mx-4 flex-order-1 xl:flex-order-1 lg:flex-order-1 md:flex-order-2 sm:flex-order-2"
+        >
           <figure>
             <img class="img-footer" :src="img" />
             <figcaption>
@@ -54,11 +60,15 @@ export default {
             </figcaption>
           </figure>
         </div>
-        <div class="w-4 mx-4">
+        <div
+          class="footer-dev w-4 mx-4 flex-order-2 xl:flex-order-2 lg:flex-order-2 md:flex-order-1 sm:flex-order-1 xl:w-4 lg:w-4 md:w-5 sm:w-5 xl:mx-4 lg:mx-4 md:mx-1 sm:mx-1"
+        >
           <p class="text-2xl line-height-1">
             This project is voluntary, created by the development team:
           </p>
-          <ul class="text-lg pl-0 mt-4 list-none">
+          <ul
+            class="text-lg xl:text-lg lg:text-sm md:text-md sm:text-md pl-0 mt-4 list-none"
+          >
             <li>
               <a href="#" class="no-underline text-white">
                 <i class="text-lg pi pi-linkedin pr-2"></i>
@@ -136,5 +146,29 @@ h3 {
 
 .footer-text {
   margin-top: 26px;
+}
+
+@media screen and (max-width: 575px) {
+  .footer-blocks {
+    justify-content: space-around !important;
+  }
+
+  .footer-contacts {
+    width: 100% !important;
+    margin: 10px 10px 30px 10px !important;
+    order: 0 !important;
+  }
+
+  .footer-img {
+    width: 100% !important;
+    margin: 10px !important;
+    order: 2 !important;
+  }
+
+  .footer-dev {
+    width: 100% !important;
+    margin: 10px !important;
+    order: 1 !important;
+  }
 }
 </style>
