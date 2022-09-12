@@ -15,10 +15,10 @@
           <div
             class="section-controls flex flex-grow-1 align-items-end gap-4 mb-5"
           >
-            <PrimeButton>Found Pet</PrimeButton>
             <PrimeButton
-              ><router-link to="/lost">Lost Pet</router-link></PrimeButton
+              ><router-link to="/">Found Pet</router-link></PrimeButton
             >
+            <PrimeButton>Lost Pet</PrimeButton>
           </div>
         </div>
         <div class="section-head-img flex align-items-start">
@@ -59,37 +59,32 @@ export default {
         {
           id: 1,
           img: images.car01,
-          status: "Found Pet",
-          periodInfo: "Found 5 days ago",
-          breed: "Poodle",
+          status: "Lost Pet",
+          periodInfo: "Lost 5 days ago",
         },
         {
           id: 2,
           img: images.car02,
-          status: "Found pet",
-          periodInfo: "Found 12 hours ago",
-          link: "/found",
+          status: "Lost Pet",
+          periodInfo: "Lost 12 hours ago",
         },
         {
           id: 3,
           img: images.car03,
-          status: "Found pet",
-          periodInfo: "Found 7 days ago",
-          link: "/lost",
+          status: "Lost Pet",
+          periodInfo: "Lost 7 days ago",
         },
         {
           id: 4,
           img: images.car04,
-          status: "Found pet",
-          periodInfo: "Found 3 days ago",
-          link: "/found",
+          status: "Lost Pet",
+          periodInfo: "Lost 3 days ago",
         },
         {
           id: 5,
           img: images.car05,
           status: "Lost pet",
-          periodInfo: "Found 2 days ago",
-          link: "/lost",
+          periodInfo: "Lost 2 days ago",
         },
       ],
       dog01: images.dog01,

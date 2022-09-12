@@ -134,8 +134,8 @@ export default {
         {
           id: 5,
           img: images.car05,
+          status: "Found pet",
           name: "Tom",
-          status: "Lost",
           animal: "Cat",
           gender: "Male",
           periodInfo: "Found 2 days ago",

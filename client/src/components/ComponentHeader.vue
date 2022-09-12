@@ -38,7 +38,6 @@ export default {
         },
         {
           label: "My Dashboard",
-          icon: "pi pi-fw pi-star",
           to: "/myDashboard",
           visible: this.isAuthUser,
         },
