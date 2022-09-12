@@ -15,7 +15,7 @@
           <div class="col-12">
             <div
               class="pets-list-item"
-              @click.self="openDescriptWindow(slotProps.data)"
+              @click="openDescriptWindow(slotProps.data)"
             >
               <div class="img-block">
                 <img :src="slotProps.data.img" :alt="slotProps.data.name" />
