@@ -87,7 +87,7 @@ export default {
         {
           id: 5,
           img: images.car05,
-          status: "Lost pet",
+          status: "Found pet",
           periodInfo: "Found 2 days ago",
           link: "/lost",
         },
