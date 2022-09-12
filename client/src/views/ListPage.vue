@@ -1,13 +1,30 @@
 <template>
   <section class="section-list mt-6">
     <div class="page-wrapper">
-      <ListOfAllPets :value="pets" :layout="layout" :paginator="true" :rows="3">
+      <ListOfAllPets
+        :value="petsComputed"
+        :layout="layout"
+        :paginator="true"
+        :rows="3"
+      >
         <template #header>
-          <h1 class="title">My Pets</h1>
-          <div class="action-list">
-            <div style="text-align: right">
-              <PrimeButton @click="addPet()" label="Add a pet" />
-            </div>
+          <div class="row">
+            <FormDropdown
+              v-model="sortStatus"
+              class="lg:col-3 md:col-4 sm:col-6 col-12"
+              :options="statuses"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Sort By Status"
+            />
+            <FormDropdown
+              v-model="sortAnimal"
+              class="lg:col-3 md:col-4 sm:col-6 col-12"
+              :options="animals"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Sort By Animal"
+            />
           </div>
         </template>
 
@@ -15,7 +32,7 @@
           <div class="col-12">
             <div
               class="pets-list-item"
-              @click.self="openDescriptWindow(slotProps.data)"
+              @click="openDescriptWindow(slotProps.data)"
             >
               <div class="img-block">
                 <img :src="slotProps.data.img" :alt="slotProps.data.name" />
@@ -27,7 +44,7 @@
                 </div>
                 <div class="type-info">
                   Status :
-                  <span class="status">{{ slotProps.data.status }}</span>
+                  <span class="status">{{ slotProps.data.status }} pet</span>
                 </div>
               </div>
             </div>
@@ -38,7 +55,7 @@
       <PrimeDialog
         v-model:visible="displayDescriptWindow"
         :breakpoints="{ '960px': '75vw', '640px': '90vw' }"
-        :style="{ width: '50vw' }"
+        :style="{ width: '30vw' }"
       >
         <img
           class="img-descpipt"
@@ -49,7 +66,7 @@
           Name : <span class="pets-name">{{ currentData.name }}</span>
         </div>
         <div class="type-info">
-          Status : <span class="status">{{ currentData.status }}</span>
+          Status : <span class="status">{{ currentData.status }} pet</span>
         </div>
         <div class="type-info">
           Animal : <span class="animal">{{ currentData.animal }}</span>
@@ -96,9 +113,9 @@ export default {
           status: "Lost",
           animal: "Cat",
           gender: "Male",
-          periodInfo: "Found 12 hours ago",
+          periodInfo: "Lost 12 hours ago",
           description: "Fluffy gray cat",
-          link: "/found",
+          link: "/lost",
         },
         {
           id: 3,
@@ -109,7 +126,7 @@ export default {
           gender: "Male",
           periodInfo: "Found 7 days ago",
           description: "Bid ginger cat",
-          link: "/lost",
+          link: "/found",
         },
         {
           id: 4,
@@ -129,18 +146,58 @@ export default {
           status: "Lost",
           animal: "Cat",
           gender: "Male",
-          periodInfo: "Found 2 days ago",
+          periodInfo: "Lost 2 days ago",
           description: "Big fluffy cat",
           link: "/lost",
         },
+        {
+          id: 6,
+          img: images.car06, ///////////////////////////////////
+          name: "Mars",
+          status: "Lost",
+          animal: "Dog",
+          gender: "Male",
+          periodInfo: "Lost 6 days ago",
+          description: "Little black dog",
+          link: "/lost",
+        },
       ],
-      // status: [
-      //   { label: 'Found', value: '!lost' },
-      //   { label: 'Lost', value: 'lost' },
-      // ],
+      statuses: [
+        { label: "All", value: null },
+        { label: "Found", value: "Found" },
+        { label: "Lost", value: "Lost" },
+      ],
+
+      animals: [
+        { label: "All", value: null },
+        { label: "Cat", value: "Cat" },
+        { label: "Dog", value: "Dog" },
+      ],
+
+      sortStatus: null,
+      sortAnimal: null,
       layout: "list",
       displayDescriptWindow: false,
     };
+  },
+  computed: {
+    petsComputed() {
+      if (!this.sortStatus && !this.sortAnimal) {
+        return this.pets;
+      } else if (this.sortStatus && !this.sortAnimal) {
+        return this.pets.filter((pet) => {
+          return pet.status === this.sortStatus;
+        });
+      } else if (!this.sortStatus && this.sortAnimal) {
+        return this.pets.filter((pet) => {
+          return pet.animal === this.sortAnimal;
+        });
+      }
+
+      return this.pets.filter((pet) => {
+        return pet.status === this.sortStatus && pet.animal === this.sortAnimal;
+      });
+    },
   },
   methods: {
     openDescriptWindow(data) {
@@ -155,9 +212,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.title {
-  text-align: center;
-}
 .page-wrapper {
   max-width: 900px;
   margin: 0 auto;
@@ -170,7 +224,7 @@ export default {
   font-weight: 700;
 }
 .img-descpipt {
-  width: 400px;
+  width: 300px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   margin-right: 2rem;
 }
