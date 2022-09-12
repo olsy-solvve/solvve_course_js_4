@@ -1,9 +1,23 @@
 <template>
   <section class="section-list mt-6">
     <div class="page-wrapper">
-      <ListOfAllPets :value="pets" :layout="layout" :paginator="true" :rows="3">
+      <ListOfAllPets
+        :value="petsComputed"
+        :layout="layout"
+        :paginator="true"
+        :rows="3"
+      >
         <template #header>
-          
+          <div class="row">
+            <FormDropdown
+              v-model="sortStatus"
+              class="lg:col-3 md:col-4 sm:col-6 col-12"
+              :options="statuses"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Sort By Status"
+            />
+          </div>
         </template>
 
         <template #list="slotProps">
@@ -129,13 +143,26 @@ export default {
           link: "/lost",
         },
       ],
-      // status: [
-      //   { label: 'Found', value: '!lost' },
-      //   { label: 'Lost', value: 'lost' },
-      // ],
+      statuses: [
+        { label: "All", value: null },
+        { label: "Found", value: "Found" },
+        { label: "Lost", value: "Lost" },
+      ],
+      sortStatus: null,
       layout: "list",
       displayDescriptWindow: false,
     };
+  },
+  computed: {
+    petsComputed() {
+      if (!this.sortStatus) {
+        return this.pets;
+      }
+
+      return this.pets.filter((pet) => {
+        return pet.status === this.sortStatus;
+      });
+    },
   },
   methods: {
     openDescriptWindow(data) {
